@@ -62,7 +62,7 @@ get_header();
 		endwhile;
 		?>
 
-	</main><!-- #main -->
+	</main>
 
 <?php
 get_footer();
