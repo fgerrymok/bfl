@@ -176,6 +176,17 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+* Custom Post Types and Taxonomies.
+*/
+require get_template_directory() . '/inc/cpt-taxonomy.php';
+
+/**
+* Rearrange Admin Menu.
+*/
+require get_template_directory() . '/inc/rearrange-admin-menu.php';
+
+
 // remove the title of about page
 add_filter('the_title', 'remove_about_page_title',10,2);
 

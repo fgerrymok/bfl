@@ -78,6 +78,8 @@ gulpfile.js
 package.json
 package-lock.json
 .eslintrc.js
+vendor/
+/config/google-service-account.json
 
 
 # Misc files #
