@@ -187,3 +187,12 @@ require get_template_directory() . '/inc/cpt-taxonomy.php';
 require get_template_directory() . '/inc/rearrange-admin-menu.php';
 
 
+// remove the title of about page
+add_filter('the_title', 'remove_about_page_title',10,2);
+
+function remove_about_page_title($title, $id){
+	if(is_page(8633)){
+		return '';
+	}
+	return $title;
+}
