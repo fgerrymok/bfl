@@ -41,7 +41,6 @@ get_header();
 					$fighter2Image = $row['fighter_2_image'];
 					$fighter2Profile = $row['fighter_2_profile'];
 					$fightTitle = $row['fight_title'];
-				}
 				?>
 				<section class="fight-card">
 					<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
@@ -57,7 +56,26 @@ get_header();
 					</a>
 				</section>
 				<?php
+				}
 			}
+			?>
+			<h3><?php echo esc_html("Behind The Fights"); ?></h3>
+			<?php
+
+			$args = array(
+				'post_type' => 'post',
+				'posts_per_page' => 3
+			);
+
+			$query = new WP_Query($args);
+			if ($query->have_posts()) {
+				while ($query->have_posts()) {
+					$query->the_post();
+					echo the_content();
+				}
+			}
+
+
 
 		endwhile;
 		?>
