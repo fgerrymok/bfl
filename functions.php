@@ -179,5 +179,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 /**
 * Custom Post Types and Taxonomies.
 */
-
 require get_template_directory() . '/inc/cpt-taxonomy.php';
+
+/**
+* Rearrange Admin Menu.
+*/
+require get_template_directory() . '/inc/rearrange-admin-menu.php';
+
+

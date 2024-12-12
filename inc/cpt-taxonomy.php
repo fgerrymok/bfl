@@ -1,9 +1,10 @@
 <?php
 
+// Change default 'Post' labels to 'Videos' and update the menu icon.
 function change_post_object_labels_to_video() {
     $post_type = get_post_type_object('post');
 
-    if ( $post_type ) {
+    if ($post_type) {
         $labels = $post_type->labels;
 
         $new_labels = array(
@@ -22,22 +23,31 @@ function change_post_object_labels_to_video() {
             'name_admin_bar'        => 'Video',
         );
 
-        // update the current labels to new one
-        foreach ( $new_labels as $key => $value ) {
-            if ( isset( $labels->$key ) ) {
+        // Update the default labels with the new ones
+        foreach ($new_labels as $key => $value) {
+            if (isset($labels->$key)) {
                 $labels->$key = $value;
             }
         }
     }
+
+    // Change the admin menu icon for the 'Post' type
+    add_action('admin_menu', function() {
+        global $menu;
+        foreach ($menu as $key => $value) {
+            if ($value[2] == 'edit.php') {
+                $menu[$key][6] = 'dashicons-video-alt3';
+            }
+        }
+    });
 }
+add_action('init', 'change_post_object_labels_to_video');
 
-add_action( 'init', 'change_post_object_labels_to_video' );
-
-
+// Register custom post types: Events, News, Results, Fighters, General Blog
 function bfl_register_custom_post_types() {
 
     // Register Events CPT
-	$labels = array(
+    $labels = array(
         'name' => _x( 'Events', 'post type general name' ),
         'singular_name' => _x( 'Event', 'post type singular name'),
         'menu_name' => _x( 'Events', 'admin menu' ),
@@ -49,44 +59,56 @@ function bfl_register_custom_post_types() {
         'view_item' => __( 'View Event' ),
         'all_items' => __( 'All Events' ),
         'search_items' => __( 'Search Events' ),
-        'parent_item_colon' => __( 'Parent Events:' ),
         'not_found' => __( 'No Events found.' ),
         'not_found_in_trash' => __( 'No Events found in Trash.' ),
         'archives' => __( 'Event Archives'),
-        'insert_into_item' => __( 'Insert into Event'),
-        'uploaded_to_this_item' => __( 'Uploaded to this Event'),
-        'filter_item_list' => __( 'Filter Events list'),
-        'items_list_navigation' => __( 'Events list navigation'),
-        'items_list' => __( 'Events list'),
-        'featured_image' => __( 'Event featured image'),
-        'set_featured_image' => __( 'Set Event featured image'),
-        'remove_featured_image' => __( 'Remove Event featured image'),
-        'use_featured_image' => __( 'Use as featured image'),
-        );
-    
-        $args = array(
-            'labels' => $labels,
-            'public' => true,
-            'publicly_queryable' => true,
-            'show_ui' => true,
-            'show_in_menu' => true,
-            'show_in_nav_menus' => true,
-            'show_in_admin_bar' => true,
-            'show_in_rest' => true,
-            'query_var' => true,
-            'rewrite' => array( 'slug' => 'events' ),
-            'capability_type' => 'post',
-            'has_archive' => true,
-            'hierarchical' => false,
-            'menu_position' => 50,
-            'menu_icon' => 'dashicons-id',
-            'supports' => array( 'title', 'thumbnail', 'editor' ),
-        );
-        register_post_type( 'bfl-events', $args );
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 2,
+        'menu_icon' => 'dashicons-text-page',
+        'supports' => array( 'title', 'thumbnail', 'editor' ),
+        'has_archive' => true,
+    );
+    register_post_type( 'bfl-events', $args );
+
+    // Register Results CPT
+    $labels = array(
+        'name' => _x( 'Results', 'post type general name' ),
+        'singular_name' => _x( 'Result', 'post type singular name'),
+        'menu_name' => _x( 'Results', 'admin menu' ),
+        'name_admin_bar' => _x( 'Result', 'add new on admin bar' ),
+        'add_new' => _x( 'Add New', 'Result' ),
+        'add_new_item' => __( 'Add New Result' ),
+        'new_item' => __( 'New Result' ),
+        'edit_item' => __( 'Edit Result' ),
+        'view_item' => __( 'View Result' ),
+        'all_items' => __( 'All Results' ),
+        'search_items' => __( 'Search Results' ),
+        'not_found' => __( 'No Results found.' ),
+        'not_found_in_trash' => __( 'No Results found in Trash.' ),
+        'archives' => __( 'Result Archives'),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 2,
+        'menu_icon' => 'dashicons-chart-line',
+        'supports' => array( 'title', 'thumbnail', 'editor' ),
+        'has_archive' => true,
+    );
+    register_post_type( 'bfl-results', $args );
 
 
-            // News CPT
-	$labels = array(
+    // Register News CPT
+    $labels = array(
         'name' => _x( 'News', 'post type general name' ),
         'singular_name' => _x( 'News', 'post type singular name'),
         'menu_name' => _x( 'News', 'admin menu' ),
@@ -98,72 +120,217 @@ function bfl_register_custom_post_types() {
         'view_item' => __( 'View News' ),
         'all_items' => __( 'All News' ),
         'search_items' => __( 'Search News' ),
-        'parent_item_colon' => __( 'Parent News:' ),
         'not_found' => __( 'No News found.' ),
         'not_found_in_trash' => __( 'No News found in Trash.' ),
         'archives' => __( 'News Archives'),
-        'insert_into_item' => __( 'Insert into News'),
-        'uploaded_to_this_item' => __( 'Uploaded to this News'),
-        'filter_item_list' => __( 'Filter News list'),
-        'items_list_navigation' => __( 'News list navigation'),
-        'items_list' => __( 'News list'),
-        'featured_image' => __( 'News featured image'),
-        'set_featured_image' => __( 'Set News featured image'),
-        'remove_featured_image' => __( 'Remove News featured image'),
-        'use_featured_image' => __( 'Use as featured image'),
-        );
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 4,
+        'menu_icon' => 'dashicons-star-filled',
+        'supports' => array( 'title', 'thumbnail', 'editor' ),
+        'has_archive' => true,
+    );
+    register_post_type( 'bfl-news', $args );
+
     
-        $args = array(
-            'labels' => $labels,
-            'public' => true,
-            'publicly_queryable' => true,
-            'show_ui' => true,
-            'show_in_menu' => true,
-            'show_in_nav_menus' => true,
-            'show_in_admin_bar' => true,
-            'show_in_rest' => true,
-            'query_var' => true,
-            'rewrite' => array( 'slug' => 'news' ),
-            'capability_type' => 'post',
-            'has_archive' => true,
-            'hierarchical' => false,
-            'menu_position' => 50,
-            'menu_icon' => 'dashicons-id',
-            'supports' => array( 'title', 'thumbnail', 'editor' ),
-        );
-        register_post_type( 'bfl-news', $args );
+
+    // Register Fighters CPT
+    $labels = array(
+        'name' => _x( 'Fighters', 'post type general name' ),
+        'singular_name' => _x( 'Fighter', 'post type singular name'),
+        'menu_name' => _x( 'Fighters', 'admin menu' ),
+        'name_admin_bar' => _x( 'Fighter', 'add new on admin bar' ),
+        'add_new' => _x( 'Add New', 'Fighter' ),
+        'add_new_item' => __( 'Add New Fighter' ),
+        'new_item' => __( 'New Fighter' ),
+        'edit_item' => __( 'Edit Fighter' ),
+        'view_item' => __( 'View Fighter' ),
+        'all_items' => __( 'All Fighters' ),
+        'search_items' => __( 'Search Fighters' ),
+        'not_found' => __( 'No Fighters found.' ),
+        'not_found_in_trash' => __( 'No Fighters found in Trash.' ),
+        'archives' => __( 'Fighter Archives'),
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_position' => 9,
+        'menu_icon' => 'dashicons-universal-access-alt',
+        'supports' => array( 'title', 'thumbnail', 'editor' ),
+        'has_archive' => true,
+    );
+    register_post_type( 'bfl-fighters', $args );
+
 }
 
 add_action('init', 'bfl_register_custom_post_types');
 
+
+// Register Taxonomies
 function bfl_register_taxonomies() {
-    
-    // Add Events Taxonomy
-    $labels = array(
-        'name'              => _x( 'Event Types', 'taxonomy general name' ),
-        'singular_name'     => _x( 'Event Type', 'taxonomy singular name' ),
-        'search_items'      => __( 'Search Event Types' ),
-        'all_items'         => __( 'All Event Types' ),
-        'parent_item'       => __( 'Parent Event Type' ),
-        'parent_item_colon' => __( 'Parent Event Type:' ),
-        'edit_item'         => __( 'Edit Event Types' ),
-        'update_item'       => __( 'Update Event Types' ),
-        'add_new_item'      => __( 'Add New Event Type' ),
-        'new_item_name'     => __( 'New Event Type' ),
-        'menu_name'         => __( 'Event Types' ),
+    // 1. Fighter Weight-class
+    register_taxonomy(
+        'bfl-weight-class',
+        'fighters',
+        array(
+            'labels' => array(
+                'name' => __( 'Weight Class' ),
+                'singular_name' => __( 'Weight Class' ),
+                'search_items' => __( 'Search Weight Classes' ),
+                'all_items' => __( 'All Weight Classes' ),
+                'edit_item' => __( 'Edit Weight Class' ),
+                'update_item' => __( 'Update Weight Class' ),
+                'add_new_item' => __( 'Add New Weight Class' ),
+                'new_item_name' => __( 'New Weight Class Name' ),
+                'menu_name' => __( 'Weight Class' ),
+            ),
+            'hierarchical' => true,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'rewrite' => array( 'slug' => 'weight-class' ),
+            'show_in_rest' => true,
+        )
     );
 
-    $args = array(
-        'hierarchical'      => true,
-        'labels'            => $labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'show_in_rest'      => true,
-        'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'event-type' ),
+    // Add default terms for Weight Class
+    $weight_classes = array( 'Bantamweight', 'Featherweight', 'Lightweight', 'Super Lightweight', 'Welterweight', 'Super Welterweight' );
+    foreach ( $weight_classes as $term ) {
+        if ( ! term_exists( $term, 'bfl-weight-class' ) ) {
+            wp_insert_term( $term, 'bfl-weight-class' );
+        }
+    }
+
+    // 2. Fighter Category
+    register_taxonomy(
+        'bfl-fighter-category',
+        'fighters',
+        array(
+            'labels' => array(
+                'name' => __( 'Fighter Category' ),
+                'singular_name' => __( 'Fighter Category' ),
+                'search_items' => __( 'Search Fighter Categories' ),
+                'all_items' => __( 'All Fighter Categories' ),
+                'edit_item' => __( 'Edit Fighter Category' ),
+                'update_item' => __( 'Update Fighter Category' ),
+                'add_new_item' => __( 'Add New Fighter Category' ),
+                'new_item_name' => __( 'New Fighter Category Name' ),
+                'menu_name' => __( 'Fighter Category' ),
+            ),
+            'hierarchical' => true,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'rewrite' => array( 'slug' => 'fighter-category' ),
+            'show_in_rest' => true,
+        )
     );
 
-    register_taxonomy( 'bfl-event-type', array( 'bfl-events' ), $args );
+    // Add default terms for Fighter Category
+    $fighter_categories = array( 'Men’s Professional', 'Women’s Professional', 'Women’s Amateur', 'Kickboxing' );
+    foreach ( $fighter_categories as $term ) {
+        if ( ! term_exists( $term, 'bfl-fighter-category' ) ) {
+            wp_insert_term( $term, 'bfl-fighter-category' );
+        }
+    }
+
+    // 3. Results Type
+    register_taxonomy(
+        'bfl-results-type',
+        'results',
+        array(
+            'labels' => array(
+                'name' => __( 'Results Type' ),
+                'singular_name' => __( 'Results Type' ),
+                'search_items' => __( 'Search Results Types' ),
+                'all_items' => __( 'All Results Types' ),
+                'edit_item' => __( 'Edit Results Type' ),
+                'update_item' => __( 'Update Results Type' ),
+                'add_new_item' => __( 'Add New Results Type' ),
+                'new_item_name' => __( 'New Results Type Name' ),
+                'menu_name' => __( 'Results Type' ),
+            ),
+            'hierarchical' => true,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'rewrite' => array( 'slug' => 'results-type' ),
+            'show_in_rest' => true,
+        )
+    );
+
+    // Add default terms for Results Type
+    $results_types = array( 'Fight Results', 'Weigh-In Results' );
+    foreach ( $results_types as $term ) {
+        if ( ! term_exists( $term, 'bfl-results-type' ) ) {
+            wp_insert_term( $term, 'bfl-results-type' );
+        }
+    }
+
+    // 4. General Taxonomy
+    register_taxonomy(
+        'bfl-blog-posts-type',
+        'blog-posts',
+        array(
+            'labels' => array(
+                'name' => __( 'Blog Posts Type' ),
+                'singular_name' => __( 'Blog Post Type' ),
+                'search_items' => __( 'Search Blog Post Types' ),
+                'all_items' => __( 'All Blog Post Types' ),
+                'edit_item' => __( 'Edit Blog Post Type' ),
+                'update_item' => __( 'Update Blog Post Type' ),
+                'add_new_item' => __( 'Add New Blog Post Type' ),
+                'new_item_name' => __( 'New Blog Post Type Name' ),
+                'menu_name' => __( 'Blog Posts Type' ),
+            ),
+            'hierarchical' => true,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'rewrite' => array( 'slug' => 'blog-posts-type' ),
+            'show_in_rest' => true,
+        )
+    );
+
+    // Add default terms for Blog Posts Type
+    if ( ! term_exists( 'general', 'bfl-blog-posts-type' ) ) {
+        wp_insert_term( 'general', 'bfl-blog-posts-type' );
+    }
+
+    // 5. Events Taxonomy
+    register_taxonomy(
+        'bfl-event-type',
+        'events',
+        array(
+            'labels' => array(
+                'name' => __( 'Event Type' ),
+                'singular_name' => __( 'Event Type' ),
+                'search_items' => __( 'Search Event Types' ),
+                'all_items' => __( 'All Event Types' ),
+                'edit_item' => __( 'Edit Event Type' ),
+                'update_item' => __( 'Update Event Type' ),
+                'add_new_item' => __( 'Add New Event Type' ),
+                'new_item_name' => __( 'New Event Type Name' ),
+                'menu_name' => __( 'Event Type' ),
+            ),
+            'hierarchical' => true,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'rewrite' => array( 'slug' => 'event-type' ),
+            'show_in_rest' => true,
+        )
+    );
+
+    // Add default terms for Event Type
+    $event_types = array( 'Upcoming Events', 'Past Events' );
+    foreach ( $event_types as $term ) {
+        if ( ! term_exists( $term, 'bfl-event-type' ) ) {
+            wp_insert_term( $term, 'bfl-event-type' );
+        }
+    }
 }
-
-add_action('init', 'bfl_register_taxonomies');
+add_action( 'init', 'bfl_register_taxonomies' );
