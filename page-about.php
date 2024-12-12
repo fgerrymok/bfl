@@ -107,7 +107,7 @@ while ( have_posts() ) :
             <h2><?php echo esc_html($contact_title) ?></h2>
             <div class='advertise-fight-wrapper'>
                 <p><?php echo esc_html($advertise_title); ?></p>
-                <p><?php echo esc_html($fight_title); ?></p>
+                <p><?php echo esc_html($fight_title); ?> <span>BFL</span></p>
             </div>
             <p><?php echo esc_html($email_addres); ?></p>
             <p>or</p>
