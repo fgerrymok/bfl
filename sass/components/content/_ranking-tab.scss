@@ -1,0 +1,27 @@
+.ranking-header ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ranking-header button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.ranking-header button:hover {
+  background-color: #e0e0e0;
+}
+
+.division-group {
+  display: none;
+}
+
+.division-group:first-of-type {
+  display: block;
+}
