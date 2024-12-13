@@ -43,6 +43,10 @@
     ?>
  </section>
  <section class='videos-section'>
+    <!-- Output the videos from acf fields -->
+    <?php
+
+    ?>
      <?php
          // Custom Query for Videos
          $args = array(
@@ -56,6 +60,9 @@
          if ($query->have_posts()) {
              while ($query->have_posts()) {
                  $query->the_post();
+
+                 
+
  
                  echo '<div class="video-item">';
  
@@ -67,12 +74,19 @@
                      // Display the first video found
                      echo $videos[0];
                  } else {
-                     echo '<p>No video available for this post.</p>';
+                     if(have_rows('add_a_video')):
+                        while(have_rows('add_a_video')): the_row();
+                            // get sub_field values
+                            $embed_video  = get_sub_field('video_url');
+                            if($embed_video){
+                                echo $embed_video;
+                            }
+                        endwhile;
+                     endif;
                  }
  
                  // Display the title
                  echo '<h3>' . get_the_title() . '</h3>';
- 
                  echo '</div>';
              }
          } else {
