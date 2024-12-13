@@ -7,33 +7,16 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
-			?>
-			<h1 class="single-event-heading"><?php echo esc_html('Upcoming Events'); ?></h1>
-			<?php
 			$hero = get_field('upcoming_events_hero');
 
 			if ($hero) {
-				$bettingOddsLink = $hero['betting_odds_link'];
-				$ticketsLink = $hero['tickets_link'];
 				$eventsPoster = $hero['event_poster'];
 				$eventName = $hero['event_name'];
 				$fightDate = $hero['fight_date'];
 				$venue = $hero['venue'];
 				?>
 				<section class="single-event-hero">
-					<?php
-					if (!empty($bettingOddsLink)) {
-						?>
-						<a href="<?php echo esc_url($bettingOddsLink) ?>" class="betting-odds"><?php echo esc_html('Betting Odds'); ?></a>
-						<?php
-					}
-
-					if (!empty($ticketsLink)) {
-						?>
-						<a href="<?php echo esc_url($ticketsLink) ?>" class="tickets"><?php echo esc_html('Tickets'); ?></a>
-						<?php
-					}
-					?>
+					<h1 class="single-event-heading"><?php echo esc_html($eventName); ?></h1>
 					<div class="event-poster">
 						<?php echo wp_get_attachment_image($eventsPoster, 'full'); ?>
 					</div>
