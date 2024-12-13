@@ -2,12 +2,8 @@
 
 function bfl_load_more_posts() {
     
-    error_log(print_r($_GET, true));
-
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $posts_per_page = isset($_GET['posts_per_page']) ? intval($_GET['posts_per_page']) : 3;
-
-    error_log("Page: " . $page . ", Posts Per Page: " . $posts_per_page);
 
     $args = [
         'post_type' => 'bfl-news',
