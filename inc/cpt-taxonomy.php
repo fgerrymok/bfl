@@ -101,6 +101,7 @@ function bfl_register_custom_post_types() {
             'capability_type' => 'post',
             'has_archive' => true,
             'hierarchical' => false,
+            'taxonomies' => ['post_tag'],
         ];
 
         register_post_type($slug, $args);
