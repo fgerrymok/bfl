@@ -19,11 +19,19 @@ get_header();
 				$eventName = $hero['event_name'];
 				$fightDate = $hero['fight_date'];
 				$venue = $hero['venue'];
-				?>
+				
+				if (empty($bettingOddsLink)) {
+					?>
+					<a href="<?php echo esc_url($bettingOddsLink) ?>"><?php echo esc_html('Betting Odds'); ?></a>
+					<?php
+				}
 
-				<a href="<?php echo esc_url($bettingOddsLink) ?>"><?php echo esc_html('Betting Odds'); ?></a>
-				<a href="<?php echo esc_url($ticketsLink) ?>"><?php echo esc_html('Tickets'); ?></a>
-				<?php
+				if (empty($ticketsLink)) {
+					?>
+					<a href="<?php echo esc_url($ticketsLink) ?>"><?php echo esc_html('Tickets'); ?></a>
+					<?php
+				}
+				
 				echo wp_get_attachment_image($eventsPoster, 'full');
 				?>
 				<h2><?php echo esc_html($eventName); ?></h2>
@@ -65,6 +73,7 @@ get_header();
 			if ($hero) {
 				$eventName = $hero['event_name'];
 				$tag = sanitize_title(strtolower($eventName));
+				$tag = str_replace(' ', '', $tag);
 				
 				$args = array(
 					'post_type' => 'post',
