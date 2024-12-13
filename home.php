@@ -17,6 +17,30 @@
  <main id="primary" class="site-main">
  
  <section class='hero-section'>
+    <?php
+
+        // Page ID to fetch the ACF field from
+        $page_id = 12;
+        $page = get_post($page_id);
+
+        if ($page) {
+            // Output the page title
+            
+            echo '<h1>' . esc_html($page->post_title) . '</h1>';
+            // Retrieve the ACF field for this page
+            $featured_video = get_field('featured_video_of_videos_page', $page_id);
+            
+            if ($featured_video) {
+                echo '<div class="featured-video">';
+                echo $featured_video; 
+                echo '</div>';
+            } else {
+                echo '<p>No featured video available.</p>';
+            }
+        } else {
+            echo '<p>Page not found.</p>';
+        }
+    ?>
  </section>
  <section class='videos-section'>
      <?php
