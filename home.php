@@ -16,7 +16,7 @@
  ?>
  <main id="primary" class="site-main">
  
- <section class='hero-section'>
+    <section class='hero-section'>
     <?php
 
         // Page ID to fetch the ACF field from
@@ -41,62 +41,47 @@
             echo '<p>Page not found.</p>';
         }
     ?>
- </section>
- <section class='videos-section'>
-    <!-- Output the videos from acf fields -->
-    <?php
+    </section>
+    <section class="videos-section">
+        <div id="video-container">
+            <?php
+            // Initial 9 Videos Load
+            $args = [
+                'post_type'      => 'post',
+                'posts_per_page' => 9,
+                'orderby'        => 'date',
+                'order'          => 'DESC',
+            ];
 
-    ?>
-     <?php
-         // Custom Query for Videos
-         $args = array(
-             'post_type'      => 'post',
-             'posts_per_page' => 9,
-             'orderby'        => 'date',
-             'order'          => 'DESC',
-         );
- 
-         $query = new WP_Query($args);
-         if ($query->have_posts()) {
-             while ($query->have_posts()) {
-                 $query->the_post();
-
-                 
-
- 
-                 echo '<div class="video-item">';
- 
-                 // Extract videos from the post content
-                 $content = get_the_content();
-                 $videos = get_media_embedded_in_content($content, array('video', 'iframe'));
- 
-                 if (!empty($videos)) {
-                     // Display the first video found
-                     echo $videos[0];
-                 } else {
-                     if(have_rows('add_a_video')):
-                        while(have_rows('add_a_video')): the_row();
-                            // get sub_field values
-                            $embed_video  = get_sub_field('video_url');
-                            if($embed_video){
-                                echo $embed_video;
+            $query = new WP_Query($args);
+            if ($query->have_posts()) {
+                while ($query->have_posts()) {
+                    $query->the_post();
+                    echo '<div class="video-item">';
+                    $content = get_the_content();
+                    $videos = get_media_embedded_in_content($content, ['video', 'iframe']);
+                    if (!empty($videos)) {
+                        echo $videos[0];
+                    } else {
+                        if (have_rows('add_a_video')) {
+                            while (have_rows('add_a_video')) {
+                                the_row();
+                                $embed_video = get_sub_field('video_url');
+                                if ($embed_video) echo $embed_video;
                             }
-                        endwhile;
-                     endif;
-                 }
- 
-                 // Display the title
-                 echo '<h3>' . get_the_title() . '</h3>';
-                 echo '</div>';
-             }
-         } else {
-             echo '<p>No posts found.</p>';
-         }
- 
-         wp_reset_postdata();
-     ?>
- </section>
- 
+                        }
+                    }
+                    echo '<h3>' . get_the_title() . '</h3>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>No posts found.</p>';
+            }
+            wp_reset_postdata();
+            ?>
+        </div>
+        <button id="load-more" data-page="1">Load More</button>
+    </section>
  </main>
  <?php
  get_footer();
