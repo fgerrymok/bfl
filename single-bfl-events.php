@@ -62,20 +62,24 @@ get_header();
 			<h3><?php echo esc_html("Behind The Fights"); ?></h3>
 			<?php
 
-			$args = array(
-				'post_type' => 'post',
-				'posts_per_page' => 3
-			);
-
-			$query = new WP_Query($args);
-			if ($query->have_posts()) {
-				while ($query->have_posts()) {
-					$query->the_post();
-					echo the_content();
+			if ($hero) {
+				$eventName = $hero['event_name'];
+				$tag = sanitize_title(strtolower($eventName));
+				
+				$args = array(
+					'post_type' => 'post',
+					'posts_per_page' => 3,
+					'tag' => $tag,
+				);
+	
+				$query = new WP_Query($args);
+				if ($query->have_posts()) {
+					while ($query->have_posts()) {
+						$query->the_post();
+						echo the_content();
+					}
 				}
 			}
-
-
 
 		endwhile;
 		?>
