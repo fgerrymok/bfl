@@ -183,9 +183,10 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 require get_template_directory() . '/inc/cpt-taxonomy.php';
 
 /**
-* Rearrange Admin Menu.
+* Custom functions.
 */
 require get_template_directory() . '/inc/rearrange-admin-menu.php';
+require get_template_directory() . '/inc/loadmore-news.php';
 
 
 // remove the title of about page
@@ -197,3 +198,21 @@ function remove_about_page_title($title, $id){
 	}
 	return $title;
 }
+
+
+
+// loadmore function
+function bfl_enqueue_scripts() {
+    wp_enqueue_script(
+        'loadmore-news',
+        get_template_directory_uri() . '/js/loadmore-news.js',
+        ['jquery'], 
+        null,
+        true
+    );
+
+    wp_localize_script('loadmore-news', 'bfl_ajax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
+}
+add_action('wp_enqueue_scripts', 'bfl_enqueue_scripts');
