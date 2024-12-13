@@ -1,0 +1,19 @@
+.single-event {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.single-event h2 {
+    transform: rotate(-90deg);
+}
+
+.single-event img {
+    width: 8rem;
+    height: 10rem;
+    object-fit: cover;
+}
+
+.past-events-fight-details {
+    padding: 1rem;
+}

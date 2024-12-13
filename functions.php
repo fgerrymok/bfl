@@ -199,8 +199,6 @@ function remove_about_page_title($title, $id){
 	return $title;
 }
 
-
-
 // loadmore function
 function bfl_enqueue_scripts() {
     wp_enqueue_script(
@@ -216,3 +214,17 @@ function bfl_enqueue_scripts() {
     ]);
 }
 add_action('wp_enqueue_scripts', 'bfl_enqueue_scripts');
+// Disable the block editor for all post types except for the Homepage and Contact Page
+function disable_block_editor_except_pages($can_edit, $post_type) {
+
+	$id = 100000000;
+
+	if ( get_the_ID() === $id ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+add_filter('use_block_editor_for_post', 'disable_block_editor_except_pages', 10, 2);
+add_filter('gutenberg_can_edit_post_type', 'disable_block_editor_except_pages', 10, 2);
