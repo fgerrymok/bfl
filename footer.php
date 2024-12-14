@@ -25,6 +25,14 @@
 				printf( esc_html__( 'Theme: %1$s by %2$s.', 'bfl' ), 'bfl', '<a href="http://wsstudio.ca">Whitespace Studio</a>' );
 				?>
 		</div><!-- .site-info -->
+
+		<!-- navigation -->
+		<nav id='bfl-footer-navigation' class='bfl-footer-navigation'>
+				<h2>Events</h2>
+				<?php
+				wp_nav_menu(array('theme_location' => 'footer'));
+				?>
+			</nav>	
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
