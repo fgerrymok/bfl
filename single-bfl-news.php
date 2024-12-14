@@ -61,6 +61,42 @@ get_header();
 
 	</main><!-- #main -->
 
+	<!-- sidebar -->
+	<?php
+	$args = array(
+		'post_type'      => 'bfl-news',  // CPT slug
+		'posts_per_page' => 4,          // number of posts to display 
+		'post__not_in'   => array(get_the_ID()), // except current post
+		'orderby'        => 'date',     
+		'order'          => 'DESC'      
+	);
+
+	$recent_news_query = new WP_Query($args);
+
+	if ( $recent_news_query -> have_posts()) : ?>
+		<aside class="news-sidebar">
+			<h2>Recent News</h2>
+			<ul>
+				<?php while ( $recent_news_query -> have_posts() ) : $recent_news_query->the_post(); ?>
+					<li>
+						<a href="<?php the_permalink(); ?>">
+							<?php if (has_post_thumbnail()) : ?>
+								<div class="recent-news-thumbnail">
+									<?php the_post_thumbnail('thumbnail'); ?>
+								</div>
+							<?php endif; ?>
+							<div class="recent-news-title"><?php the_title(); ?></div>
+						</a>
+					</li>
+				<?php endwhile; ?>
+			</ul>
+		</aside>
+	<?php endif;
+
+	// Reset Post Data
+	wp_reset_postdata();
+	?>
+
+
 <?php
-get_sidebar();
 get_footer();
