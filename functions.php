@@ -50,6 +50,7 @@ function bfl_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'bfl' ),
+			'footer' => esc_html__('Footer','bfl'),
 		)
 	);
 
