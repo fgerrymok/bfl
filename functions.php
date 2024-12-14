@@ -147,14 +147,13 @@ function bfl_scripts() {
 
 
 	// copy url button function
-	if ( get_post_type( get_the_ID() ) == 'bfl-news' ) :
-		//if is true
+	if ( is_singular( 'bfl-news' ) ) :
 		wp_enqueue_script( 'bfl-copytext-button', get_template_directory_uri() . '/js/copytextbutton.js', array(), _S_VERSION, true );
 	endif;
 
 
 	// Load More button function for news page
-	if ( is_page( 'archive-bfl-news' ) ) :
+	if ( is_post_type_archive( 'bfl-news' ) ) :
 		wp_enqueue_script('loadmore-news', get_template_directory_uri() . '/js/loadmore-news.js', ['jquery'], null, true);
     	wp_localize_script('loadmore-news', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
 	endif;
