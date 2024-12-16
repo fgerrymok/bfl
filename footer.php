@@ -13,26 +13,39 @@
 
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'bfl' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'bfl' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'bfl' ), 'bfl', '<a href="http://wsstudio.ca">Whitespace Studio</a>' );
+				printf( esc_html__( 'Built by: %s' ), '<a href="http://wsstudio.ca">Whitespace Studio</a>' );
 				?>
 		</div><!-- .site-info -->
 
-		<!-- navigation -->
-		<nav id='bfl-footer-navigation' class='bfl-footer-navigation'>
-				<h2>Events</h2>
-				<?php
-				wp_nav_menu(array('theme_location' => 'footer'));
-				?>
-			</nav>	
+		<!-- navigation Section -->
+		 <section>
+			<div class='bfl-footer-column'>
+				<p>Events</p>
+				<nav class='bfl-footer-navigation'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-events'));
+					 ?>
+			 	</nav>	
+			</div>
+			<div class='bfl-footer-column'>
+				<p>Company</p>
+				<nav class='bfl-footer-navigation'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-company'));
+					 ?>
+			 	</nav>	
+			</div>
+			<div class='bfl-footer-column'>
+				<p>Resources</p>
+				<nav class='bfl-footer-navigation'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-resources'));
+					 ?>
+			 	</nav>	
+			</div>
+		 </section>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
