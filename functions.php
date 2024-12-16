@@ -50,7 +50,9 @@ function bfl_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'bfl' ),
-			'footer' => esc_html__('Footer','bfl'),
+			'footer-events'    => esc_html__('Footer Events Menu','bfl'),
+			'footer-company'   => esc_html__('Footer Company Menu', 'bfl'),
+			'footer-resources' => esc_html__('Footer Resources Menu', 'bfl'),
 		)
 	);
 
@@ -145,28 +147,6 @@ function bfl_scripts() {
 	wp_enqueue_script( 'bfl-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'bfl-ranking-tab', get_template_directory_uri() . '/js/ranking-tab.js', array(), _S_VERSION, true );
 
-
-	// copy url button function
-	if ( is_singular( 'bfl-news' ) ) :
-		wp_enqueue_script( 'bfl-copytext-button', get_template_directory_uri() . '/js/copytextbutton.js', array(), _S_VERSION, true );
-	endif;
-
-
-	// Load More button function for news page
-	if ( is_post_type_archive( 'bfl-news' ) ) :
-		wp_enqueue_script('loadmore-news', get_template_directory_uri() . '/js/loadmore-news.js', ['jquery'], null, true);
-    	wp_localize_script('loadmore-news', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
-	endif;
-	
-	// Load More button function for video page
-	if ( is_home() ) :
-		wp_enqueue_script('loadmore-js', get_template_directory_uri() . '/js/loadmore-post.js', ['jquery'], null, true);
-		wp_localize_script('loadmore-js', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
-	endif;
-
-
-
-
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
@@ -211,7 +191,6 @@ require get_template_directory() . '/inc/cpt-taxonomy.php';
 require get_template_directory() . '/inc/rearrange-admin-menu.php';
 require get_template_directory() . '/inc/loadmore-news.php';
 require get_template_directory() . '/inc/loadmore-post.php';
-require get_template_directory() . '/inc/custom-widget-area.php';
 
 
 // remove the title of about page
@@ -240,5 +219,17 @@ function disable_block_editor_except_pages($can_edit, $post_type) {
 add_filter('use_block_editor_for_post', 'disable_block_editor_except_pages', 10, 2);
 add_filter('gutenberg_can_edit_post_type', 'disable_block_editor_except_pages', 10, 2);
 
+// loadmore news
+function bfl_enqueue_scripts() {
+    wp_enqueue_script('loadmore-news', get_template_directory_uri() . '/js/loadmore-news.js', ['jquery'], null, true);
 
+    wp_localize_script('loadmore-news', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
+}
+add_action('wp_enqueue_scripts', 'bfl_enqueue_scripts');
 
+// loadmore video(post)
+function enqueue_loadmore_scripts() {
+    wp_enqueue_script('loadmore-js', get_template_directory_uri() . '/js/loadmore-post.js', ['jquery'], null, true);
+    wp_localize_script('loadmore-js', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
+}
+add_action('wp_enqueue_scripts', 'enqueue_loadmore_scripts');
