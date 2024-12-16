@@ -101,6 +101,7 @@ get_header();
 							</table>
 							<?php
 						}
+						the_content();
 					} else if ($resultsTag === "weigh-in-results") {
 						the_post_thumbnail();
 						the_content();
