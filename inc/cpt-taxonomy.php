@@ -167,3 +167,22 @@ function bfl_register_taxonomies() {
     }
 }
 add_action('init', 'bfl_register_taxonomies');
+
+function rewrite_flush() {
+    bfl_register_custom_post_types();
+    bfl_register_taxonomies();
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'rewrite_flush' );
+
+
+// modify main query for tags
+function modify_main_query_for_tags($query) {
+    // Modify only when it is the main query, not the admin screen
+    if (!is_admin() && $query->is_main_query() && $query->is_tag()) {
+        // add post type 
+        $query->set('post_type', ['bfl-fighters', ]);
+        $query->set('posts_per_page', -1);
+    }
+}
+add_action('pre_get_posts', 'modify_main_query_for_tags');
