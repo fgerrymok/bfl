@@ -145,7 +145,11 @@ get_header();
 												<!-- single fighter output -->
 												<tr>
 													<td class="rank"><p><?php echo esc_html($fighter['rank']); ?></p></td>
-													<td class="fighter-name"><p><?php echo esc_html($fighter['name']); ?></p></td>
+													<td class="fighter-name"><p>
+														<a href="<?php echo esc_url( home_url( '/fighters/' . sanitize_title($fighter['name']) . '/' ) ); ?>">
+															<?php echo esc_html($fighter['name']); ?>
+														</a>
+													</p></td>
 													<td class="fighter-record"><p><?php echo esc_html($fighter['bfl-win']); ?>W - <?php echo esc_html($fighter['bfl-lose']); ?>L - <?php echo esc_html($fighter['bfl-draw']); ?>D</p></td>
 													<td class="overall-record"><p><?php echo esc_html($fighter['all-win']); ?>W - <?php echo esc_html($fighter['all-lose']); ?>L - <?php echo esc_html($fighter['all-draw']); ?>D</p></td>
 												</tr>
