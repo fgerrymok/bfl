@@ -180,37 +180,6 @@ get_header();
 				</section>
 
 				<!-- BFL Professional Champions -->
-				<section class="homepage-section">
-					<h2><?php echo esc_html("BFL Professional Champions") ?></h2>
-					<?php
-					$args = array(
-						'post_type' => 'bfl-news',
-						'posts_per_page' => 4,
-						'orderby' => 'date',
-						'order' => 'DESC',
-					);
-
-					$recentPostsQuery = new WP_Query($args);
-
-					if ($recentPostsQuery->have_posts()) {
-						while ($recentPostsQuery->have_posts()) {
-							$recentPostsQuery->the_post();
-							?>
-							<article class="homepage-cards">
-								<a href="<?php echo esc_url(the_permalink()) ?>">
-									<?php
-									echo the_content();
-									echo the_title();
-									?>
-								</a>
-							</article>
-							<?php
-						}
-					}
-
-					wp_reset_postdata();
-					?>
-				</section>
 
 				<?php
 			}
