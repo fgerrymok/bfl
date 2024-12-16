@@ -235,3 +235,4 @@ function enqueue_loadmore_scripts() {
     wp_localize_script('loadmore-js', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
 }
 add_action('wp_enqueue_scripts', 'enqueue_loadmore_scripts');
+

@@ -52,7 +52,24 @@ get_header();
 				<?php
 				$image_id = get_field('single_fighter_image');
 				echo wp_get_attachment_image( $image_id, ['150', '150'], "", [ 'class' => 'fighter-photo' ]);
-				?>
+
+				// tags
+				$tags = get_the_tags();
+				if ($tags) :
+					$tag_names = array();
+					
+					foreach ($tags as $tag) :
+						$tag_names[] = $tag->name; 
+					endforeach;
+
+					echo implode(', ', $tag_names); 
+
+				endif;
+
+?>
+
+
+
 
 				<!-- Fighter Record Output -->
 				<?php if ($fighter_data): ?>
