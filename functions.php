@@ -50,9 +50,11 @@ function bfl_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'bfl' ),
-			'footer-events'    => esc_html__('Footer Events Menu','bfl'),
-			'footer-company'   => esc_html__('Footer Company Menu', 'bfl'),
-			'footer-resources' => esc_html__('Footer Resources Menu', 'bfl'),
+			'footer-events'       => esc_html__('Footer Events Menu','bfl'),
+			'footer-company'      => esc_html__('Footer Company Menu', 'bfl'),
+			'footer-resources'    => esc_html__('Footer Resources Menu', 'bfl'),
+			'footer-social-icons' => esc_html__('Footer Social Icons', 'bfl'),
+			'footer-logo'         => esc_html__('Footer Logo', 'bfl'),
 		)
 	);
 
