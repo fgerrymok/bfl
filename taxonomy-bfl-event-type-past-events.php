@@ -63,10 +63,44 @@ get_header();
 							<p><?php echo esc_html($venue); ?></p>
 							<?php
 						}
-						
 						?>
 						<a href="<?php echo get_permalink() ?>"><?php echo esc_html("Fight Card"); ?></a>
-						<a href="<?php echo "need to add" ?>"><?php echo esc_html("Results"); ?></a>
+						<?php
+
+						$tags = get_the_terms(get_the_ID(), 'post_tag');
+						foreach ($tags as $tag) {
+							$eventTag = $tag->slug;
+							
+							if ($eventTag) {
+								$args = array(
+									'post_type' => 'bfl-results',
+									'tax_query' => array(
+										array(
+											'taxonomy' => 'bfl-results-type',
+											'field' => 'slug',
+											'terms' => 'fight-results',
+										),
+										array(
+											'taxonomy' => 'post_tag',
+											'field' => 'slug',
+											'terms' => $eventTag,
+										)
+									)
+								);
+
+								$resultsQuery = new WP_Query($args);
+
+								if ($resultsQuery->have_posts()) {
+									$resultsQuery->the_post();
+									?>
+									<a href="<?php echo esc_url(the_permalink()); ?>"><?php echo esc_html("Results"); ?></a>
+									<?php
+								}
+								wp_reset_postdata();
+							}
+						}
+						
+						?>
 						</div>
 						</article>
 						<?php
