@@ -37,42 +37,44 @@
     ?>
     </section>
     <section class="videos-section">
-        <div id="video-container">
-            <?php
-            // Initial 9 Videos Load
-            $args = [
-                'post_type'      => 'post',
-                'posts_per_page' => 9,
-                'orderby'        => 'date',
-                'order'          => 'DESC',
-            ];
-            $query = new WP_Query($args);
-            if ($query->have_posts()) {
-                while ($query->have_posts()) {
-                    $query->the_post();
-                    echo '<div class="video-item">';
-                    $content = get_the_content();
-                    $videos = get_media_embedded_in_content($content, ['video', 'iframe']);
-                    if (!empty($videos)) {
-                        echo $videos[0];
-                    } else {
-                        if (have_rows('add_a_video')) {
-                            while (have_rows('add_a_video')) {
-                                the_row();
-                                $embed_video = get_sub_field('video_url');
-                                if ($embed_video) echo $embed_video;
-                            }
-                        }
-                    }
-                    echo '<h3>' . get_the_title() . '</h3>';
-                    echo '</div>';
+    <div id="video-container">
+        <?php
+        // Initial 9 Videos Load
+        $args = [
+            'post_type'      => 'post',
+            'posts_per_page' => 9,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+        ];
+
+        $query = new WP_Query($args);
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+                ?>
+                <div class='video-item'>
+
+
+                <?php
+                if (has_post_thumbnail()) {
+                    echo '<a href="' . get_permalink() . '">';
+                    the_post_thumbnail('medium');
+                    echo '</a>';
+                } else {
+                    echo '<p>No thumbnail available.</p>';
                 }
-            } else {
-                echo '<p>No posts found.</p>';
+                echo '<h3><a href="' . get_permalink() . '">' . get_the_title() . '</a></h3>';
+                ?>
+                </div>
+                <?php
+               
             }
-            wp_reset_postdata();
-            ?>
-        </div>
+        } else {
+            echo '<p>No posts found.</p>';
+        }
+        wp_reset_postdata();
+        ?>
+    </div>
         <button id="load-more" data-page="1">Load More</button>
     </section>
  </main>
