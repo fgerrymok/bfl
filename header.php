@@ -24,7 +24,9 @@
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'bfl' ); ?></a>
-
+	<div class="countdown-timer-box">
+		<?php echo do_shortcode( '[ws_countdown_timer]' ); ?>
+	</div>
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<?php
