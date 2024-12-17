@@ -27,9 +27,7 @@
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<?php
-			if (has_custom_logo()) {
-				the_custom_logo();
-			}
+			the_custom_logo();
 			?>
 			<div class="header-logo-text"><?php echo esc_html("Battlefield Fight League"); ?></div>
 			<?php
@@ -49,13 +47,58 @@
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 
-		<!-- Countdown Timer -->
-		<div class="countdown-timer">
-			<div><?php echo esc_html("Next Event"); ?><span><?php echo esc_html("Starting In"); ?></span></div>
-    		<?php echo do_shortcode('[sales_countdown_timer id="salescountdowntimer"]'); ?>
-			<a href=""><?php echo esc_html("Get Your Tickets"); ?></a>
-		</div>
+		<!-- Countdown Section -->
+		<?php
+		$startDate = get_option('ws_countdown_from');
+		$endDate = get_option('ws_countdown_to');
+		$currentDate = date('Y-m-d\TH:i:s');
 
+		if (strtotime($currentDate) > strtotime($startDate) && strtotime($endDate) !== false && strtotime($currentDate) < strtotime($endDate)) {
+			?>
+			<div class="countdown-section">
+				<div class="timer-text">
+					<div><?php echo esc_html("Next Event"); ?></div>
+					<div><?php echo esc_html("Starting In"); ?></div>
+				</div>
+				<div class="countdown-timer-box">
+					<?php echo do_shortcode( '[ws_countdown_timer]' ); ?>
+				</div>
+
+				<?php
+				$args = array(
+					'post_type' => 'bfl-events',
+					'posts_per_page' => '1',
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'bfl-event-type',
+							'field' => 'slug',
+							'terms' => 'upcoming-events',
+						)
+					)
+				);
+
+				$query = new WP_Query($args);
+
+				if ($query->have_posts()) {
+					while ($query->have_posts()) {
+						$query->the_post();
+						$tickets = get_field('upcoming_events_hero')["tickets_link"];
+						if ($tickets) {
+							?>
+							<a href="<?php echo esc_url($tickets); ?>" class="header-cta"><?php echo esc_html("Get Your Tickets"); ?></a>
+							<?php
+						}
+					}
+				}
+				wp_reset_postdata();
+				?>
+			</div>
+			<?php
+		}
+		?>
+		
+
+		<!-- Site Navigation -->
 		<nav id="site-navigation" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'bfl' ); ?></button>
 			<?php
@@ -66,5 +109,5 @@
 				)
 			);
 			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+		</nav>
+	</header>
