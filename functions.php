@@ -236,3 +236,13 @@ function enqueue_loadmore_scripts() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_loadmore_scripts');
 
+function my_theme_setup() {
+    // Add theme support for custom logo
+    add_theme_support( 'custom-logo', array(
+        'height'      => 100,
+        'width'       => 400,
+        'flex-width'  => true, 
+        'flex-height' => true, 
+    ));
+}
+add_action( 'after_setup_theme', 'my_theme_setup' );
