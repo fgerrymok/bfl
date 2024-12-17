@@ -19,6 +19,10 @@ get_header();
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                 <div class="entry-content">
                 <?php
+
+                 // Display the post title
+                 echo '<h3><a href="' . esc_url(get_permalink()) . '">' . esc_html(get_the_title()) . '</a></h3>';
+                 echo '</div>';
                 // Display the first embedded video or ACF field
                 $content = get_the_content();
                 $videos = get_media_embedded_in_content($content, ['video', 'iframe']);
@@ -37,6 +41,7 @@ get_header();
                     }
                 }
                 ?>
+                
                 </div>
             </article>
             <!-- social media link buttons for sharing -->

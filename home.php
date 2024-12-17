@@ -20,17 +20,31 @@
         $page_id = 12;
         $page = get_post($page_id);
         if ($page) {
-            // Output the page title
             echo '<h1>' . esc_html($page->post_title) . '</h1>';
-            // Retrieve the ACF field for this page
-            $featured_video = get_field('featured_video_of_videos_page', $page_id);
-            if ($featured_video) {
-                echo '<div class="featured-video">';
-                echo $featured_video;
-                echo '</div>';
-            } else {
-                echo '<p>No featured video available.</p>';
+     
+            $featured_video_section = get_field('featured_video_section', $page_id);
+            if($featured_video_section){
+                $featured_video      = $featured_video_section['fetured_video_url'];
+                $featured_video_text = $featured_video_section['featured_video_text'];
+
+                if($featured_video){
+                    ?>
+                    <div class='featured-video'>
+                        <?php echo ($featured_video); ?>
+                    </div>
+                    <?php
+                }
+                if($featured_video_text){
+                    ?>
+                     <div class='featured-text'>
+                        <p>
+                            <?php echo esc_html($featured_video_text); ?>
+                        </p>
+                    </div>
+                    <?php
+                }
             }
+
         } else {
             echo '<p>Page not found.</p>';
         }
@@ -39,42 +53,102 @@
     <section class="videos-section">
     <div id="video-container">
         <?php
-        // Initial 9 Videos Load
-        $args = [
-            'post_type'      => 'post',
-            'posts_per_page' => 9,
-            'orderby'        => 'date',
-            'order'          => 'DESC',
-        ];
+    // Custom function to extract the video thumbnail from an oEmbed URL
+function get_acf_oembed_thumbnail($video_url) {
 
-        $query = new WP_Query($args);
-        if ($query->have_posts()) {
-            while ($query->have_posts()) {
-                $query->the_post();
-                ?>
-                <div class='video-item'>
+    if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+ 
+        if (strpos($video_url, 'youtube.com/watch?v=') !== false) {
+            parse_str(parse_url($video_url, PHP_URL_QUERY), $query_vars);
+            if (isset($query_vars['v'])) {
+                $video_id = $query_vars['v'];
+            }
+        }
+ 
+        elseif (strpos($video_url, 'youtu.be') !== false) {
+            $path = parse_url($video_url, PHP_URL_PATH);
+            $video_id = trim($path, '/');
+        }
+
+        if (!empty($video_id)) {
+            return 'https://img.youtube.com/vi/' . esc_attr($video_id) . '/hqdefault.jpg';
+        }
+    }
+
+    return '';
+}
 
 
-                <?php
-                if (has_post_thumbnail()) {
-                    echo '<a href="' . get_permalink() . '">';
-                    the_post_thumbnail('medium');
+
+$args = [
+    'post_type'      => 'post',
+    'posts_per_page' => 9,
+    'orderby'        => 'date',
+    'order'          => 'DESC',
+];
+
+$query = new WP_Query($args);
+
+if ($query->have_posts()) {
+    while ($query->have_posts()) {
+        $query->the_post();
+
+        echo '<div class="video-item">';
+
+  
+        if (has_post_thumbnail()) {
+  
+            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+            if ($thumbnail_url) {
+                $post_permalink = get_permalink();
+                if ($post_permalink) {
+           
+                    echo '<a href="' . esc_url($post_permalink) . '" target="_blank">';
+                    echo '<img src="' . esc_url($thumbnail_url) . '" alt="' . esc_attr(get_the_title()) . ' Thumbnail">';
                     echo '</a>';
-                } else {
-                    echo '<p>No thumbnail available.</p>';
                 }
-                echo '<h3><a href="' . get_permalink() . '">' . get_the_title() . '</a></h3>';
-                ?>
-                </div>
-                <?php
-               
             }
         } else {
-            echo '<p>No posts found.</p>';
+            $content = get_the_content();
+            $videos  = get_media_embedded_in_content($content, ['video', 'iframe']);
+
+            if (!empty($videos)) {
+                $thumbnail_url = get_acf_oembed_thumbnail($videos[0]);
+                
+                if ($thumbnail_url) {   
+                    $post_permalink = get_permalink();
+            
+                    if ($post_permalink) {
+                        echo '<a href="' . esc_url($post_permalink) . '" target="_blank">';
+                        echo '<img src="' . esc_url($thumbnail_url) . '" alt="Video Thumbnail" style="max-width: 100%; height: auto;">'; // Optional: added style for responsive images
+                        echo '</a>';
+                    }
+                }
+            } else {
+                if (have_rows('add_a_video')) {
+                    while (have_rows('add_a_video')) {
+                        the_row();
+                        $embed_video = get_sub_field('video_url',false,false);
+                        if ($embed_video) {
+                            $thumbnail_url = get_acf_oembed_thumbnail($embed_video);
+                            if ($thumbnail_url) {
+                                echo '<img src="' . esc_url($thumbnail_url) . '" alt="Video Thumbnail">';
+                            }
+                        }
+                    }
+                }
+            }
         }
-        wp_reset_postdata();
-        ?>
-    </div>
+
+        echo '<h3>' . get_the_title() . '</h3>';
+        echo '</div>';
+    }
+} else {
+    echo '<p>No posts found.</p>';
+}
+
+wp_reset_postdata();
+?>
         <button id="load-more" data-page="1">Load More</button>
     </section>
  </main>
