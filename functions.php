@@ -209,7 +209,7 @@ function remove_about_page_title($title, $id){
 // Disable the block editor for all post types except for the Homepage and Contact Page
 function disable_block_editor_except_pages($can_edit, $post_type) {
 
-	$id = 100000000;
+	$id = 2;
 
 	if ( get_the_ID() === $id ) {
 		return true;
