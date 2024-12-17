@@ -241,7 +241,9 @@ get_header();
 				<?php
 			}
 			?>
-			
+				<section class='instagram-section'>
+					<?php echo do_shortcode('[instagram-feed]'); ?>
+				</section>
 			<?php
 
 		endwhile;
