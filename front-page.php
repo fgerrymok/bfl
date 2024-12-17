@@ -179,7 +179,64 @@ get_header();
 					?>
 				</section>
 
+
 				<!-- BFL Professional Champions -->
+                <section class="homepage-section">
+                    <h2><a href="<?php echo get_permalink(14581); ?>">BFL Professional Champions</a></h2>
+                    <?php
+                    $page_id = 14581;
+                    $divisions = get_field('division', $page_id);
+
+                    if ($divisions) {
+                        foreach ($divisions as $division) {
+                            $layout = $division['acf_fc_layout'];
+
+                            // Generate Division Label
+                            if (strpos($layout, 'men_professional_') === 0 || strpos($layout, 'women_professional_') === 0) {
+                                $parts = explode('_', $layout);
+                                $gender = ucfirst($parts[0]);
+                                $weight_class = ucfirst(end($parts));
+                                $label = $gender . ' ' . $weight_class;
+
+                                echo '<h3>' . esc_html($label) . '</h3>';
+
+                                if (!empty($division['fighter'])) {
+                                    foreach ($division['fighter'] as $fighter) {
+                                        if ($fighter['rank'] === 'champion') {
+                                            $fighter_query = new WP_Query([
+                                                'post_type' => 'bfl-fighters',
+                                                'title' => $fighter['name'],
+                                                'posts_per_page' => 1,
+                                            ]);
+
+                                            if ($fighter_query->have_posts()) {
+                                                while ($fighter_query->have_posts()) {
+                                                    $fighter_query->the_post();
+                                                    $image_id = get_field('single_fighter_image');
+                                                    ?>
+                                                    <a href="<?php the_permalink(); ?>" class="champion-box-link">
+                                                        <?php
+                                                        if ($image_id) {
+                                                            echo wp_get_attachment_image($image_id, [150, 150]);
+                                                        } else {
+                                                            echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/default-champion.png') . '" alt="Default Image" />';
+                                                        }
+                                                        ?>
+                                                        <p class="champion-title">Champion</p>
+                                                        <p class="champion-name"><?php echo esc_html($fighter['name']); ?></p>
+                                                    </a>
+                                                    <?php
+                                                }
+                                            }
+                                            wp_reset_postdata();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    ?>
+                </section>
 
 				<?php
 			}
