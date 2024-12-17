@@ -20,17 +20,31 @@
         $page_id = 12;
         $page = get_post($page_id);
         if ($page) {
-            // Output the page title
             echo '<h1>' . esc_html($page->post_title) . '</h1>';
-            // Retrieve the ACF field for this page
-            $featured_video = get_field('featured_video_of_videos_page', $page_id);
-            if ($featured_video) {
-                echo '<div class="featured-video">';
-                echo $featured_video;
-                echo '</div>';
-            } else {
-                echo '<p>No featured video available.</p>';
+     
+            $featured_video_section = get_field('featured_video_section', $page_id);
+            if($featured_video_section){
+                $featured_video      = $featured_video_section['fetured_video_url'];
+                $featured_video_text = $featured_video_section['featured_video_text'];
+
+                if($featured_video){
+                    ?>
+                    <div class='featured-video'>
+                        <?php echo ($featured_video); ?>
+                    </div>
+                    <?php
+                }
+                if($featured_video_text){
+                    ?>
+                     <div class='featured-text'>
+                        <p>
+                            <?php echo esc_html($featured_video_text); ?>
+                        </p>
+                    </div>
+                    <?php
+                }
             }
+
         } else {
             echo '<p>Page not found.</p>';
         }
