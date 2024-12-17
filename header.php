@@ -25,27 +25,49 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'bfl' ); ?></a>
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			?>
-			<div class="header-logo-text"><?php echo esc_html("Battlefield Fight League"); ?></div>
-			<?php
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+		<div class="header-top">
+			<div class="logo-and-triangle">
+				<div class="site-branding">
+					<?php
+					the_custom_logo();
+					?>
+					<div class="header-logo-text"><?php echo esc_html("Battlefield Fight League"); ?></div>
+					<?php
+					if ( is_front_page() && is_home() ) :
+						?>
+						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+						<?php
+					else :
+						?>
+						<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+						<?php
+					endif;
+					$bfl_description = get_bloginfo( 'description', 'display' );
+					if ( $bfl_description || is_customize_preview() ) :
+						?>
+						<p class="site-description"><?php echo $bfl_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+					<?php endif; ?>
+				</div>
+
+				<!-- Decorative Triangle -->
+				<div class="decorative-triangle"></div>
+			</div>
+	
+			<!-- Site Navigation -->
+			<nav id="site-navigation" class="main-navigation">
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m22 16.75c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm0-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+				</button>
 				<?php
-			else :
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+					)
+				);
 				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$bfl_description = get_bloginfo( 'description', 'display' );
-			if ( $bfl_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $bfl_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+			</nav>
+		</div>
 
 		<!-- Countdown Section -->
 		<?php
@@ -57,8 +79,8 @@
 			?>
 			<div class="countdown-section">
 				<div class="timer-text">
-					<div><?php echo esc_html("Next Event"); ?></div>
-					<div><?php echo esc_html("Starting In"); ?></div>
+					<div class="next-event"><?php echo esc_html("Next Event"); ?></div>
+					<div class="starting-in"><?php echo esc_html("Starting In"); ?></div>
 				</div>
 				<div class="countdown-timer-box">
 					<?php echo do_shortcode( '[ws_countdown_timer]' ); ?>
@@ -93,21 +115,11 @@
 				wp_reset_postdata();
 				?>
 			</div>
+			
+			<!-- Decorative Line -->
+			<hr class="decorative-line">
 			<?php
 		}
 		?>
 		
-
-		<!-- Site Navigation -->
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'bfl' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav>
 	</header>

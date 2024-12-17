@@ -1,18 +1,69 @@
-.site-branding {
-    width: fit-content;
+header {
+    font-family: "Bebas Neue", sans-serif;
 }
 
-.custom-logo-link {
-    height: fit-content;
+.header-top {
     background-color: #C60504;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title, .decorative-line {
+    display: none;
+}
+
+.logo-and-triangle { 
+    padding: 0 0.75rem;
+}
+
+.site-branding {
+    padding: 1rem 0;
+}
+
+.site-branding img {
+    width: 10rem;
+    min-width: 10rem;
 }
 
 .header-logo-text {
-    background-color: #C60504;
     color: #fff;
     text-transform: uppercase;
-    width: 100%;
-    padding-left: 1rem;
+    width: fit-content;
+    padding-left: 0.65rem;
+}
+
+.decorative-triangle {
+    width: 0;
+    height: 0;
+    border-right: 5rem solid transparent;
+    border-top: 7.215rem solid #C60504;
+    display: none;
+}
+
+// Navigation
+
+.main-navigation {
+    width: fit-content;
+}
+
+.main-navigation .menu-toggle {
+    background-color: transparent;
+    border: none;
+}
+
+.main-navigation .menu-toggle svg {
+    width: 2rem;
+    fill: #fff;
+}
+
+.main-navigation .menu .menu-item {
+    padding: 0 0.3rem;
+}
+
+.main-navigation .menu .menu-item a {
+    padding: 0 0.3rem;
+    color: #000;
 }
 
 // Countdown Timer
@@ -20,15 +71,36 @@
 .countdown-section {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .timer-text {
     width: fit-content;
+    align-items: center;
+    margin: 0.5rem;
 }
 
-.timer-text div {
+.timer-text .next-event, .timer-text .starting-in {
     width: fit-content;
     text-transform: uppercase;
+}
+
+.timer-text .next-event {
+    font-size: 1.2rem;
+}
+
+.timer-text .starting-in {
+    font-size: 0.8rem;
+}
+
+.countdown-section .header-cta {
+    background-color: #C60504;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    margin: 0.5rem;
 }
 
 #ws-countdown-timer {
@@ -42,11 +114,66 @@
     padding: 0.3rem;
 }
 
+#ws-countdown-timer span {
+    min-width: unset;
+    min-width: 2rem;
+    height: 1.3rem;
+}
+
 #ws-countdown-timer div .time-value, #ws-countdown-timer div .time-label {
     padding: 0.1rem;
     display: block;
+    padding: 0;
+    width: fit-content;
 }
 
 #ws-countdown-timer div .time-value {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+}
+
+#ws-countdown-timer div .time-label {
+    font-size: 0.8rem;
+}
+
+@media (min-width: 37.5rem) {
+    .header-top {
+        background-color: #fff;
+    }
+
+    .logo-and-triangle {
+        display: flex;
+        background: linear-gradient(to right, #C60504 65.1%, #fff 60%);
+    }
+
+    .decorative-triangle {
+        display: block;
+    }
+
+    .site-header {
+        position: relative;
+    }
+
+    .countdown-section {
+        position: absolute;
+        z-index: 2;
+        top: 0.75rem;
+        right: 1rem;
+    }
+
+    .main-navigation {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 12rem;
+    }
+
+    .decorative-line {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        bottom: 1rem;
+        left: 14rem;
+        background-color: #000;
+        height: 1px;
+        width: 100%;
+    }
 }
