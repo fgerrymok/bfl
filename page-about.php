@@ -23,6 +23,7 @@ while ( have_posts() ) :
     the_post();
     if(get_field('about_page_title')):
         ?>
+        <div class='about-hero-section'>
         <h1><?php the_field('about_page_title')?></h1>
         <?php
     endif;
@@ -39,6 +40,8 @@ while ( have_posts() ) :
             // get sub_field values
             $about_bfl_text = get_sub_field('about_bfl_text');
         ?>
+        </div>
+        <div class='about-page-wrapper'>
         <div class='about-information-wrapper'>
         <section class='about-page-section'>
             <p><?php echo esc_html($about_bfl_text); ?></p>
@@ -140,7 +143,7 @@ while ( have_posts() ) :
 
 endwhile; // End of the loop.
 ?>
-
+</div>
 </main><!-- #main -->
 
 <?php
