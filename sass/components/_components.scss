@@ -2,13 +2,24 @@
 --------------------------------------------- */
 @import "navigation/navigation";
 
+/* shared styles
+--------------------------------------------- */
+@import "content/shared-card";
+@import "content/shared-hero-section";
+@import "content/shared-champions-card";
+
 /* Posts and pages
 --------------------------------------------- */
 @import "content/posts-and-pages";
 
 /* Other contents
 --------------------------------------------- */
+@import "content/header";
+@import "content/footer";
+@import "content/homepage";
 @import "content/ranking-tab";
+@import "content/past_events";
+@import "content/single-bfl-event";
 
 /* Comments
 --------------------------------------------- */
@@ -29,19 +40,3 @@
 /* Galleries
 --------------------------------------------- */
 @import "media/galleries";
-
-/* Single Event Page
---------------------------------------------- */
-@import "content/single_bfl_event";
-
-/* Past Events Archive
---------------------------------------------- */
-@import "content/past_events";
-
-/* Homepage
---------------------------------------------- */
-@import "content/homepage";
-
-/* Header
---------------------------------------------- */
-@import "content/header";

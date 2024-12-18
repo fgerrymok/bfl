@@ -53,61 +53,46 @@ get_header();
 					?>
 				</section>
 				<section class="homepage-body">
-					<?php
-					$args = array(
-						'post_type' => 'bfl-results',
-						'posts_per_page' => 4,
-						'orderby' => 'date',
-						'order' => 'DESC',
-						'tax_query' => array(
-							array(
-								'taxonomy' => 'bfl-results-type',
-								'field' => 'slug',
-								'terms' => 'fight-results',
-							)
-						)
-					);
-					?>
-
 					<!-- Past Events -->
-					<section class="homepage-section">
-						<h2><?php echo esc_html("Past Events"); ?></h2>
+					<section class="homepage-section past-events">
 						<?php
-						$pastEventsQuery = new WP_Query($args);
+						$args = array(
+							'post_type' => 'bfl-results',
+							'posts_per_page' => 3,
+							'orderby' => 'date',
+							'order' => 'DESC',
+							'tax_query' => array(
+								array(
+									'taxonomy' => 'bfl-results-type',
+									'field' => 'slug',
+									'terms' => 'fight-results',
+								)
+							)
+						);
+						?>
 
-						if ($pastEventsQuery->have_posts()) {
-						while ($pastEventsQuery->have_posts()) {
-							$pastEventsQuery->the_post();
-							?>
-							<article class="homepage-cards">
-								<a href="<?php echo esc_url(the_permalink()); ?>">
-									<?php
-									$featuredImage = get_field('results_hero_image');
-									$fightDate = get_field('results_fight_date');
-									$eventName = get_field('results_event_name');
-
-									if ($featuredImage) {
-										echo wp_get_attachment_image($featuredImage, 'full');
-									}
-
-									if ($fightDate) {
-										?>
-										<p><?php echo esc_html($fightDate); ?></p>
-										<?php
-									}
-
-									if ($eventName) {
-										?>
-										<p><?php echo esc_html($eventName); ?></p>
-										<?php
-									}
-								?>
-								</a>
-							</article>
+						<h2><?php echo esc_html("Past Events"); ?></h2>
+						<div class="cards-container past-events">
 							<?php
-						}
-					}
-					?>
+							$pastEventsQuery = new WP_Query($args);
+
+							if ($pastEventsQuery->have_posts()) {
+							while ($pastEventsQuery->have_posts()) {
+								$pastEventsQuery->the_post();
+								?>
+								<article class="cards">
+									<a href="<?php echo esc_url(the_permalink()) ?>">	
+										<div class="card-thumbnail-box">
+											<?php echo get_the_post_thumbnail( "", "", [ 'class' => 'card-thumbnail-img']); ?>
+										</div>
+										<p class="card-title"><?php echo the_title(); ?></p>
+									</a>
+								</article>
+								<?php
+								}
+							}
+							?>
+						</div>
 					</section>
 					<?php
 					
@@ -116,8 +101,9 @@ get_header();
 				</section>
 
 				<!-- Recent Posts -->
-				<section class="homepage-section">
+				<section class="homepage-section recent-posts">
 					<h2><?php echo esc_html("Recent Posts") ?></h2>
+					<div class="cards-container">
 					<?php
 					$args = array(
 						'post_type' => 'bfl-news',
@@ -132,12 +118,13 @@ get_header();
 						while ($recentPostsQuery->have_posts()) {
 							$recentPostsQuery->the_post();
 							?>
-							<article class="homepage-cards">
-								<a href="<?php echo esc_url(the_permalink()) ?>">
-									<?php
-									echo the_content();
-									echo the_title();
-									?>
+							<article class="cards">
+								<a href="<?php echo esc_url(the_permalink()) ?>">	
+									<div class="card-thumbnail-box">
+										<?php echo get_the_post_thumbnail( "", "", [ 'class' => 'card-thumbnail-img']); ?>
+									</div>
+									<p class="card-date"><?php echo get_the_date( 'M j' ); ?></p>
+									<p class="card-title"><?php echo the_title(); ?></p>
 								</a>
 							</article>
 							<?php
@@ -146,11 +133,13 @@ get_header();
 
 					wp_reset_postdata();
 					?>
+					</div>
 				</section>
 				
 				<!-- Videos -->
-				<section class="homepage-section">
+				<section class="homepage-section videos">
 					<h2><?php echo esc_html("Videos") ?></h2>
+					<div class="cards-container">
 					<?php
 					$args = array(
 						'post_type' => 'post',
@@ -165,11 +154,14 @@ get_header();
 						while ($recentPostsQuery->have_posts()) {
 							$recentPostsQuery->the_post();
 							?>
-							<article class="homepage-cards">
-							<?php
-							echo the_content();
-							echo the_title();
-							?>
+							<article class="cards">
+								<a href="<?php echo esc_url(the_permalink()) ?>">	
+									<div class="card-thumbnail-box">
+										<?php echo get_the_post_thumbnail( "", "", [ 'class' => 'card-thumbnail-img']); ?>
+									</div>
+									<p class="card-date"><?php echo get_the_date( 'M j' ); ?></p>
+									<p class="card-title"><?php echo the_title(); ?></p>
+								</a>
 							</article>
 							<?php
 						}
@@ -177,12 +169,14 @@ get_header();
 
 					wp_reset_postdata();
 					?>
+					</div>
 				</section>
 
 
 				<!-- BFL Professional Champions -->
-                <section class="homepage-section">
+                <section class="homepage-section champions">
                     <h2><a href="<?php echo get_permalink(14581); ?>">BFL Professional Champions</a></h2>
+					<div class="cards-container champions">
                     <?php
                     $page_id = 14581;
                     $divisions = get_field('division', $page_id);
@@ -196,57 +190,66 @@ get_header();
                                 $parts = explode('_', $layout);
                                 $gender = ucfirst($parts[0]);
                                 $weight_class = ucfirst(end($parts));
-                                $label = $gender . ' ' . $weight_class;
+                                $label = $gender . ' ' . $weight_class; 
+								?>
+								<article class="cards">
+									<h3 class="card-division-name"><?php echo esc_html($label); ?></h3>
+									<?php
+									if (!empty($division['fighter'])) {
+										foreach ($division['fighter'] as $fighter) {
+											if ($fighter['rank'] === 'champion') {
+												$fighter_query = new WP_Query([
+													'post_type' => 'bfl-fighters',
+													'title' => $fighter['name'],
+													'posts_per_page' => 1,
+												]);
 
-                                echo '<h3>' . esc_html($label) . '</h3>';
-
-                                if (!empty($division['fighter'])) {
-                                    foreach ($division['fighter'] as $fighter) {
-                                        if ($fighter['rank'] === 'champion') {
-                                            $fighter_query = new WP_Query([
-                                                'post_type' => 'bfl-fighters',
-                                                'title' => $fighter['name'],
-                                                'posts_per_page' => 1,
-                                            ]);
-
-                                            if ($fighter_query->have_posts()) {
-                                                while ($fighter_query->have_posts()) {
-                                                    $fighter_query->the_post();
-                                                    $image_id = get_field('single_fighter_image');
-                                                    ?>
-                                                    <a href="<?php the_permalink(); ?>" class="champion-box-link">
-                                                        <?php
-                                                        if ($image_id) {
-                                                            echo wp_get_attachment_image($image_id, [150, 150]);
-                                                        } else {
-                                                            echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/default-champion.png') . '" alt="Default Image" />';
-                                                        }
-                                                        ?>
-                                                        <p class="champion-title">Champion</p>
-                                                        <p class="champion-name"><?php echo esc_html($fighter['name']); ?></p>
-                                                    </a>
-                                                    <?php
-                                                }
-                                            }
+												if ($fighter_query->have_posts()) {
+													while ($fighter_query->have_posts()) {
+														$fighter_query->the_post();
+														$image_id = get_field('single_fighter_image');
+														?>
+														
+														<!-- Output -->
+														<a href="<?php the_permalink(); ?>" class="champion-box-link">
+															<div class="card-thumbnail-box">
+																<?php
+																if ($image_id) {
+																	echo wp_get_attachment_image($image_id, "", "",[ 'class' => 'card-thumbnail-img']);
+																} else {
+																	echo '<img src="' . esc_url(get_template_directory_uri() . '/assets/default-champion.png') . '" alt="Default Image" />';
+																}
+																?>
+															</div>
+															<p class="champion-title">Champion</p>
+															<p class="champion-name"><?php echo esc_html($fighter['name']); ?></p>
+														</a>
+														
+														<?php
+													}
+												}
                                             wp_reset_postdata();
                                         }
                                     }
-                                }
+                                } ?>
+								</article>
+								<?php
                             }
                         }
                     }
                     ?>
+					</div>
                 </section>
 
 				<?php
 			}
 			?>
 				
-				<section class='instagram-section'>
+				<section class='homepage-section instagram'>
 					<?php echo do_shortcode('[instagram-feed]'); ?>
 				</section>
 
-				<section class='sponsors-section'>
+				<section class='homepage-section sponsor'>
 					<?php
 						if(have_rows('sponsors_section')):
 							while(have_rows('sponsors_section')): the_row();

@@ -1,9 +1,90 @@
 .homepage-section {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    margin: 1.5rem 1rem 1rem 1rem;
+  }
 }
 
-.homepage-cards {
-    width: 15rem;
-    padding: 1rem;
+@media (min-width: $breakpoint-mobile-2-columns) {
+  .homepage-section {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: $breakpoint-tablet-sm) {
+  .homepage-section {
+    width: 640px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop-sm) {
+  .homepage-section {
+    width: 960px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop-lrg) {
+  .homepage-section {
+    width: $max-width;
+  }
+}
+
+.homepage-hero {
+}
+.homepage-body {
+}
+.homepage-section.past-events {
+  .cards-container.past-events {
+    .cards .card-thumbnail-box {
+      aspect-ratio: 13 / 16;
+    }
+    .card-title {
+      padding-top: 1rem;
+      text-align: center;
+    }
+  }
+  @media (min-width: $breakpoint-desktop-sm) {
+    .cards-container.past-events {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+.homepage-section.recent-posts {
+}
+.homepage-section.videos {
+}
+.homepage-section.champions {
+  .cards-container.champions .cards {
+    text-align: center;
+    .card-division-name {
+      margin: 1.25rem 0 0 0;
+    }
+    .card-thumbnail-box {
+      aspect-ratio: 13 / 16;
+    }
+
+    .champion-title {
+      margin: 1rem 0 0 0;
+      font-size: 12px;
+    }
+    .champion-name {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 900;
+    }
+  }
+
+  // responsive layout
+  .cards-container.champions {
+    margin: 0 1rem;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.5rem;
+  }
+}
+.homepage-section.instagram {
+}
+.homepage-section.sponsor {
 }
