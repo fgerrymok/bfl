@@ -1,12 +1,13 @@
 header {
     font-family: "Bebas Neue", sans-serif;
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    margin-bottom: 6rem;
 }
 
-.header-top {
+.left-header {
     background-color: #C60504;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .site-title, .decorative-line {
@@ -15,10 +16,13 @@ header {
 
 .logo-and-triangle { 
     padding: 0 0.75rem;
+    display: flex;
+    justify-content: center;
 }
 
 .site-branding {
     padding: 1rem 0;
+    width: fit-content;
 }
 
 .site-branding img {
@@ -31,6 +35,7 @@ header {
     text-transform: uppercase;
     width: fit-content;
     padding-left: 0.65rem;
+    display: none;
 }
 
 .decorative-triangle {
@@ -41,20 +46,8 @@ header {
     display: none;
 }
 
-// Navigation
-
-.main-navigation {
-    width: fit-content;
-}
-
 .main-navigation .menu-toggle {
-    background-color: transparent;
-    border: none;
-}
-
-.main-navigation .menu-toggle svg {
-    width: 2rem;
-    fill: #fff;
+    display: none;
 }
 
 .main-navigation .menu .menu-item {
@@ -66,6 +59,104 @@ header {
     color: #000;
 }
 
+#primary-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    bottom: -3.3rem;
+    background-color: $color_white;
+}
+
+#primary-menu.menu-active {
+    bottom: -9.9rem;
+}
+
+#primary-menu li {
+    background-color: $color_white;
+    padding: 0.75rem 0;
+    text-align: center;
+    font-size: 1.2rem;
+    display: none;
+}
+
+#primary-menu li a {
+    color: $color_black;
+}
+
+#primary-menu #menu-item-14917 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color_black;
+    grid-area: 1 / 1 / span 1 / span 1;
+    position: relative;
+}
+
+#primary-menu #menu-item-14879 {
+    display: block;
+    background-color: #404040;
+    grid-area: 1 / 2 / span 1 / span 1;
+}
+
+#primary-menu #menu-item-14917 a, #primary-menu #menu-item-14879 a {
+    color: $color_white;
+}
+
+#primary-menu .see-more {
+    display: block;
+    background-color: $color_white;
+    color: $color_black;
+    cursor: pointer;
+    grid-area: 1 / 3 / span 1 / span 1;
+}
+
+.more-svg {
+    width: 1.2rem;
+    fill: $color_black;
+    text-align: center;
+}
+
+.event-svg {
+    width: 1.2rem;
+    fill: $color_white;
+    text-align: center;
+}
+
+.more-svg path {
+    width: 100%;
+}
+
+#primary-menu .show {
+    display: block;
+}
+
+#menu-item-14917 .sub-menu {    
+    all: unset;
+    position: absolute;
+    bottom: -5.6rem;
+    left: 0;
+    background-color: $color_black;
+    min-width: calc(100vw - 15px);
+    display: none;
+}
+
+#menu-item-14917 .sub-menu li {
+    all: unset;
+    min-width: 100%;
+}
+
+#menu-item-14917 .sub-menu li a {
+    min-width: 100%;
+    padding: 0.5rem;
+}
+
+#menu-item-14917:hover .sub-menu{
+    display: block !important;
+}
+
+
 // Countdown Timer
 
 .countdown-section {
@@ -73,6 +164,7 @@ header {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding: 0.75rem 0;
 }
 
 .timer-text {
@@ -135,14 +227,18 @@ header {
     font-size: 0.8rem;
 }
 
-@media (min-width: 37.5rem) {
-    .header-top {
-        background-color: #fff;
+@media (min-width: 50rem) {
+    .left-header {
+        width: fit-content;
+    }
+
+    .header-logo-text {
+        display: block;
     }
 
     .logo-and-triangle {
         display: flex;
-        background: linear-gradient(to right, #C60504 65.1%, #fff 60%);
+        background: linear-gradient(to right, #C60504 65.1%, #000 60%);
     }
 
     .decorative-triangle {
@@ -150,21 +246,29 @@ header {
     }
 
     .site-header {
-        position: relative;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .right-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
 
     .countdown-section {
-        position: absolute;
-        z-index: 2;
-        top: 0.75rem;
-        right: 1rem;
+        
     }
 
     .main-navigation {
-        position: absolute;
-        bottom: 0.5rem;
-        left: 12rem;
+        position: unset;
     }
+
+    // .main-navigation {
+    //     position: absolute;
+    //     bottom: 0.5rem;
+    //     left: 12rem;
+    // }
 
     .decorative-line {
         display: block;

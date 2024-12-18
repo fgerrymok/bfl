@@ -75,7 +75,7 @@
 	display: block;
 }
 
-@media screen and (min-width: 37.5em) {
+@media(min-width: 50rem) {
 
 	.menu-toggle {
 		display: none;
@@ -83,6 +83,7 @@
 
 	.main-navigation ul {
 		display: flex;
+		all: unset;
 	}
 }
 

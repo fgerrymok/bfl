@@ -148,6 +148,7 @@ function bfl_scripts() {
 
 	wp_enqueue_script( 'bfl-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'bfl-ranking-tab', get_template_directory_uri() . '/js/ranking-tab.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'custom-nav', get_template_directory_uri() . '/js/custom-nav.js', array(), _S_VERSION, true );
 	if ( is_page( 'bfl-to-ufc' ) ) {
 		wp_enqueue_script( 'bfl-to-ufc-tab', get_template_directory_uri() . '/js/bfl-to-ufc-tab.js', array(), _S_VERSION, true );
 	}
