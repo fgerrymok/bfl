@@ -241,8 +241,57 @@ get_header();
 				<?php
 			}
 			?>
+				
 				<section class='instagram-section'>
 					<?php echo do_shortcode('[instagram-feed]'); ?>
+				</section>
+
+				<section class='sponsors-section'>
+					<?php
+						if(have_rows('sponsors_section')):
+							while(have_rows('sponsors_section')): the_row();
+								$sponsor_section_title = get_sub_field('sponsor_section_title');
+								$sponsor_section_text  = get_sub_field('sponsor_section_text');
+
+								if($sponsor_section_title){
+									?>
+										<div class='sponsors-title-text'>
+											<h2><?php echo esc_html($sponsor_section_title); ?></h2>
+											<?php
+												if($sponsor_section_text){
+													?>
+													<p><?php echo esc_html($sponsor_section_text); ?></p>
+													<?php
+												}
+												?>
+										</div>
+									<?php
+								
+								if(have_rows('sponsor')){
+									while(have_rows('sponsor')): the_row();	
+										$sponsor_name = get_sub_field('sponsor_name');
+										$sponsor_logo = get_sub_field('sponsor_logo');
+										?>
+										<div class='logo-item'>
+											<?php
+											if($sponsor_name){
+												?>
+												<p><?php echo esc_html($sponsor_name); ?></p>
+												<?php
+											}
+											if($sponsor_logo){
+												echo wp_get_attachment_image($sponsor_logo,'medium');
+											}
+											?>
+										</div>
+										<?php
+
+									endwhile;							
+								}
+								}
+							endwhile;
+						endif;
+					?>
 				</section>
 			<?php
 
