@@ -39,6 +39,7 @@ while ( have_posts() ) :
             // get sub_field values
             $about_bfl_text = get_sub_field('about_bfl_text');
         ?>
+        <div class='about-page-wrapper'>
         <div class='about-information-wrapper'>
         <section class='about-page-section'>
             <p><?php echo esc_html($about_bfl_text); ?></p>
@@ -140,7 +141,7 @@ while ( have_posts() ) :
 
 endwhile; // End of the loop.
 ?>
-
+</div>
 </main><!-- #main -->
 
 <?php

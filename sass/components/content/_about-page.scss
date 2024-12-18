@@ -1,10 +1,12 @@
 .page-id-8633{
+    .about-page-wrapper{
+        margin: 0 1rem;
+    }
     line-height: $font__line-height-body;
     p{
         font-weight: 300;
     }
     .about-information-wrapper{
-        margin: 0 1rem;
         h2{
           margin: 0.83rem 0;
         }
@@ -58,3 +60,5 @@
     }
 
 }
+
+@import 'about-page-desktop';
