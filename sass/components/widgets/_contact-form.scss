@@ -1,0 +1,29 @@
+.entry-content{
+    margin: 0 1rem;
+
+    .wpforms-container-full{
+        margin: 0 auto;
+        max-width: 30rem;
+    
+        .wpforms-field-container{
+            .wpforms-field-label{
+                color: $color-white !important;
+                font-weight: 300;
+            }
+            input{
+                max-width: 100%;
+            }
+        }
+    
+        .wpforms-submit-container{
+            text-align: center;
+            button{
+                background-color: $color-red !important;
+                // font-weight: 300 !important;
+                font-family: $font__main !important;
+            }
+    
+        }
+    
+    }
+}

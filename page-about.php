@@ -39,6 +39,7 @@ while ( have_posts() ) :
             // get sub_field values
             $about_bfl_text = get_sub_field('about_bfl_text');
         ?>
+        <div class='about-information-wrapper'>
         <section class='about-page-section'>
             <p><?php echo esc_html($about_bfl_text); ?></p>
         </section>
@@ -53,6 +54,7 @@ while ( have_posts() ) :
             $offer_title = get_sub_field('what_we_offer_title');
             $offer_text  = get_sub_field('what_we_offer_text');
         ?>
+        
         <section class='about-page-section'>
             <h2><?php echo esc_html($offer_title) ?></h2>
             <p><?php echo esc_html($offer_text); ?></p>
@@ -87,6 +89,7 @@ while ( have_posts() ) :
             <h2><?php echo esc_html($vision_title) ?></h2>
             <p><?php echo esc_html($vision_text); ?></p>
         </section>
+        </div>
         <?php
         endwhile;
     endif;
@@ -103,15 +106,17 @@ while ( have_posts() ) :
 
             
         ?>
-        <section class='about-page-section'>
+        <section class='about-page-section contact-us-section'>
             <h2><?php echo esc_html($contact_title) ?></h2>
             <div class='advertise-fight-wrapper'>
-                <p><?php echo esc_html($advertise_title); ?></p>
+                <p class='advertise'><?php echo esc_html($advertise_title); ?></p>
                 <p><?php echo esc_html($fight_title); ?> <span>BFL</span></p>
             </div>
-            <p><?php echo esc_html($email_addres); ?></p>
-            <p>or</p>
-            <p><?php echo esc_html($fill_the_form); ?></p>
+            <div class='email-form-title-wrapper'>
+                <p class='email-address'><?php echo esc_html($email_addres); ?></p>
+                <p class='or'>or</p>
+                <p class='form-title'><?php echo esc_html($fill_the_form); ?></p>
+            </div>
         </section>
         <?php
         endwhile;

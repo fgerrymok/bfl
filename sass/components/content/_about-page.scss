@@ -1,0 +1,60 @@
+.page-id-8633{
+    line-height: $font__line-height-body;
+    p{
+        font-weight: 300;
+    }
+    .about-information-wrapper{
+        margin: 0 1rem;
+        h2{
+          margin: 0.83rem 0;
+        }
+
+        .about-page-section{
+            margin-bottom: 3rem;
+            p{
+                margin-top: 0;
+            }
+        }
+    }
+
+    .contact-us-section{
+        margin-top: 8rem;
+        h2{
+            font-size: 1.8rem;
+        }
+        text-align: center;
+        .advertise-fight-wrapper{
+           p{
+            font-weight: 500;
+           }
+            display: flex;
+            @include flex-center-center;
+            gap: 1rem;
+            .advertise{
+                position: relative;
+               &::after{
+                position: absolute;
+                content: '|';
+                color: $color_red-on-black;
+                font-weight: 500;
+                right: -0.7rem;
+               }
+            }
+            span{
+                color: $color-red-on-black;
+            }
+        }
+        .email-form-title-wrapper{
+            .email-address{
+                margin-bottom: 0.5rem;
+            }
+            .or{
+                margin: 0;
+            }
+            .form-title{
+                margin-top: 0.5rem;
+            }
+        }
+    }
+
+}
