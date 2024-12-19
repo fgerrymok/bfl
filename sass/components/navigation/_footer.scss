@@ -1,0 +1,22 @@
+.site-footer{
+    background-color: $color-red;
+    padding: 2rem 0;
+    text-align: center;
+    .footer-wrapper{
+        margin: 0 1rem;
+
+        //social links
+        .social-icons-nav{
+                display: flex;
+                gap: 0.8rem;
+                @include flex-center-center;
+                li{
+                    img{
+                        height: 2rem;
+                        width: 2rem;
+                    }
+                }
+        }
+    }
+
+}
