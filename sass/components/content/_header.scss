@@ -92,6 +92,7 @@ header {
     background-color: $color_black;
     grid-area: 1 / 1 / span 1 / span 1;
     position: relative;
+    cursor: pointer;
 }
 
 #primary-menu #menu-item-14879 {
@@ -272,6 +273,7 @@ header {
         justify-content: flex-end;
         background-color: $color_white;
         padding-right: 1rem;
+        padding: 0.75rem 0 0 0;
     }
 
     .next-event, .starting-in {
