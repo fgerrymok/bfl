@@ -164,7 +164,7 @@ header {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 0.75rem 0 0 0;
+    padding: 0.75rem 0;
     background-color: $color_black;
 }
 
@@ -272,6 +272,7 @@ header {
         justify-content: flex-end;
         background-color: $color_white;
         padding-right: 1rem;
+        padding: 0.75rem 0 0 0;
     }
 
     .next-event, .starting-in {
