@@ -42,7 +42,7 @@ header {
     width: 0;
     height: 0;
     border-right: 5rem solid transparent;
-    border-top: 7.215rem solid #C60504;
+    border-top: 8.77rem solid #C60504;
     display: none;
 }
 
@@ -165,6 +165,7 @@ header {
     justify-content: center;
     align-items: center;
     padding: 0.75rem 0;
+    background-color: $color_black;
 }
 
 .timer-text {
@@ -238,7 +239,12 @@ header {
 
     .logo-and-triangle {
         display: flex;
-        background: linear-gradient(to right, #C60504 65.1%, #000 60%);
+        background: linear-gradient(to right, #C60504 65.1%, #fff 60%);
+    }
+
+    .site-branding {
+        // position: relative;
+        margin-top: 0.8rem;
     }
 
     .decorative-triangle {
@@ -248,36 +254,73 @@ header {
     .site-header {
         display: flex;
         flex-direction: row;
+        justify-content: center;
+        background: linear-gradient(to right, #C60504 65.1%, #fff 60%);
+        position: relative;
     }
 
     .right-header {
+        flex: 1;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        flex-direction: column-reverse;
+        max-width: 39rem;
     }
 
     .countdown-section {
-        
+        justify-content: flex-end;
+        background-color: $color_white;
+        padding-right: 1rem;
     }
 
-    .main-navigation {
-        position: unset;
+    .next-event, .starting-in {
+        color: $color_black;
+    }
+    
+    .see-more {
+        display: none !important;
     }
 
-    // .main-navigation {
-    //     position: absolute;
-    //     bottom: 0.5rem;
-    //     left: 12rem;
-    // }
+    #primary-menu {
+        display: flex;
+        position: static;
+    }
+
+    #primary-menu li {
+        display: block;
+        padding: 0;
+        width: fit-content;
+        background-color: unset !important;
+        text-align: center !important;
+        padding: 0.4rem;
+    }
+
+    #primary-menu li a {
+        color: $color_black !important;
+    }
+
+    #primary-menu .event-svg {
+        fill: $color_black;
+        display: none;
+    }
 
     .decorative-line {
         display: block;
-        position: absolute;
-        z-index: 2;
-        bottom: 1rem;
-        left: 14rem;
         background-color: #000;
         height: 1px;
         width: 100%;
+        margin: 0.3rem 1rem;
     }
+
+    #primary-menu .sub-menu {
+        background-color: $color_white;
+        min-width: unset;
+        text-align: center;
+    }
+
+    #menu-item-14917 .sub-menu li a {
+        min-width: unset;
+        text-align: left;
+        padding-left: .7rem;
+    }
+
 }
