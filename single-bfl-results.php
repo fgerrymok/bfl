@@ -22,7 +22,7 @@ get_header();
 						$cardType2Table = get_field('card_type_2_table');
 			
 						?>
-						<section class="results-hero">
+						<section class="results-hero hero">
 						<h1><?php echo esc_html("Results"); ?></h1>
 						<?php
 						if($heroImage) {
