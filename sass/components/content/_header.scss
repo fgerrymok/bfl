@@ -264,6 +264,8 @@ header {
         display: flex;
         flex-direction: column-reverse;
         max-width: 39rem;
+        background-color: $color_white;
+        justify-content: center;
     }
 
     .countdown-section {
