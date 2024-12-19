@@ -1,22 +1,104 @@
 .site-footer{
     background-color: $color-red;
     padding: 2rem 0;
-    text-align: center;
+    text-align: left;
+
     .footer-wrapper{
-        margin: 0 1rem;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        
+            a{
+                text-decoration: none;
+                transition: color 0.3s ease;
+                &:visited,&:focus, &:active{
+                    color: $color-white;
+                }
+
+                &:hover{
+                    color:$color-black;
+                }
+            }
+
+
+        .footer-logo{
+
+            img{
+                display: block;
+                margin: 0 auto 1rem;
+                max-width: 12rem;
+                padding: 1rem;
+            }
+        }
+
+        .bfl-footer-column{
+            margin-bottom: 2.5rem;
+            width: 100%;
+            p{
+                font-size: 1.1rem;
+                font-weight: 500;
+                margin-bottom: 0.7rem;
+                margin-left: 0.47rem;
+                position: relative;
+                &::before{
+                    position: absolute;
+                    content: '|';
+                    left: -0.5rem;
+                    bottom: 0.17rem;
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    color: $color-black;
+
+                }
+            }
+            li{
+                font-weight: 300;
+            }
+        }
 
         //social links
-        .social-icons-nav{
-                display: flex;
-                gap: 0.8rem;
-                @include flex-center-center;
-                li{
-                    img{
-                        height: 2rem;
-                        width: 2rem;
+        .social-icons-footer{
+ 
+            .social-icons-nav{
+                    margin-bottom: 1rem;
+                    display: flex;
+                    gap: 1.2rem;
+                    @include flex-center-center;
+                    li{
+                        a{ 
+                            img{
+                                height: 1.5rem;
+                                width: 1.5rem;
+                                transition: transform 0.3s ease;
+                                &:hover{
+                                    transform: scale(1.2);
+                                }
+                            }
+                        }
                     }
+            }
+        }
+        .copyright-info-wrapper{
+            text-align: center;
+            .bfl-copyright{
+                p{
+                    font-weight: 300;
+                    margin-bottom: 1rem;
                 }
+            }
+    
+            .site-info{
+                font-weight: 300;
+                font-size: 0.8rem;
+                a{
+                    text-decoration: underline;
+                }
+            }
         }
     }
 
 }
+
+@import 'desktop-footer';
