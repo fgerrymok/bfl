@@ -7,7 +7,7 @@ header {
 }
 
 .left-header {
-    background-color: #C60504;
+    background-color: $color_red;
 }
 
 .site-title, .decorative-line {
@@ -31,7 +31,7 @@ header {
 }
 
 .header-logo-text {
-    color: #fff;
+    color: $color_white;
     text-transform: uppercase;
     width: fit-content;
     padding-left: 0.65rem;
@@ -42,7 +42,7 @@ header {
     width: 0;
     height: 0;
     border-right: 5rem solid transparent;
-    border-top: 8.77rem solid #C60504;
+    border-top: 8.77rem solid $color_red;
     display: none;
 }
 
@@ -56,7 +56,7 @@ header {
 
 .main-navigation .menu .menu-item a {
     padding: 0 0.3rem;
-    color: #000;
+    color: $color_black;
 }
 
 #primary-menu {
@@ -96,7 +96,7 @@ header {
 
 #primary-menu #menu-item-14879 {
     display: block;
-    background-color: #404040;
+    background-color: $color_dark_grey;
     grid-area: 1 / 2 / span 1 / span 1;
 }
 
@@ -188,8 +188,8 @@ header {
 }
 
 .countdown-section .header-cta {
-    background-color: #C60504;
-    color: #fff;
+    background-color: $color_red;
+    color: $color_white;
     text-decoration: none;
     padding: 0.5rem;
     border-radius: 0.3rem;
@@ -201,7 +201,7 @@ header {
 }
 
 #ws-countdown-timer div {
-    background-color: #d9d9d9;
+    background-color: $color_grey;
     border-radius: 0.3rem;
     margin: 0.2rem;
     padding: 0.3rem;
@@ -239,7 +239,7 @@ header {
 
     .logo-and-triangle {
         display: flex;
-        background: linear-gradient(to right, #C60504 65.1%, #fff 60%);
+        background: linear-gradient(to right, $color_red 65.1%, $color_white 60%);
     }
 
     .site-branding {
@@ -255,7 +255,7 @@ header {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        background: linear-gradient(to right, #C60504 65.1%, #fff 60%);
+        background: linear-gradient(to right, $color_red 65.1%, $color_white 60%);
         position: relative;
     }
 
@@ -307,7 +307,7 @@ header {
 
     .decorative-line {
         display: block;
-        background-color: #000;
+        background-color: $color_black;
         height: 1px;
         width: 100%;
         margin: 0.3rem 1rem;
@@ -324,5 +324,4 @@ header {
         text-align: left;
         padding-left: .7rem;
     }
-
 }
