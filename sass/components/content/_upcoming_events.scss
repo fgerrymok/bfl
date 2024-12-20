@@ -1,0 +1,23 @@
+// Core details
+
+.core-details {
+    width: fit-content;
+    margin: 2rem auto;
+    position: relative;
+}
+
+.core-details p {
+    width: fit-content;
+    margin: 0;
+    padding: 0.5rem;
+}
+
+.decorative-line {
+    transform: rotate(90deg);
+    background-color: $color_red;
+    height: 2px;
+    width: 4rem;
+    position: absolute;
+    left: -2.5rem;
+    top: 2rem;
+}

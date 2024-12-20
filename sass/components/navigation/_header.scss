@@ -136,6 +136,7 @@ header {
 #menu-item-14917 .sub-menu {    
     all: unset;
     position: absolute;
+    z-index: 300;
     bottom: -5.6rem;
     left: 0;
     background-color: $color_black;
@@ -230,6 +231,10 @@ header {
 }
 
 @media (min-width: 50rem) {
+    header {
+        margin: 0;
+    }
+
     .left-header {
         width: fit-content;
     }

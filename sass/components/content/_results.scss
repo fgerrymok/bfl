@@ -1,21 +1,46 @@
-.hero {
-    position: relative;
+// main content
+
+.results-main, .weigh-in-main {
+    padding: 1rem;
 }
 
-.hero h1 {
-    margin: 0;
-    position: absolute;
-    bottom: 0.5rem;
-    left: 0.5rem;
+.fight-date {
+    text-transform: uppercase;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    width: 100%;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
+.results-main h3 {
+    font-size: 1.4rem;
+}
+
+.results-table table td {
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid grey;
+}
+
+.results-table table tr:last-child td {
+    border-bottom: none;
+}
+
+@media(min-width: $breakpoint-tablet-sm) {
+    .results-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 2rem;
+    }
+
+    .fight-date {
+        grid-column: 1 / span 2;
+    }
+
+    .results-table {
+        padding: 1rem;
+    }
+
+    .weigh-in-main {
+        max-width: 50rem;
+        margin: 0 auto;
+    }
 }
