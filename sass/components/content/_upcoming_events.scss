@@ -67,6 +67,7 @@ h1 {
 // Fight Card
 .fight-roster {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
