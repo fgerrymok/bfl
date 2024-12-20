@@ -2,23 +2,41 @@ h1 {
     margin: 6rem 1rem 2.5rem 1rem;
 }
 
+@media (min-width: 50rem) {
+    h1 {
+        margin: 3.5rem 1rem 2.5rem 1rem;
+    }
+}
+
 
 // hero
 
 .external-links {
     display: flex;
-    background-color: $color_grey;
+    background-color: $color_red;
     font-family: $font__main;
     font-size: 1.4rem;
+    overflow: hidden;
 
     .betting-odds {
         background-color: $color_grey;
-        // clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 100%, 0 100%);
+        transition: transform 0.3s ease;
+        clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 100%, 0 100%);
+    }
+
+    .betting-odds:hover {
+        transform: scale(1.1);
     }
 
     .tickets {
         background-color: $color_red;
         color: $color_white;
+        transition: transform 0.3s ease;
+        clip-path: polygon(2rem 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .tickets:hover {
+        transform: scale(1.16);
     }
 }
 
@@ -54,12 +72,28 @@ h1 {
 
 .fight-card {
     background-color: $color_dark_grey;
-    width: fit-content;
+    width: 100%;
+    max-width: 31.25rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+
+    .fighter-container{
+        overflow: hidden;
+    }
 
     img {
-        width: 10rem;
-        height: 12rem;
+        width: 7rem;
+        height: 9rem;
         object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    img:hover {
+        transform: scale(1.05);
+        object-fit: cover;
+        
     }
 
     .fight-title {
@@ -67,5 +101,62 @@ h1 {
         justify-content: center;
         flex-direction: column;
         text-align: center;
+        font-family: $font__main;
+        height: 100%;
+        border-bottom: 2px solid $color_red;
+        flex: 1;
     }
+
+    .fighter {
+        margin: 0;
+        padding: 0 0.5rem;
+    }
+    
+    .vs {
+        margin: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+}
+
+@media(min-width: $breakpoint-mobile-lrg) {
+    .fight-card {
+        .fighter {
+            font-size: 1.3rem;
+        }
+    }
+}
+
+@media(min-width: $breakpoint-tablet-sm) {
+    .fight-card {
+        max-width: 43.75rem;
+
+        img {
+            width: 10rem;
+            height: 12rem;
+        }
+
+        .fighter {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+// Past Events Link
+
+.link-to-past-events {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.link-to-past-events a {
+    background-color: $color_red;
+    color: $color_white;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    margin: 0.5rem;
+    font-family: $font__main;
+    font-size: 1.3rem;
 }

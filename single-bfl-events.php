@@ -39,7 +39,8 @@ get_header();
 					$fighter1Profile = $row['fighter_1_profile'];
 					$fighter2Image = $row['fighter_2_image'];
 					$fighter2Profile = $row['fighter_2_profile'];
-					$fightTitle = $row['fight_title'];
+					$fighter1Name = $row['fighter_1_name'];
+					$fighter2Name = $row['fighter_2_name'];
 					?>
 					<section class="fight-card">
 						<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
@@ -47,7 +48,9 @@ get_header();
 							} ?>">
 							<?php echo wp_get_attachment_image($fighter1Image, 'full'); ?>
 						</a>
+						<p><?php echo esc_html($fighter1Name); ?></p>
 						<p><?php echo esc_html('vs'); ?></p>
+						<p><?php echo esc_html($fighter2Name); ?></p>
 						<a href="<?php foreach ($fighter2Profile as $fighter2ProfileId) {
 							echo get_permalink($fighter2ProfileId);
 							} ?>">

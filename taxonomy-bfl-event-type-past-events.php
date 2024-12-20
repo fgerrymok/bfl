@@ -41,7 +41,8 @@ get_header();
 							foreach ($fightCardRepeater as $row) {
 								$fighter1Image = $row['fighter_1_image'];
 								$fighter2Image = $row['fighter_2_image'];
-								$fightTitle = $row['fight_title'];
+								$fighter1Name = $row['fighter_1_name'];
+								$fighter2Name = $row['fighter_2_name'];
 								echo wp_get_attachment_image($fighter1Image, 'full');
 								?>
 								<p><?php echo esc_html("vs"); ?></p>
@@ -50,7 +51,10 @@ get_header();
 
 								?>
 								<div class="past-events-fight-details">
-									<p><?php echo esc_html($fightTitle); ?></p>
+									
+									<p><?php echo esc_html($fighter1Name); ?></p>
+									<p><?php echo esc_html('vs'); ?></p>
+									<p><?php echo esc_html($fighter2Name); ?></p>
 									<?php
 							}
 						}
