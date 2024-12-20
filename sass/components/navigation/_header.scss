@@ -83,6 +83,12 @@ header {
 
 #primary-menu li a {
     color: $color_black;
+    transition: color 0.1s ease;
+}
+
+#primary-menu li a:hover, #primary-menu li a:active, #primary-menu li a:focus, .see-more:active, .see-more:focus {
+    color: $color_red !important;
+    transition: color 0.1s ease;
 }
 
 #primary-menu #menu-item-14917 {
@@ -117,6 +123,12 @@ header {
     width: 1.2rem;
     fill: $color_black;
     text-align: center;
+    transition: fill 0.1s ease;
+}
+
+.see-more:active .more-svg, .see-more:focus .more-svg {
+    fill: $color_red !important;
+    transition: fill 0.1s ease;
 }
 
 .event-svg {
