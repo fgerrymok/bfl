@@ -1,0 +1,27 @@
+@media(min-width:$breakpoint-tablet-sm){
+    .site-footer{
+        .footer-wrapper{
+            max-width: $max-width;
+            display: grid;
+            grid-template-columns: minmax(0,fit-content) 1fr minmax(0,fit-content);
+            align-items: flex-start;
+
+            .social-icons-footer{
+                grid-column: 3/4;
+                margin-top: 1.1rem;
+            }
+            .links-wrapper{
+                grid-column: 2/3;
+                grid-row: 1/2;
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .copyright-info-wrapper{
+                grid-column: 2/3;
+                grid-row: 2/3;
+            }
+        }
+    }
+}
