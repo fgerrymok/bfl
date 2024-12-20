@@ -1,3 +1,27 @@
+h1 {
+    margin: 6rem 1rem 2.5rem 1rem;
+}
+
+
+// hero
+
+.external-links {
+    display: flex;
+    background-color: $color_grey;
+    font-family: $font__main;
+    font-size: 1.4rem;
+
+    .betting-odds {
+        background-color: $color_grey;
+        // clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 100%, 0 100%);
+    }
+
+    .tickets {
+        background-color: $color_red;
+        color: $color_white;
+    }
+}
+
 // Core details
 
 .core-details {
@@ -12,7 +36,7 @@
     padding: 0.5rem;
 }
 
-.decorative-line {
+.core-details hr {
     transform: rotate(90deg);
     background-color: $color_red;
     height: 2px;
@@ -20,4 +44,28 @@
     position: absolute;
     left: -2.5rem;
     top: 2rem;
+}
+
+// Fight Card
+.fight-roster {
+    display: flex;
+    justify-content: center;
+}
+
+.fight-card {
+    background-color: $color_dark_grey;
+    width: fit-content;
+
+    img {
+        width: 10rem;
+        height: 12rem;
+        object-fit: cover;
+    }
+
+    .fight-title {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
 }

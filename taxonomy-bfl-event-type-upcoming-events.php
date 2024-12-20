@@ -24,26 +24,31 @@ get_header();
 					$venue = $hero['venue'];
 					?>
 					<section class="single-event-hero">
-						<?php
-						if (!empty($bettingOddsLink)) {
-							?>
-							<a href="<?php echo esc_url($bettingOddsLink) ?>" class="betting-odds"><?php echo esc_html('Betting Odds'); ?></a>
+						<div class="external-links">
 							<?php
-						}
-	
-						if (!empty($ticketsLink)) {
+							if (!empty($bettingOddsLink)) {
+								?>
+								<a href="<?php echo esc_url($bettingOddsLink) ?>" class="betting-odds"><?php echo esc_html('Betting Odds'); ?></a>
+								<?php
+							}
+		
+							if (!empty($ticketsLink)) {
+								?>
+								<a href="<?php echo esc_url($ticketsLink) ?>" class="tickets"><?php echo esc_html('Tickets'); ?></a>
+								<?php
+							}
 							?>
-							<a href="<?php echo esc_url($ticketsLink) ?>" class="tickets"><?php echo esc_html('Tickets'); ?></a>
-							<?php
-						}
-						?>
+						</div>
 						<div class="event-poster">
 							<?php echo wp_get_attachment_image($eventsPoster, 'full'); ?>
 						</div>
 						<?php
 						?>
-						<div class="fight-details">
+						<div class="event-bar">
 							<h2><?php echo esc_html($eventName); ?></h2>
+						</div>
+						<div class="core-details">
+							<hr>
 							<p><?php echo esc_html($fightDate); ?></p>
 							<p><?php echo esc_html($venue); ?></p>
 						</div>
@@ -53,13 +58,16 @@ get_header();
 	
 				$fightCardRepeater = get_field('fight_card');
 				if($fightCardRepeater) {
-	
+					?>
+					<section class="fight-roster">
+					<?php
 					foreach ($fightCardRepeater as $row) {
+						$fighter1Name = $row['fighter_1_name'];
 						$fighter1Image = $row['fighter_1_image'];
 						$fighter1Profile = $row['fighter_1_profile'];
+						$fighter2Name = $row['fighter_2_name'];
 						$fighter2Image = $row['fighter_2_image'];
 						$fighter2Profile = $row['fighter_2_profile'];
-						$fightTitle = $row['fight_title'];
 						?>
 						<section class="fight-card">
 							<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
@@ -67,16 +75,30 @@ get_header();
 								} ?>">
 								<?php echo wp_get_attachment_image($fighter1Image, 'full'); ?>
 							</a>
-							<p><?php echo esc_html('vs'); ?></p>
+
+							<?php
+							if ($fighter1Name && $fighter2Name) {
+								?>
+								<div class="fight-title">
+								<p class="fighter"><?php echo esc_html($fighter1Name); ?></p>
+								<p class="vs"><?php echo esc_html("vs"); ?></p>
+								<p class="fighter"><?php echo esc_html($fighter2Name); ?></p>
+								</div>
+								<?php
+							}
+							?>
+							
 							<a href="<?php foreach ($fighter2Profile as $fighter2ProfileId) {
 								echo get_permalink($fighter2ProfileId);
 								} ?>">
 								<?php echo wp_get_attachment_image($fighter2Image, 'full'); ?>
 							</a>
-							<p><?php echo esc_html($fightTitle); ?></p>
 						</section>
 						<?php
 					}
+					?>
+					</section>
+					<?php
 				}
 				?>
 				<h3><?php echo esc_html("Behind The Fights"); ?></h3>
