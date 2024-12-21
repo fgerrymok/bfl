@@ -78,6 +78,8 @@
 
 			if (strtotime($currentDate) > strtotime($startDate) && strtotime($endDate) !== false && strtotime($currentDate) < strtotime($endDate)) {
 				?>
+
+				<!-- Countdown -->
 				<div class="countdown-section">
 					<div class="timer-text">
 						<div class="next-event"><?php echo esc_html("Next Event"); ?></div>
@@ -115,10 +117,11 @@
 					}
 					wp_reset_postdata();
 					?>
+
+					<!-- Decorative Line -->
+					<hr class="decorative-line">
+
 				</div>
-				
-				<!-- Decorative Line -->
-				<hr class="decorative-line">
 				<?php
 			}
 			?>

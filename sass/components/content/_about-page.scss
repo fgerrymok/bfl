@@ -1,10 +1,32 @@
 .page-id-8633{
+    // hero section
+    .about-hero-section{
+        max-height: 70vh;
+        overflow: hidden;
+        margin-bottom: 3rem;
+        img{
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        h1{
+            position: absolute;
+            bottom: 1rem;
+            left: 3rem;
+            z-index: 100;
+        }
+    }
+
+
+    .about-page-wrapper{
+        margin: 0 1rem;
+    }
     line-height: $font__line-height-body;
     p{
         font-weight: 300;
     }
     .about-information-wrapper{
-        margin: 0 1rem;
+        margin: 0 auto;
         h2{
           margin: 0.83rem 0;
         }
@@ -58,3 +80,5 @@
     }
 
 }
+
+@import 'about-page-desktop';

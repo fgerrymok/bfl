@@ -2,6 +2,10 @@
 --------------------------------------------- */
 @import "navigation/navigation";
 
+/* Footer
+--------------------------------------------- */
+@import "navigation/footer";
+
 /* shared styles
 --------------------------------------------- */
 @import "content/shared-card";
@@ -24,6 +28,10 @@
 /* Other contents
 --------------------------------------------- */
 @import "content/about-page";
+
+/* Other contents
+--------------------------------------------- */
+@import "content/videos-page";
 
 /* Comments
 --------------------------------------------- */

@@ -234,6 +234,7 @@ function bfl_enqueue_scripts() {
 		
 		wp_localize_script('loadmore-news', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
 	}
+
 }
 add_action('wp_enqueue_scripts', 'bfl_enqueue_scripts');
 
@@ -278,3 +279,14 @@ function enqueue_slick_slider() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_slick_slider');
 
+// Enqueue Video Modal Function
+function enqueue_modal_script() {
+    wp_enqueue_script(
+        'modal-script', 
+        get_template_directory_uri() . '/js/modal.js', 
+        ['jquery'], // Optional: Dependencies like jQuery
+        null, 
+        true // Load in the footer
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_modal_script');

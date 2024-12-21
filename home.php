@@ -13,7 +13,7 @@
  */
  get_header();
  ?>
- <main id="primary" class="site-main">
+ <main id="primary" class="site-main videos-page">
     <section class='hero-section'>
     <?php
         // Page ID to fetch the ACF field from
@@ -114,29 +114,50 @@ if ($query->have_posts()) {
 
             if (!empty($videos)) {
                 $thumbnail_url = get_acf_oembed_thumbnail($videos[0]);
-                
-                if ($thumbnail_url) {   
-                    $post_permalink = get_permalink();
             
-                    if ($post_permalink) {
-                        echo '<a href="' . esc_url($post_permalink) . '" target="_blank">';
-                        echo '<img src="' . esc_url($thumbnail_url) . '" alt="Video Thumbnail" style="max-width: 100%; height: auto;">'; // Optional: added style for responsive images
-                        echo '</a>';
-                    }
+                if ($thumbnail_url) {
+                    echo '<div class="video-item">';
+                    echo '<a href="#" class="video-thumbnail" data-video="' . esc_url($videos[0]) . '">';
+                    echo '<img src="' . esc_url($thumbnail_url) . '" alt="Video Thumbnail">';
+                    echo '</a>';
+                    echo '</div>';
                 }
-            } else {
+            }
+             else {
                 if (have_rows('add_a_video')) {
                     while (have_rows('add_a_video')) {
                         the_row();
-                        $embed_video = get_sub_field('video_url',false,false);
+                        $embed_video = get_sub_field('video_url', false, false);
+                    
+                        // Assuming $embed_video holds the YouTube URL
                         if ($embed_video) {
-                            $thumbnail_url = get_acf_oembed_thumbnail($embed_video);
-                            if ($thumbnail_url) {
-                                echo '<img src="' . esc_url($thumbnail_url) . '" alt="Video Thumbnail">';
-                            }
+                            $video_id = '';
+                        // Extract the video ID
+                        if (strpos($embed_video, 'youtube.com/watch?v=') !== false) {
+                            parse_str(parse_url($embed_video, PHP_URL_QUERY), $query_vars);
+                            $video_id = $query_vars['v'];
+                        } elseif (strpos($embed_video, 'youtu.be') !== false) {
+                            $path = parse_url($embed_video, PHP_URL_PATH);
+                            $video_id = trim($path, '/');
                         }
+
+                        if (!empty($video_id)) {
+                            $embed_url = 'https://www.youtube.com/embed/' . esc_attr($video_id);
+                            $thumbnail_url = 'https://img.youtube.com/vi/' . esc_attr($video_id) . '/hqdefault.jpg';
+
+                            echo '<div class="video-item">';
+                            echo '<img 
+                                    src="' . esc_url($thumbnail_url) . '" 
+                                    data-video-url="' . esc_url($embed_url) . '" 
+                                    alt="Video Thumbnail" 
+                                    class="video-thumbnail">';
+                            echo '</div>';
+                        }
+                        }
+                        
                     }
                 }
+                
             }
         }
 
@@ -150,6 +171,17 @@ if ($query->have_posts()) {
 wp_reset_postdata();
 ?>
         <button id="load-more" data-page="1">Load More</button>
+        <div id="video-modal" class="modal">
+    <div class="modal-inner">
+        <span id="close-modal" class="close">&times;</span>
+        <div id="modal-content"></div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
     </section>
  </main>
  <?php

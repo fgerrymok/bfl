@@ -3,11 +3,11 @@ header {
     display: flex;
     flex-direction: column-reverse;
     position: relative;
-    margin-bottom: 6rem;
+    margin-bottom: 3.3rem;
 }
 
 .left-header {
-    background-color: #C60504;
+    background-color: $color_red;
 }
 
 .site-title, .decorative-line {
@@ -31,7 +31,7 @@ header {
 }
 
 .header-logo-text {
-    color: #fff;
+    color: $color_white;
     text-transform: uppercase;
     width: fit-content;
     padding-left: 0.65rem;
@@ -42,7 +42,7 @@ header {
     width: 0;
     height: 0;
     border-right: 5rem solid transparent;
-    border-top: 7.215rem solid #C60504;
+    border-top: 8.77rem solid $color_red;
     display: none;
 }
 
@@ -56,7 +56,7 @@ header {
 
 .main-navigation .menu .menu-item a {
     padding: 0 0.3rem;
-    color: #000;
+    color: $color_black;
 }
 
 #primary-menu {
@@ -83,6 +83,12 @@ header {
 
 #primary-menu li a {
     color: $color_black;
+    transition: color 0.1s ease;
+}
+
+#primary-menu li a:hover, #primary-menu li a:active, #primary-menu li a:focus, .see-more:active, .see-more:focus {
+    color: $color_red !important;
+    transition: color 0.1s ease;
 }
 
 #primary-menu #menu-item-14917 {
@@ -92,11 +98,12 @@ header {
     background-color: $color_black;
     grid-area: 1 / 1 / span 1 / span 1;
     position: relative;
+    cursor: pointer;
 }
 
 #primary-menu #menu-item-14879 {
     display: block;
-    background-color: #404040;
+    background-color: $color_dark_grey;
     grid-area: 1 / 2 / span 1 / span 1;
 }
 
@@ -116,6 +123,12 @@ header {
     width: 1.2rem;
     fill: $color_black;
     text-align: center;
+    transition: fill 0.1s ease;
+}
+
+.see-more:active .more-svg, .see-more:focus .more-svg {
+    fill: $color_red !important;
+    transition: fill 0.1s ease;
 }
 
 .event-svg {
@@ -135,6 +148,7 @@ header {
 #menu-item-14917 .sub-menu {    
     all: unset;
     position: absolute;
+    z-index: 300;
     bottom: -5.6rem;
     left: 0;
     background-color: $color_black;
@@ -164,7 +178,8 @@ header {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 0.75rem 0;
+    padding: 0.75rem 0 0 0;
+    background-color: $color_black;
 }
 
 .timer-text {
@@ -187,8 +202,8 @@ header {
 }
 
 .countdown-section .header-cta {
-    background-color: #C60504;
-    color: #fff;
+    background-color: $color_red;
+    color: $color_white;
     text-decoration: none;
     padding: 0.5rem;
     border-radius: 0.3rem;
@@ -200,7 +215,7 @@ header {
 }
 
 #ws-countdown-timer div {
-    background-color: #d9d9d9;
+    background-color: $color_grey;
     border-radius: 0.3rem;
     margin: 0.2rem;
     padding: 0.3rem;
@@ -228,6 +243,10 @@ header {
 }
 
 @media (min-width: 50rem) {
+    header {
+        margin: 0;
+    }
+
     .left-header {
         width: fit-content;
     }
@@ -238,7 +257,12 @@ header {
 
     .logo-and-triangle {
         display: flex;
-        background: linear-gradient(to right, #C60504 65.1%, #000 60%);
+        background: linear-gradient(to right, $color_red 65.1%, $color_white 60%);
+    }
+
+    .site-branding {
+        // position: relative;
+        margin-top: 0.8rem;
     }
 
     .decorative-triangle {
@@ -248,36 +272,75 @@ header {
     .site-header {
         display: flex;
         flex-direction: row;
+        justify-content: center;
+        background: linear-gradient(to right, $color_red 65.1%, $color_white 60%);
+        position: relative;
     }
 
     .right-header {
+        flex: 1;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        flex-direction: column-reverse;
+        max-width: 39rem;
+        background-color: $color_white;
+        justify-content: center;
     }
 
     .countdown-section {
-        
+        justify-content: flex-end;
+        background-color: $color_white;
+        padding-right: 1rem;
+        padding: 0.75rem 0 0 0;
     }
 
-    .main-navigation {
-        position: unset;
+    .next-event, .starting-in {
+        color: $color_black;
+    }
+    
+    .see-more {
+        display: none !important;
     }
 
-    // .main-navigation {
-    //     position: absolute;
-    //     bottom: 0.5rem;
-    //     left: 12rem;
-    // }
+    #primary-menu {
+        display: flex;
+        position: static;
+    }
+
+    #primary-menu li {
+        display: block;
+        padding: 0;
+        width: fit-content;
+        background-color: unset !important;
+        text-align: center !important;
+        padding: 0.4rem;
+    }
+
+    #primary-menu li a {
+        color: $color_black !important;
+    }
+
+    #primary-menu .event-svg {
+        fill: $color_black;
+        display: none;
+    }
 
     .decorative-line {
         display: block;
-        position: absolute;
-        z-index: 2;
-        bottom: 1rem;
-        left: 14rem;
-        background-color: #000;
+        background-color: $color_black;
         height: 1px;
         width: 100%;
+        margin: 0.3rem 1rem;
+    }
+
+    #primary-menu .sub-menu {
+        background-color: $color_white;
+        min-width: unset;
+        text-align: center;
+    }
+
+    #menu-item-14917 .sub-menu li a {
+        min-width: unset;
+        text-align: left;
+        padding-left: .7rem;
     }
 }

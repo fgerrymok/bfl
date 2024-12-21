@@ -12,6 +12,7 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
+		<div class='footer-wrapper'>
 		<!-- Site Logo -->
 		 <?php
 		 	$menu_location = 'footer-logo';
@@ -24,7 +25,7 @@
 				$logo_link  = home_url();
 				}
 				?>
-				<a href="<?php echo esc_url($logo_link); ?>">
+				<a class='footer-logo' href="<?php echo esc_url($logo_link); ?>">
 					<?php echo wp_get_attachment_image($logo_image, 'medium'); ?>
 				</a>
 				<?php
@@ -32,35 +33,7 @@
 			}
 		 ?>
 
-		<!-- navigation Section -->
-		 <section>
-			<div class='bfl-footer-column'>
-				<p>Events</p>
-				<nav class='bfl-footer-navigation'>
-					 <?php
-					 wp_nav_menu(array('theme_location' => 'footer-events'));
-					 ?>
-			 	</nav>	
-			</div>
-			<div class='bfl-footer-column'>
-				<p>Company</p>
-				<nav class='bfl-footer-navigation'>
-					 <?php
-					 wp_nav_menu(array('theme_location' => 'footer-company'));
-					 ?>
-			 	</nav>	
-			</div>
-			<div class='bfl-footer-column'>
-				<p>Resources</p>
-				<nav class='bfl-footer-navigation'>
-					 <?php
-					 wp_nav_menu(array('theme_location' => 'footer-resources'));
-					 ?>
-			 	</nav>	
-			</div>
-		 </section>
-		 
-		<!-- Social Icons Section -->
+		 <!-- Social Icons Section -->
 		 <section class='social-icons-footer'>
 			<?php
 				$social_menu_location = 'footer-social-icons';
@@ -131,12 +104,48 @@
 			?>
 		 </section>
 
-		 <div class="site-info">
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Built by: %s' ), '<a href="http://wsstudio.ca">Whitespace Studio</a>' );
-				?>
-		</div><!-- .site-info -->
+		<!-- navigation Section -->
+		 <section class='links-wrapper'>
+			<div class='bfl-footer-column'>
+				<p>Events</p>
+				<nav class='bfl-footer-navigation'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-events'));
+					 ?>
+			 	</nav>	
+			</div>
+			<div class='bfl-footer-column'>
+				<p>Company</p>
+				<nav class='bfl-footer-navigation'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-company'));
+					 ?>
+			 	</nav>	
+			</div>
+			<div class='bfl-footer-column'>
+				<p>Resources</p>
+				<nav class='bfl-footer-navigation'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-resources'));
+					 ?>
+			 	</nav>	
+			</div>
+		 </section>
+		 
+		<div class='copyright-info-wrapper'>
+			<div class='bfl-copyright'>
+				<p>
+					<?php echo "&copy; " . date("Y") . " Battlefield Fight League";?>
+				</p>
+			</div>
+			 <div class="site-info">
+					<?php
+					/* translators: 1: Theme name, 2: Theme author. */
+					printf( esc_html__( 'Built by: %s' ), '<a href="http://wsstudio.ca">Whitespace Studio</a>' );
+					?>
+			</div><!-- .site-info -->
+		</div>
+	</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

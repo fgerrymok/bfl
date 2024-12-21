@@ -8,19 +8,19 @@ seeMoreButton.innerHTML = `More <svg class="more-svg" clip-rule="evenodd" fill-r
 seeMoreButton.classList.add('see-more');
 mobileNav.appendChild(seeMoreButton);
 
-seeMoreButton.addEventListener('mouseenter', () => {
+seeMoreButton.addEventListener('click', () => {
     navigationItems.forEach((item) => {
-        item.classList.add('show');
+        item.classList.toggle('show');
     })
-    primaryMenu.classList.add('menu-active');
+    primaryMenu.classList.toggle('menu-active');
 })
 
-primaryMenu.addEventListener('mouseleave', () => {
-    navigationItems.forEach((item) => {
-        item.classList.remove('show');
-    })
-    primaryMenu.classList.remove('menu-active');
-})
+// primaryMenu.addEventListener('mouseleave', () => {
+//     navigationItems.forEach((item) => {
+//         item.classList.remove('show');
+//     })
+//     primaryMenu.classList.remove('menu-active');
+// })
 
 eventTab.addEventListener('mouseenter', () => {
     navigationItems.forEach((item) => {

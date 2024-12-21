@@ -1,17 +1,27 @@
 .single-event {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-}
 
-.single-event h2 {
-    transform: rotate(-90deg);
-}
+    .event-name {
+        background-color: $color_dark_grey;
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        height: 9rem;
+        text-align: center;
+        
+        h2 {
+            margin: 0.5rem;
+        }
+    }
 
-.single-event img {
-    width: 8rem;
-    height: 10rem;
-    object-fit: cover;
+    img {
+        width: 7rem;
+        height: 9rem;
+        object-fit: cover;
+    }
 }
 
 .past-events-fight-details {
