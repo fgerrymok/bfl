@@ -1,0 +1,37 @@
+.featured-news-container {
+    background-color: $color_red;
+    margin: 5rem 0 0 0;
+    padding: 0.4rem 1rem 1rem 1rem;
+
+    h1 {
+        font-weight: 200;
+        margin: 0;
+    }
+
+    .featured-news {
+
+        img.attachment-thumbnail.size-thumbnail {
+            width: 100% !important;
+            height: 215px !important;
+            object-fit: cover;
+            // padding: 1rem;
+        }
+
+        .featured-news-title {
+            padding-top: 0.5rem;
+
+            a {
+                text-decoration: none;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+#news-container {
+
+    .news-item:first-child {
+        display: none;
+    }
+
+}
