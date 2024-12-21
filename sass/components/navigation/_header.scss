@@ -83,6 +83,12 @@ header {
 
 #primary-menu li a {
     color: $color_black;
+    transition: color 0.1s ease;
+}
+
+#primary-menu li a:hover, #primary-menu li a:active, #primary-menu li a:focus, .see-more:active, .see-more:focus {
+    color: $color_red !important;
+    transition: color 0.1s ease;
 }
 
 #primary-menu #menu-item-14917 {
@@ -117,6 +123,12 @@ header {
     width: 1.2rem;
     fill: $color_black;
     text-align: center;
+    transition: fill 0.1s ease;
+}
+
+.see-more:active .more-svg, .see-more:focus .more-svg {
+    fill: $color_red !important;
+    transition: fill 0.1s ease;
 }
 
 .event-svg {
@@ -136,6 +148,7 @@ header {
 #menu-item-14917 .sub-menu {    
     all: unset;
     position: absolute;
+    z-index: 300;
     bottom: -5.6rem;
     left: 0;
     background-color: $color_black;
@@ -230,6 +243,10 @@ header {
 }
 
 @media (min-width: 50rem) {
+    header {
+        margin: 0;
+    }
+
     .left-header {
         width: fit-content;
     }

@@ -60,8 +60,20 @@
 
 /* Header
 --------------------------------------------- */
-@import "content/header";
+@import "navigation/header";
 
 /* Results
 --------------------------------------------- */
 @import "content/results";
+
+/* Upcoming Events
+--------------------------------------------- */
+@import "content/upcoming_events";
+
+/* Hero
+--------------------------------------------- */
+@import "sections/hero.scss";
+
+/* Event Bar
+--------------------------------------------- */
+@import "sections/event-bar.scss";
