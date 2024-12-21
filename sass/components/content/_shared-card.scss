@@ -1,0 +1,183 @@
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.cards {
+  width: 100%;
+  padding-bottom: 1.5rem;
+}
+
+.cards a {
+  text-decoration: none;
+}
+
+.cards a:hover {
+  text-decoration: underline;
+}
+
+.cards .card-thumbnail-box {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+
+.cards .card-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cards .card-date {
+  margin: 8px 0 0 0;
+  padding: 0 1rem 0 1rem;
+  font-size: 12px;
+  color: $color_label;
+}
+.cards .card-title {
+  margin: 0;
+  padding: 0 1rem 0 1rem;
+}
+
+@media (min-width: $breakpoint-mobile-2-columns) {
+  .cards-container {
+    column-gap: 4px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cards .card-date {
+    padding: 0;
+  }
+  .cards .card-title {
+    padding: 0;
+  }
+}
+
+@media (min-width: $breakpoint-desktop-sm) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+// =============== SLIDER GENERAL SETTING =============== //
+// margin
+.slick-slider .slick-slide {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
+@media (min-width: $breakpoint-mobile-2-columns) {
+  .slick-slider .slick-slide {
+    margin: 0 4px;
+  }
+  .slick-list {
+    margin: 0 -4px;
+  }
+}
+
+// button
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: calc(50% - 24px);
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  border: none;
+  font-size: 8px;
+  font-weight: 900;
+  width: 24px;
+  height: 24px;
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.slick-prev {
+  left: 16px;
+}
+
+.slick-next {
+  right: 16px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: #555;
+}
+
+// pagination
+.slick-dots {
+  position: absolute;
+  bottom: -24px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.slick-dots li {
+  margin: 0 5px;
+}
+
+.slick-dots li button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #333;
+  font-size: 0;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #ccc;
+}
+
+// =============== GENERAL =============== //
+.slider-item .slider-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.slider-item .card-date {
+  margin: 8px 0 0 0;
+  padding: 0 1rem;
+  font-size: 12px;
+  color: $color_label;
+}
+.slider-item .card-title {
+  margin: 0;
+  padding: 0 1rem;
+}
+@media (min-width: $breakpoint-mobile-lrg) {
+  .slider-item .card-date {
+    padding: 0;
+  }
+  .slider-item .card-title {
+    padding: 0;
+  }
+}
+// =============== SLIDE: PAST EVENTS =============== //
+.slider-image.past-events {
+  aspect-ratio: 13 / 16;
+}
+
+.card-title.past-events {
+  text-align: center;
+  margin: 1.5rem 0 0 0;
+  font-size: 16px;
+}
+// =============== SLIDE: CHAMPIONS =============== //
+.slider-image.champions {
+  aspect-ratio: 4 / 6;
+}

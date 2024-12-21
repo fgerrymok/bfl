@@ -3,12 +3,13 @@
 function bfl_load_more_posts() {
     
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-    $posts_per_page = isset($_GET['posts_per_page']) ? intval($_GET['posts_per_page']) : 3;
+    $posts_per_page = isset($_GET['posts_per_page']) ? intval($_GET['posts_per_page']) : 8;
 
     $args = [
         'post_type' => 'bfl-news',
         'posts_per_page' => $posts_per_page,
         'paged' => $page,
+        'post_status' => 'publish',
     ];
 
     $query = new WP_Query($args);

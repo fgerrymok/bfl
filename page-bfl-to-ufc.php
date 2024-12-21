@@ -25,15 +25,7 @@ get_header();
             </div>
         </section>
 
-        <section class="bfl-to-ufc-description">
-            <p>
-                At Battlefield Fight League, we pride ourselves on being a premier launching pad for MMA talent in Canada. Many of our athletes have honed their skills in the BFL cage, earning recognition on the global stage and ultimately making their way to the pinnacle of MMA—the UFC. This progression underscores the high caliber of competition in BFL and our commitment to nurturing world-class fighters.
-            </p>
-            <p>
-                The "BFL to UFC" fighters list is a testament to the opportunities and exposure our league provides, while the "On the UFC Radar" list highlights rising stars who are catching the attention of the MMA world.
-            </p>
-        </section>
-
+      
         <?php
         // BFL to UFC
         $args = array(
@@ -92,7 +84,18 @@ get_header();
         endif;
         ?>
 
+<section class="bfl-to-ufc-description">
+            <p>
+                At Battlefield Fight League, we pride ourselves on being a premier launching pad for MMA talent in Canada. Many of our athletes have honed their skills in the BFL cage, earning recognition on the global stage and ultimately making their way to the pinnacle of MMA—the UFC. This progression underscores the high caliber of competition in BFL and our commitment to nurturing world-class fighters.
+            </p>
+            <p>
+                The "BFL to UFC" fighters list is a testament to the opportunities and exposure our league provides, while the "On the UFC Radar" list highlights rising stars who are catching the attention of the MMA world.
+            </p>
+        </section>
+
     <?php endif; ?>
+
+
 
     </main><!-- #main -->
 

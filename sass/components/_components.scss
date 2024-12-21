@@ -1,10 +1,17 @@
 /* Navigation
 --------------------------------------------- */
 @import "navigation/navigation";
+@import "navigation/header";
 
 /* Footer
 --------------------------------------------- */
 @import "navigation/footer";
+
+/* shared styles
+--------------------------------------------- */
+@import "content/shared-card";
+@import "content/shared-hero-section";
+@import "content/shared-champions-card";
 
 /* Posts and pages
 --------------------------------------------- */
@@ -12,14 +19,13 @@
 
 /* Other contents
 --------------------------------------------- */
+@import "content/homepage";
 @import "content/ranking-tab";
-
-/* Other contents
---------------------------------------------- */
+@import "content/past_events";
+@import "content/single-bfl-event";
 @import "content/about-page";
-
-/* Other contents
---------------------------------------------- */
+@import "content/bfl-to-ufc";
+@import "content/archive-bfl-news";
 @import "content/videos-page";
 
 /* Comments
@@ -45,35 +51,3 @@
 /* Galleries
 --------------------------------------------- */
 @import "media/galleries";
-
-/* Single Event Page
---------------------------------------------- */
-@import "content/single_bfl_event";
-
-/* Past Events Archive
---------------------------------------------- */
-@import "content/past_events";
-
-/* Homepage
---------------------------------------------- */
-@import "content/homepage";
-
-/* Header
---------------------------------------------- */
-@import "navigation/header";
-
-/* Results
---------------------------------------------- */
-@import "content/results";
-
-/* Events
---------------------------------------------- */
-@import "content/events";
-
-/* Hero
---------------------------------------------- */
-@import "sections/hero.scss";
-
-/* Event Bar
---------------------------------------------- */
-@import "sections/event-bar.scss";

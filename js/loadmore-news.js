@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const loadMoreButton = document.getElementById("load-more");
-  const newsContainer = document.getElementById("news-container");
+  const newsContainer = document.getElementById("more-news-container");
 
   if (!loadMoreButton || !newsContainer) {
     console.error("Load More Button or News Container is missing.");
