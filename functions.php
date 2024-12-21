@@ -265,3 +265,16 @@ function add_google_fonts() {
 };
 
 add_action('wp_enqueue_scripts', 'add_google_fonts');
+
+
+// Slick Slider
+function enqueue_slick_slider() {
+    // Slick CSS
+    wp_enqueue_style('slick-css', get_template_directory_uri() . '/extra_css/slick.css');
+    // Slick JS
+    wp_enqueue_script('slick-js', get_template_directory_uri() . '/js/slick.min.js', array('jquery'), null, true);
+    // Custom Slider Init Script
+    wp_enqueue_script('ws-slick-init', get_template_directory_uri() . '/js/ws-slick.js', array('jquery', 'slick-js'), null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_slick_slider');
+
