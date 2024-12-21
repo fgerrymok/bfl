@@ -3,6 +3,7 @@ jQuery(document).ready(function ($) {
   $(".past-events .slick-slider").slick({
     slidesToShow: 4,
     slidesToScroll: 1,
+    swipeToSlide: true,
     autoplay: false,
     dots: true,
     arrows: true,
@@ -34,6 +35,7 @@ jQuery(document).ready(function ($) {
   $(".recent-posts .slick-slider").slick({
     slidesToShow: 4,
     slidesToScroll: 1,
+    swipeToSlide: true,
     autoplay: false,
     dots: true,
     arrows: true,
@@ -65,6 +67,7 @@ jQuery(document).ready(function ($) {
   $(".videos .slick-slider").slick({
     slidesToShow: 4,
     slidesToScroll: 1,
+    swipeToSlide: true,
     autoplay: false,
     dots: true,
     arrows: true,
@@ -96,6 +99,7 @@ jQuery(document).ready(function ($) {
   $(".champions .slick-slider").slick({
     slidesToShow: 6,
     slidesToScroll: 1,
+    swipeToSlide: true,
     autoplay: false,
     dots: true,
     arrows: true,

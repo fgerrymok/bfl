@@ -110,7 +110,7 @@ while ( have_posts() ) :
             
         ?>
         <section class='about-page-section contact-us-section'>
-            <h2><?php echo esc_html($contact_title) ?></h2>
+            <h2 id="contact-section-title"><?php echo esc_html($contact_title) ?></h2>
             <div class='advertise-fight-wrapper'>
                 <p class='advertise'><?php echo esc_html($advertise_title); ?></p>
                 <p><?php echo esc_html($fight_title); ?> <span>BFL</span></p>

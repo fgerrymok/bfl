@@ -16,7 +16,6 @@ get_header();
 					foreach ($heroFlex as $layout) {
 						if ($layout['acf_fc_layout'] === "upcoming_event") {
 							$eventPoster = $layout['homepage_event_image'];
-							echo wp_get_attachment_image($eventPoster, 'full');
 							
 							$args = array(
 								'post_type' => 'bfl-events',
@@ -36,7 +35,9 @@ get_header();
 								while ($query->have_posts()) {
 									$query->the_post();
 									?>
-									<a href="<?php echo esc_url(the_permalink()); ?>"><?php echo esc_html("See Details") ?></a>
+										<a href="<?php echo esc_url(the_permalink()); ?>">
+											<?php echo wp_get_attachment_image($eventPoster, 'full'); ?>
+										</a>
 									<?php
 									
 								}
@@ -49,14 +50,21 @@ get_header();
 								echo $heroVideo;
 							}
 						}
-					}
+					} 
+					// UFC banner
+					$image_id = 14995; // UFC Image ID
+					echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'ufc-banner home']);
+
+
 					?>
 				</section>
 				<section class="homepage-body">
 
 					<!-- Past Events -->
 					<section class="homepage-section past-events">
-					<h2><?php echo esc_html("Past Events") ?></h2>
+					<a href="<?php echo esc_url( get_term_link( 'past-events', 'bfl-event-type' ) ); ?>" class="heading-link">
+						<h2><?php echo esc_html("Past Events >") ?></h2>
+					</a>
 					<div class="slick-slider">
 						<?php
 						$args = array(
@@ -93,7 +101,9 @@ get_header();
 
 				<!-- Recent Posts -->
 				<section class="homepage-section recent-posts">
-					<h2><?php echo esc_html("Recent Posts") ?></h2>
+				<a href="<?php echo esc_url( get_post_type_archive_link( 'bfl-news' ) ); ?>" class="heading-link">
+					<h2><?php echo esc_html("Recent Posts >") ?></h2>
+				</a>
 					<div class="slick-slider">
 						<?php
 						$args = array(
@@ -120,15 +130,13 @@ get_header();
 						endif; ?>
 					</div>
 				</section>
-
-
-
-
-
 				
 				<!-- Videos -->
 				<section class="homepage-section videos">
-					<h2><?php echo esc_html("Videos") ?></h2>
+				<a href="<?php echo esc_url( home_url() ); ?>" class="heading-link">			
+					<h2><?php echo esc_html("Videos >") ?></h2>
+				</a>
+
 					<div class="slick-slider">
 						<?php
 						$args = array(
@@ -159,7 +167,9 @@ get_header();
 
 				<!-- BFL Professional Champions -->
                 <section class="homepage-section champions">
-                    <h2><a href="<?php echo get_permalink(14581); ?>">BFL Professional Champions</a></h2>
+                    <h2>
+						<a href="<?php echo get_permalink(14581); ?>" class="heading-link"><?php echo esc_html("BFL Professional Champions >") ?></a>
+					</h2>
 					<div class="slick-slider champions">
                     <?php
                     $page_id = 14581;
@@ -235,11 +245,14 @@ get_header();
 				<?php
 			}
 			?>
-				
+				<!-- social media section -->
 				<section class='homepage-section instagram'>
+					<h2><?php echo esc_html("Recent posts on social media") ?></h2>
 					<?php echo do_shortcode('[instagram-feed]'); ?>
 				</section>
 
+
+				<!-- sponsor section -->
 				<section class='homepage-section sponsor'>
 					<?php
 						if(have_rows('sponsors_section')):
@@ -251,17 +264,12 @@ get_header();
 									?>
 										<div class='sponsors-title-text'>
 											<h2><?php echo esc_html($sponsor_section_title); ?></h2>
-											<?php
-												if($sponsor_section_text){
-													?>
-													<p><?php echo esc_html($sponsor_section_text); ?></p>
-													<?php
-												}
-												?>
 										</div>
 									<?php
-								
-								if(have_rows('sponsor')){
+								}
+								if(have_rows('sponsor')){ ?>
+									<div class="logo-wrapper"> 
+									<?php
 									while(have_rows('sponsor')): the_row();	
 										$sponsor_name = get_sub_field('sponsor_name');
 										$sponsor_logo = get_sub_field('sponsor_logo');
@@ -280,9 +288,22 @@ get_header();
 										</div>
 										<?php
 
-									endwhile;							
+									endwhile; ?>
+									</div> 
+								<?php						
 								}
+								if($sponsor_section_text){ ?>
+									<p class="description"><?php echo esc_html($sponsor_section_text); ?></p>
+									<?php
 								}
+								
+								?>
+								<div class="sponsor-cta-wrapper">
+									<a href="<?php echo esc_url( home_url( '/about/' ) . '#contact-section-title' ); ?>" class="home-sponsor-cta">Partner with Us</a>
+									</div>
+								<?php 
+	
+
 							endwhile;
 						endif;
 					?>

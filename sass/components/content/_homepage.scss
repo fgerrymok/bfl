@@ -6,9 +6,52 @@
 .homepage-section {
   display: flex;
   flex-direction: column;
-  margin-top: 5rem;
+  margin-top: 3rem;
   h2 {
     margin: 1.5rem 1rem 1rem 1rem;
+  }
+}
+
+.home header {
+  margin-bottom: 53px;
+}
+@media (min-width: 50rem) {
+  .home header {
+    margin-bottom: 0;
+  }
+}
+
+.heading-link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// =============== HERO SECTION =============== //
+
+.home-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.home-hero-cta {
+  font-family: $font__main;
+  background-color: $color_red;
+  color: $color_white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  margin: 1rem;
+}
+
+.ufc-banner.home {
+  margin: auto;
+  padding: 0;
+}
+@media (min-width: $breakpoint-tablet-sm) {
+  .ufc-banner.home {
+    padding: 2rem;
   }
 }
 
@@ -35,7 +78,7 @@
 
 @media (min-width: $breakpoint-desktop-lrg) {
   .homepage-section {
-    width: $max-width;
+    width: calc($max-width - 64px);
   }
 }
 
@@ -119,12 +162,6 @@
       justify-items: center;
     }
     .cards-container.champions .cards {
-      .card-division-name {
-      }
-      .champion-title {
-      }
-      .champion-name {
-      }
     }
   }
   @media (min-width: $breakpoint-desktop-sm) {
@@ -151,4 +188,65 @@
 
 // =============== SPONSOR SECTION =============== //
 .homepage-section.sponsor {
+  margin-bottom: 5rem;
+  .sponsors-title-text h2 {
+    text-align: center;
+  }
+
+  .logo-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .logo-item {
+    flex: 1 1 calc(100%);
+    max-width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (min-width: 500px) {
+    .logo-item {
+      flex: 1 1 calc(50% - 4px);
+      max-width: calc(50% - 4px);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .logo-item {
+      flex: 1 1 calc(33.33% - 4px);
+      max-width: calc(33.33% - 4px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .logo-item {
+      flex: 1 1 calc(25% - 16px);
+      max-width: calc(25% - 16px);
+    }
+  }
+  .description {
+    text-align: center;
+    padding: 0 48px;
+    margin: auto;
+    max-width: 516px;
+  }
+
+  .sponsor-cta-wrapper {
+    align-self: center;
+    margin: 3rem;
+  }
+
+  .home-sponsor-cta {
+    font-family: $font__main;
+    background-color: $color_red;
+    color: $color_white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    margin: 1rem;
+  }
 }

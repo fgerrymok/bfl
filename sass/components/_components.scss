@@ -1,6 +1,7 @@
 /* Navigation
 --------------------------------------------- */
 @import "navigation/navigation";
+@import "navigation/header";
 
 /* Footer
 --------------------------------------------- */
@@ -18,19 +19,11 @@
 
 /* Other contents
 --------------------------------------------- */
-@import "content/header";
-@import "content/footer";
 @import "content/homepage";
 @import "content/ranking-tab";
 @import "content/past_events";
 @import "content/single-bfl-event";
-
-/* Other contents
---------------------------------------------- */
 @import "content/about-page";
-
-/* Other contents
---------------------------------------------- */
 @import "content/videos-page";
 
 /* Comments
