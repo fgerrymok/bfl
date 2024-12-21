@@ -26,31 +26,23 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'bfl' ); ?></a>
 	<header id="masthead" class="site-header">
 		<div class="left-header">
-			<div class="logo-and-triangle">
-				<div class="site-branding">
-					<?php
-					the_custom_logo();
+			<div class="site-branding">
+				<?php
+				the_custom_logo();
+				if ( is_front_page() && is_home() ) :
 					?>
-					<div class="header-logo-text"><?php echo esc_html("Battlefield Fight League"); ?></div>
+					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 					<?php
-					if ( is_front_page() && is_home() ) :
-						?>
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-						<?php
-					else :
-						?>
-						<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-						<?php
-					endif;
-					$bfl_description = get_bloginfo( 'description', 'display' );
-					if ( $bfl_description || is_customize_preview() ) :
-						?>
-						<p class="site-description"><?php echo $bfl_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-					<?php endif; ?>
-				</div>
-
-				<!-- Decorative Triangle -->
-				<div class="decorative-triangle"></div>
+				else :
+					?>
+					<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+					<?php
+				endif;
+				$bfl_description = get_bloginfo( 'description', 'display' );
+				if ( $bfl_description || is_customize_preview() ) :
+					?>
+					<p class="site-description"><?php echo $bfl_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+				<?php endif; ?>
 			</div>
 		</div>
 
@@ -81,12 +73,14 @@
 
 				<!-- Countdown -->
 				<div class="countdown-section">
-					<div class="timer-text">
-						<div class="next-event"><?php echo esc_html("Next Event"); ?></div>
-						<div class="starting-in"><?php echo esc_html("Starting In"); ?></div>
-					</div>
-					<div class="countdown-timer-box">
-						<?php echo do_shortcode( '[ws_countdown_timer]' ); ?>
+					<div class="clock">
+						<div class="timer-text">
+							<p class="next-event"><?php echo esc_html("Next Event"); ?></p>
+							<p class="starting-in"><?php echo esc_html("Starting In"); ?></p>
+						</div>
+						<div class="countdown-timer-box">
+							<?php echo do_shortcode( '[ws_countdown_timer]' ); ?>
+						</div>
 					</div>
 
 					<?php

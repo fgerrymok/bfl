@@ -1,346 +1,194 @@
 header {
     font-family: "Bebas Neue", sans-serif;
     display: flex;
-    flex-direction: column-reverse;
+    background-color: $color_white;
     position: relative;
-    margin-bottom: 3.3rem;
 }
 
 .left-header {
     background-color: $color_red;
-}
-
-.site-title, .decorative-line {
-    display: none;
-}
-
-.logo-and-triangle { 
-    padding: 0 0.75rem;
+    width: 9rem;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 100%, 0 100%);
     display: flex;
-    justify-content: center;
-}
-
-.site-branding {
-    padding: 1rem 0;
-    width: fit-content;
-}
-
-.site-branding img {
-    width: 10rem;
-    min-width: 10rem;
-}
-
-.header-logo-text {
-    color: $color_white;
-    text-transform: uppercase;
-    width: fit-content;
-    padding-left: 0.65rem;
-    display: none;
-}
-
-.decorative-triangle {
-    width: 0;
-    height: 0;
-    border-right: 5rem solid transparent;
-    border-top: 8.77rem solid $color_red;
-    display: none;
-}
-
-.main-navigation .menu-toggle {
-    display: none;
-}
-
-.main-navigation .menu .menu-item {
-    padding: 0 0.3rem;
-}
-
-.main-navigation .menu .menu-item a {
-    padding: 0 0.3rem;
-    color: $color_black;
-}
-
-#primary-menu {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    position: absolute;
-    z-index: 2;
-    bottom: -3.3rem;
-    background-color: $color_white;
-}
-
-#primary-menu.menu-active {
-    bottom: -9.9rem;
-}
-
-#primary-menu li {
-    background-color: $color_white;
-    padding: 0.75rem 0;
-    text-align: center;
-    font-size: 1.2rem;
-    display: none;
-}
-
-#primary-menu li a {
-    color: $color_black;
-    transition: color 0.1s ease;
-}
-
-#primary-menu li a:hover, #primary-menu li a:active, #primary-menu li a:focus, .see-more:active, .see-more:focus {
-    color: $color_red !important;
-    transition: color 0.1s ease;
-}
-
-#primary-menu #menu-item-14917 {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: $color_black;
-    grid-area: 1 / 1 / span 1 / span 1;
-    position: relative;
-    cursor: pointer;
-}
-
-#primary-menu #menu-item-14879 {
-    display: block;
-    background-color: $color_dark_grey;
-    grid-area: 1 / 2 / span 1 / span 1;
-}
-
-#primary-menu #menu-item-14917 a, #primary-menu #menu-item-14879 a {
-    color: $color_white;
-}
-
-#primary-menu .see-more {
-    display: block;
-    background-color: $color_white;
-    color: $color_black;
-    cursor: pointer;
-    grid-area: 1 / 3 / span 1 / span 1;
-}
-
-.more-svg {
-    width: 1.2rem;
-    fill: $color_black;
-    text-align: center;
-    transition: fill 0.1s ease;
-}
-
-.see-more:active .more-svg, .see-more:focus .more-svg {
-    fill: $color_red !important;
-    transition: fill 0.1s ease;
-}
-
-.event-svg {
-    width: 1.2rem;
-    fill: $color_white;
-    text-align: center;
-}
-
-.more-svg path {
-    width: 100%;
-}
-
-#primary-menu .show {
-    display: block;
-}
-
-#menu-item-14917 .sub-menu {    
-    all: unset;
-    position: absolute;
-    z-index: 300;
-    bottom: -5.6rem;
-    left: 0;
-    background-color: $color_black;
-    min-width: calc(100vw - 15px);
-    display: none;
-}
-
-#menu-item-14917 .sub-menu li {
-    all: unset;
-    min-width: 100%;
-}
-
-#menu-item-14917 .sub-menu li a {
-    min-width: 100%;
-    padding: 0.5rem;
-}
-
-#menu-item-14917:hover .sub-menu{
-    display: block !important;
-}
-
-
-// Countdown Timer
-
-.countdown-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0.75rem 0 0 0;
-    background-color: $color_black;
-}
-
-.timer-text {
-    width: fit-content;
-    align-items: center;
-    margin: 0.5rem;
-}
-
-.timer-text .next-event, .timer-text .starting-in {
-    width: fit-content;
-    text-transform: uppercase;
-}
-
-.timer-text .next-event {
-    font-size: 1.2rem;
-}
-
-.timer-text .starting-in {
-    font-size: 0.8rem;
-}
-
-.countdown-section .header-cta {
-    background-color: $color_red;
-    color: $color_white;
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    margin: 0.5rem;
-}
-
-#ws-countdown-timer {
-    gap: 0;
-}
-
-#ws-countdown-timer div {
-    background-color: $color_grey;
-    border-radius: 0.3rem;
-    margin: 0.2rem;
-    padding: 0.3rem;
-}
-
-#ws-countdown-timer span {
-    min-width: unset;
-    min-width: 2rem;
-    height: 1.3rem;
-}
-
-#ws-countdown-timer div .time-value, #ws-countdown-timer div .time-label {
-    padding: 0.1rem;
-    display: block;
-    padding: 0;
-    width: fit-content;
-}
-
-#ws-countdown-timer div .time-value {
-    font-size: 1.1rem;
-}
-
-#ws-countdown-timer div .time-label {
-    font-size: 0.8rem;
-}
-
-@media (min-width: 50rem) {
-    header {
-        margin: 0;
-    }
-
-    .left-header {
-        width: fit-content;
-    }
-
-    .header-logo-text {
-        display: block;
-    }
-
-    .logo-and-triangle {
-        display: flex;
-        background: linear-gradient(to right, $color_red 65.1%, $color_white 60%);
-    }
 
     .site-branding {
-        // position: relative;
-        margin-top: 0.8rem;
-    }
-
-    .decorative-triangle {
-        display: block;
-    }
-
-    .site-header {
+        width: 5rem;
+        min-width: 5rem;
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        background: linear-gradient(to right, $color_red 65.1%, $color_white 60%);
-        position: relative;
-    }
-
-    .right-header {
-        flex: 1;
-        display: flex;
-        flex-direction: column-reverse;
-        max-width: 39rem;
-        background-color: $color_white;
-        justify-content: center;
-    }
-
-    .countdown-section {
-        justify-content: flex-end;
-        background-color: $color_white;
-        padding-right: 1rem;
-        padding: 0.75rem 0 0 0;
-    }
-
-    .next-event, .starting-in {
-        color: $color_black;
-    }
-    
-    .see-more {
-        display: none !important;
-    }
-
-    #primary-menu {
-        display: flex;
-        position: static;
-    }
-
-    #primary-menu li {
-        display: block;
-        padding: 0;
-        width: fit-content;
-        background-color: unset !important;
-        text-align: center !important;
-        padding: 0.4rem;
-    }
-
-    #primary-menu li a {
-        color: $color_black !important;
-    }
-
-    #primary-menu .event-svg {
-        fill: $color_black;
-        display: none;
-    }
-
-    .decorative-line {
-        display: block;
-        background-color: $color_black;
-        height: 1px;
-        width: 100%;
-        margin: 0.3rem 1rem;
-    }
-
-    #primary-menu .sub-menu {
-        background-color: $color_white;
-        min-width: unset;
-        text-align: center;
-    }
-
-    #menu-item-14917 .sub-menu li a {
-        min-width: unset;
-        text-align: left;
-        padding-left: .7rem;
+        align-items: center;
+        margin: 0 0.1rem;
     }
 }
+
+.right-header {
+    background-color: $color_white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .countdown-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        .header-cta {
+            display: none;
+        }
+
+        .timer-text {
+            text-transform: uppercase;
+            color: $color_black;
+            display: flex;
+            width: 100%;
+
+            .next-event {
+                font-size: 1.4rem;
+                margin: 0;
+            }
+
+            .starting-in {
+                font-size: 1rem;
+                margin: 0;
+                margin-top: 0.4rem;
+                margin-left: 0.4rem;
+            }
+        }
+
+        .countdown-timer-box {
+            padding-bottom: 0.5rem;
+            
+            #ws-countdown-timer {
+                gap: 0.2rem;
+
+                .time-days, .time-hours, .time-minutes, .time-seconds {
+                    width: 3.1rem;
+                    text-align: center;
+                    background-color: $color_grey;
+                    border-radius: 0.3rem;
+
+                    .time-value {
+                        width: 2rem !important;
+                        padding: 0;
+                        font-size: 1.1rem;
+                    }
+
+                    .time-label {
+                        width: 2.5rem;
+                        padding: 0;
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+
+        .decorative-line {
+            display: none;
+        }
+    }
+
+    @media(min-width: $breakpoint-mobile-lrg) {
+        .countdown-section {
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-end;
+
+            .header-cta {
+                display: block;
+                background-color: $color_red;
+                color: $color_white;
+                text-decoration: none;
+                padding: 0.5rem;
+                border-radius: 0.3rem;
+                margin: 0.5rem;
+            }
+        }
+    }
+
+    @media (min-width: $breakpoint-tablet-sm) {
+        .countdown-section {
+
+            .clock {
+                display: flex;
+                align-items: flex-end;
+                
+                .timer-text {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0.5rem;
+    
+                    .starting-in {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .main-navigation {
+        position: absolute;
+        bottom: 0rem;
+        left: 0;
+
+        .menu-toggle {
+            display: none;
+        }
+
+        #primary-menu {
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+
+            background-color: $color_grey;
+            width: 100%;
+
+            // Home & About
+            #menu-item-14797, #menu-item-14799 {
+                display: none;
+            }
+
+            // Events
+            #menu-item-14917 {
+                cursor: pointer;
+            }
+
+            .menu-item {
+                padding: 0.5rem;
+
+                a {
+                    color: $color_black;
+                }
+
+                a:hover, a:active, a:focus {
+                    color: $color_red;
+                }
+            }
+
+            .sub-menu {
+                display: block;
+                background-color: $color_grey;
+
+                li a {
+                    color: $color_black;
+                }
+            }
+
+            @media(min-width: $breakpoint-mobile-lrg) {
+                .menu-item {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
+
+// @media(min-width: $breakpoint-tablet-sm) {
+//     .right-header {
+//         flex-direction: column-reverse;
+
+//         .main-navigation {
+//             position: unset;
+//         }
+//     }
+// }
