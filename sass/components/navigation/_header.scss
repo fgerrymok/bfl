@@ -10,6 +10,7 @@ header {
         max-width: 56.25rem;
         margin: 0 auto;
         min-height: 6rem;
+        
     }
 }
 
@@ -30,17 +31,37 @@ header {
     }
 }
 
-// .full-header {
-//     position: relative !important;
-// }
+// ===== Styles for No Countdown ===== //
+.no-countdown {
+    width: unset;
+    max-width: unset;
+    clip-path: unset;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 6rem;
 
-// .left-header{
-//     all: unset;
-//     position: absolute !important;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-// }
+    .site-branding {
+        margin: 0 auto !important;
+        width: 8rem !important;
+    }
+}
+
+.adjusted-navigation {
+    @media(min-width: $breakpoint-tablet-sm) {
+        #primary-menu {
+            justify-content: flex-end !important;
+
+            // .sub-menu {
+            //     padding-top: 1.61rem;
+            //     border: unset;
+            // }
+        }
+    }
+}
+
+// ================================= //
 
 @media(min-width: $breakpoint-tablet-sm) {
     .left-header {
@@ -209,7 +230,11 @@ header {
 
             .sub-menu {
                 display: block;
-                background-color: $color_white;
+                background-color: $color_grey;
+
+                li:first-child {
+                    border-bottom: 1px solid $color_black;
+                }
 
                 li a {
                     color: $color_black;
@@ -219,6 +244,12 @@ header {
             @media(min-width: $breakpoint-mobile-lrg) {
                 .menu-item {
                     font-size: 1.2rem;
+                }
+            }
+
+            @media(min-width: $breakpoint-tablet-sm) {
+                .sub-menu {
+                    background-color: $color_white;
                 }
             }
         }
