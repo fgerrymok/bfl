@@ -1,13 +1,22 @@
 header {
     font-family: "Bebas Neue", sans-serif;
-    display: flex;
-    background-color: $color_white;
-    position: relative;
+    background: linear-gradient(to right, $color_red 65.1%, $color_white 60%);
+
+    .full-header {
+        display: flex;
+        justify-content: center;
+        background-color: $color_white;
+        position: relative;
+        max-width: 56.25rem;
+        margin: 0 auto;
+        min-height: 6rem;
+    }
 }
 
 .left-header {
     background-color: $color_red;
     width: 9rem;
+    max-width: 13.75rem;
     clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 100%, 0 100%);
     display: flex;
     align-items: center;
@@ -21,11 +30,40 @@ header {
     }
 }
 
+// .full-header {
+//     position: relative !important;
+// }
+
+// .left-header{
+//     all: unset;
+//     position: absolute !important;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+// }
+
+@media(min-width: $breakpoint-tablet-sm) {
+    .left-header {
+        width: 13rem;
+        clip-path: polygon(0 0, 100% 0, calc(100% - 4rem) 100%, 0 100%);
+        
+        .site-branding {
+            width: 8rem;
+            padding-left: 1rem;
+        }
+    }
+}
+
 .right-header {
     background-color: $color_white;
     width: 100%;
+    max-width: 40rem;
     display: flex;
     justify-content: center;
+
+    .decorative-line {
+        display: none;
+    }
 
     .countdown-section {
         display: flex;
@@ -82,10 +120,6 @@ header {
                 }
             }
         }
-
-        .decorative-line {
-            display: none;
-        }
     }
 
     @media(min-width: $breakpoint-mobile-lrg) {
@@ -123,6 +157,14 @@ header {
                     }
                 }
             }
+        }
+
+        .decorative-line {
+            display: block;
+            background-color: $color_black;
+            height: 1px;
+            width: 100%;
+            margin: 0.3rem 1rem;
         }
     }
 
@@ -167,7 +209,7 @@ header {
 
             .sub-menu {
                 display: block;
-                background-color: $color_grey;
+                background-color: $color_white;
 
                 li a {
                     color: $color_black;
@@ -183,12 +225,34 @@ header {
     }
 }
 
-// @media(min-width: $breakpoint-tablet-sm) {
-//     .right-header {
-//         flex-direction: column-reverse;
+@media(min-width: $breakpoint-tablet-sm) {
+    .right-header {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        max-width: 660px;
+        margin: 0 auto;
 
-//         .main-navigation {
-//             position: unset;
-//         }
-//     }
-// }
+        .main-navigation {
+            position: unset;
+
+            #primary-menu {
+                position: unset;
+                background-color: unset;
+                justify-content: flex-start;
+
+                // Home & About
+                #menu-item-14797, #menu-item-14799 {
+                    display: unset;
+                }
+
+                li {
+                    padding: 0.5rem 1rem !important;
+                }
+            }
+
+            .countdown-section {
+                justify-content: flex-end;
+            }
+        }
+    }
+}
