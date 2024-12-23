@@ -17,6 +17,9 @@
                 justify-content: center;
                 gap: 1rem;
             }
+            .links-wrapper-accordion{
+                display: none;
+            }
 
             .copyright-info-wrapper{
                 grid-column: 2/3;

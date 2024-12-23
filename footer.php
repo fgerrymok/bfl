@@ -103,9 +103,50 @@
 				}
 			?>
 		 </section>
+		
+		 <!-- navigation Section with Accordion-->
+		 <section class='links-wrapper links-wrapper-accordion'>
+			<div class='bfl-footer-column accordion-column'>
+				<p class='accordion-title'>
+					<span class="plus-sign">+</span>
+					<span class="minus-sign hide-toggle-sign">-</span>
+					Events
+				</p>
+				<nav class='bfl-footer-navigation accordion-item'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-events'));
+					 ?>
+			 	</nav>	
+			</div>
+			<div class='bfl-footer-column accordion-column'>
+				<p class='accordion-title'>
+					<span class="plus-sign">+</span>
+					<span class="minus-sign hide-toggle-sign">-</span>
+					Company
+				</p>
+				<nav class='bfl-footer-navigation accordion-item'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-company'));
+					 ?>
+			 	</nav>	
+			</div>
+			<div class='bfl-footer-column accordion-column'>
+				<p class='accordion-title'>
+					<span class="plus-sign">+</span>
+					<span class="minus-sign hide-toggle-sign">-</span>
+					Resources
+				</p>
+				<nav class='bfl-footer-navigation accordion-item'>
+					 <?php
+					 wp_nav_menu(array('theme_location' => 'footer-resources'));
+					 ?>
+			 	</nav>	
+			</div>
+		 </section>
+		 
 
-		<!-- navigation Section -->
-		 <section class='links-wrapper'>
+		<!-- navigation Section without Accordion -->
+		 <section class='links-wrapper links-wrapper-without-accordion'>
 			<div class='bfl-footer-column'>
 				<p>Events</p>
 				<nav class='bfl-footer-navigation'>
