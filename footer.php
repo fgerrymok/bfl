@@ -179,12 +179,6 @@
 					<?php echo "&copy; " . date("Y") . " Battlefield Fight League";?>
 				</p>
 			</div>
-			 <div class="site-info">
-					<?php
-					/* translators: 1: Theme name, 2: Theme author. */
-					printf( esc_html__( 'Built by: %s' ), '<a href="http://wsstudio.ca">Whitespace Studio</a>' );
-					?>
-			</div><!-- .site-info -->
 		</div>
 	</div>
 	</footer><!-- #colophon -->
