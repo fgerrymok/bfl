@@ -50,6 +50,13 @@
         }
     ?>
     </section>
+
+    <!-- TESTING NOW -->
+        
+
+
+
+    <!-- END HERO SECTION -->
     <section class="videos-section">
     <div id="video-container">
         <?php
@@ -117,7 +124,7 @@ if ($query->have_posts()) {
             
                 if ($thumbnail_url) {
                     echo '<div class="video-item">';
-                    echo '<a href="#" class="video-thumbnail" data-video="' . esc_url($videos[0]) . '">';
+                    echo '<a href="#" class="video-thumbnail" data-video-url="' . esc_url($videos[0]) . '">';
                     echo '<img src="' . esc_url($thumbnail_url) . '" alt="Video Thumbnail">';
                     echo '</a>';
                     echo '</div>';
@@ -160,9 +167,11 @@ if ($query->have_posts()) {
                 
             }
         }
-
-        echo '<h3>' . get_the_title() . '</h3>';
-        echo '</div>';
+?>
+        <p class="card-date"><?php echo get_the_date('M j'); ?></p>
+        <p class="card-title"><?php echo the_title(); ?></p>
+    </div>
+<?php
     }
 } else {
     echo '<p>No posts found.</p>';
@@ -172,11 +181,11 @@ wp_reset_postdata();
 ?>
         <button id="load-more" data-page="1">Load More</button>
         <div id="video-modal" class="modal">
-    <div class="modal-inner">
-        <span id="close-modal" class="close">&times;</span>
-        <div id="modal-content"></div>
-    </div>
-</div>
+            <div class="modal-inner">
+                <span id="close-modal" class="close">&times;</span>
+                <div id="modal-content"></div>
+            </div>
+        </div>
 
 </div>
 
