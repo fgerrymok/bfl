@@ -44,3 +44,13 @@
 .single-event-videos h3 {
     width: 100%;
 }
+
+.core-details .core-details-line {
+    transform: rotate(90deg);
+    background-color: $color_red;
+    height: 2px;
+    width: 4rem;
+    position: absolute;
+    left: -2.5rem;
+    top: -0.5rem;
+}
