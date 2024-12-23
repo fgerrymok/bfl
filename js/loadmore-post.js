@@ -1,30 +1,33 @@
-jQuery(document).ready(function ($) {
-  $("#load-more").on("click", function () {
-    const button = $(this);
-    const page = parseInt(button.attr("data-page"));
-    const nextPage = page + 1;
+document.getElementById("load-more").addEventListener("click", function () {
+  const button = this;
+  const currentPage = parseInt(button.getAttribute("data-page"));
+  const nextPage = currentPage + 1;
 
-    $.ajax({
-      url: bfl_ajax.ajax_url, // Provided via localized script
-      type: "POST",
-      data: {
-        action: "loadmore_posts",
-        page: page,
-      },
-      beforeSend: function () {
-        button.text("Loading...").prop("disabled", true);
-      },
-      success: function (response) {
-        if ($.trim(response)) {
-          $("#video-container").append(response);
-          button
-            .text("Load More")
-            .prop("disabled", false)
-            .attr("data-page", nextPage);
-        } else {
-          button.text("No more videos").prop("disabled", true);
-        }
-      },
-    });
-  });
+  fetch(ajaxurl, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      action: "loadmore_posts",
+      page: currentPage,
+    }),
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      const container = document.getElementById("video-container");
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = data;
+
+      while (tempDiv.firstChild) {
+        container.appendChild(tempDiv.firstChild);
+      }
+
+      container.appendChild(button);
+
+      button.setAttribute("data-page", nextPage);
+
+      if (!data.trim()) {
+        button.style.display = "none";
+      }
+    })
+    .catch((error) => console.error("Error loading more posts:", error));
 });
