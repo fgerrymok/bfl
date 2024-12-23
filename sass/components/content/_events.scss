@@ -1,14 +1,22 @@
 .single-event-heading {
-    margin: 6rem 1rem 2.5rem 1rem;
+    margin: 6rem 1rem 2.5rem 1rem !important;
 }
 
-// @media (min-width: 50rem) {
-//     .single-event-heading {
-//         margin: 3.5rem 1rem 2.5rem 1rem;
-//     }
-// }
+.event-separator {
+    display: block;
+    background-color: $color_white;
+    height: 2px;
+    width: 50%;
+    margin: 3rem auto;
+}
 
 // hero
+
+.event-name {
+    text-align: center;
+    font-size: 1.6rem;
+    color: $color_grey;
+}
 
 .external-links {
     display: flex;
@@ -29,7 +37,7 @@
 
     .tickets {
         background-color: $color_red;
-        color: $color_white;
+        color: $color_white !important; 
         transition: transform 0.3s ease;
         clip-path: polygon(2rem 0, 100% 0, 100% 100%, 0 100%);
     }
@@ -54,14 +62,14 @@
     text-transform: uppercase;
 }
 
-.core-details hr {
+.core-details .core-details-line {
     transform: rotate(90deg);
     background-color: $color_red;
     height: 2px;
     width: 4rem;
     position: absolute;
     left: -2.5rem;
-    top: 2rem;
+    top: -0.5rem;
 }
 
 // Fight Card

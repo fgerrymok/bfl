@@ -5,16 +5,17 @@ get_header();
 	<main id="primary" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
-
+			
+			<h1 class="single-event-heading"><?php echo esc_html('Upcoming Events'); ?></h1>
 			<?php
 			
 			while ( have_posts() ) :
 				the_post();
-				?>
-				<h1 class="single-event-heading"><?php echo esc_html('Upcoming Events'); ?></h1>
-				<?php
 				$hero = get_field('upcoming_events_hero');
-	
+				
+				?>
+				<div class="one-event">
+				<?php
 				if ($hero) {
 					$bettingOddsLink = $hero['betting_odds_link'];
 					$ticketsLink = $hero['tickets_link'];
@@ -24,6 +25,15 @@ get_header();
 					$venue = $hero['venue'];
 					?>
 					<section class="single-event-hero">
+						<?php
+						if (!empty($eventName)) {
+							?>
+							<div class="event-name">
+								<h2><?php echo esc_html($eventName); ?></h2>
+							</div>
+							<?php
+						}
+						?>
 						<div class="external-links">
 							<?php
 							if (!empty($bettingOddsLink)) {
@@ -47,19 +57,10 @@ get_header();
 							?>
 						</div>
 						<?php
-						if (!empty($eventName)) {
-							?>
-							<div class="event-bar">
-								<h2><?php echo esc_html($eventName); ?></h2>
-							</div>
-							<?php
-						}
-						?>
-						<?php
 						if (!empty($fightDate) && !empty($venue)) {
 							?>
 							<div class="core-details">
-								<hr>
+								<hr class="core-details-line">
 								<p><?php echo esc_html($fightDate); ?></p>
 								<p><?php echo esc_html($venue); ?></p>
 							</div>
@@ -120,7 +121,10 @@ get_header();
 					</section>
 					<?php
 				}
-
+				?>
+				</div>
+				<hr class="event-separator">
+				<?php
 			endwhile;
 			$term = get_term_by('slug', 'past-events', 'bfl-event-type');
 			if ($term) {

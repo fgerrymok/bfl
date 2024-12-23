@@ -10,8 +10,9 @@
 /* shared styles
 --------------------------------------------- */
 @import "content/shared-card";
-@import "content/shared-hero-section";
 @import "content/shared-champions-card";
+@import "sections/event-bar";
+@import "sections/hero";
 
 /* Posts and pages
 --------------------------------------------- */
@@ -22,6 +23,7 @@
 @import "content/homepage";
 @import "content/ranking-tab";
 @import "content/past_events";
+@import "content/events";
 @import "content/single-bfl-event";
 @import "content/about-page";
 @import "content/bfl-to-ufc";
