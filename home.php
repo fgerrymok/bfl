@@ -14,8 +14,8 @@
  get_header();
  ?>
  <main id="primary" class="site-main videos-page">
-    <h1>VIDEOS</h1>
-    <section class="hero-section">
+     <section class="hero-section">
+        <h1>VIDEOS</h1>
         <?php
         $args = [
             'post_type'      => 'post',
