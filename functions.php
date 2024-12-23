@@ -235,6 +235,9 @@ function bfl_enqueue_scripts() {
 		wp_localize_script('loadmore-news', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
 	}
 
+	// Enqueue Accordion Script
+		wp_enqueue_script('bfl-theme-accordion', get_template_directory_uri() . '/js/accordion.js', array(), '1.0.0', true );
+
 }
 add_action('wp_enqueue_scripts', 'bfl_enqueue_scripts');
 
