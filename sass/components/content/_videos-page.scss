@@ -1,109 +1,111 @@
-.videos-page {    
-    .modal {
-    
+// =============== Modal Style =============== //
+.videos-page {
+  .modal {
     display: none;
-    
+
     position: fixed;
-    
+
     top: 50%;
-    
+
     left: 50%;
-    
+
     transform: translate(-50%, -50%);
-    
+
     width: 100%;
-    
+
     height: 100%;
-    
+
     background: rgba(0, 0, 0, 0.5); /* Dark background */
-    
+
     z-index: 1000;
-    
-    }
-    
-    .modal.open {
-    
+  }
+
+  .modal.open {
     display: flex;
-    
+
     justify-content: center;
-    
+
     align-items: center;
-    
-    }
-    
-    .modal-inner {
-    
+  }
+
+  .modal-inner {
     position: relative;
-    
-    background:transparent;
-    
+
+    background: transparent;
+
     padding: 0; /* Remove padding to ensure full video space */
-    
+
     width: 100%; /* Full width of the screen */
-    
+
     height: 100%; /* Full height of the screen */
-    
+
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    
+
     display: flex;
-    
+
     justify-content: center;
-    
+
     align-items: center;
-    
+
     overflow: hidden; /* Prevent overflow of the video */
-    
-    }
-    
-      
-    
-    /* Make iframe/video fill the modal */
-    
-    .modal-inner iframe,
-    
-    .modal-inner video {
-    
-    width: 95vw; 
-    
-    height: 50vh; 
-    
+  }
+
+  /* Make iframe/video fill the modal */
+
+  .modal-inner iframe,
+  .modal-inner video {
+    width: 95vw;
+
+    height: 50vh;
+
     border: none;
-    
-    object-fit: cover; 
-    
-    }
-    
-      
-    
-    /* Close button style */
-    
-    .modal .close {
-    
+
+    object-fit: cover;
+  }
+
+  /* Close button style */
+
+  .modal .close {
     position: absolute;
-    
+
     top: 40px;
-    
+
     right: 10px;
-    
+
     font-size: 24px;
-    
+
     font-weight: bold;
-    
+
     cursor: pointer;
-    
+
     color: #fff;
-    
-    }
-    
-    }
+  }
+}
 
-    @media(min-width:$breakpoint-tablet-sm){
-        .videos-page{
-            .modal-inner iframe,
-            .modal-inner video {
-                width: 70vw; 
-                height: 70vh; 
-            }
-        }
-
+@media (min-width: $breakpoint-tablet-sm) {
+  .videos-page {
+    .modal-inner iframe,
+    .modal-inner video {
+      width: 70vw;
+      height: 70vh;
     }
+  }
+}
+// =============== Modal Style END =============== //
+
+// General
+
+.site-main.videos-page {
+  padding-top: 40px;
+}
+
+.videos-page h1 {
+  text-align: center;
+  margin: 4rem 0 1rem 0;
+}
+
+// Load More Button
+#load-more-wrapper {
+  text-align: center;
+  margin-top: 20px;
+}
