@@ -15,12 +15,12 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main rankings-page">
 
 		<?php
 		while ( have_posts() ) : the_post(); ?> 
 			
-			<section class="hero-section"> 
+			<section class="hero-section hero"> 
 				<h1>Rankings</h1>
 
 				<?php
@@ -122,9 +122,35 @@ get_header();
 								foreach ($division['fighter'] as $fighter) : 
 									if ($fighter['rank'] == 'champion') : ?>
 										<div class="champion-box">
-											<img src="" alt="" />
-											<p>champion</p>
-											<p class="fighter-name"><?php echo esc_html($fighter['name']); ?></p></p>
+											<?php
+										$fighter_query = new WP_Query([
+													'post_type' => 'bfl-fighters',
+													'title' => $fighter['name'],
+													'posts_per_page' => 1,
+												]);
+
+												if ($fighter_query->have_posts()) {
+													while ($fighter_query->have_posts()) {
+														$fighter_query->the_post();
+														$image_id = get_field('single_fighter_image');
+														?>
+														
+														<!-- Output -->
+														<a href="<?php the_permalink(); ?>" class="champion-box-link">
+															<div class="card-thumbnail-box">
+																<?php
+																if ($image_id) {
+																	echo wp_get_attachment_image($image_id, "", "",[ 'class' => 'slider-image champions']);
+																}
+																?>
+															</div>
+														</a>
+														
+														<?php
+													}
+												}
+                                            wp_reset_postdata();
+										?>
 											<p class="fighter-record"><?php echo esc_html($fighter['bfl-win']); ?>W - <?php echo esc_html($fighter['bfl-lose']); ?>L - <?php echo esc_html($fighter['bfl-draw']); ?>D</p>        
 										</div>
 									<?php

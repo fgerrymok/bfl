@@ -23,7 +23,7 @@ while ( have_posts() ) :
     the_post();
     if(get_field('about_page_title')):
         ?>
-        <div class='about-hero-section'>
+        <div class='about-hero-section hero'>
         <h1><?php the_field('about_page_title')?></h1>
         <?php
     endif;
