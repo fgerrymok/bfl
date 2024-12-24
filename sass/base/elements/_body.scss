@@ -1,3 +1,8 @@
 body {
-	background: $color__background-body; // Fallback for when there is no custom background color defined.
+  background: $color_black; // Fallback for when there is no custom background color defined.
+}
+
+.site-main {
+  max-width: $max-width;
+  margin: 0 auto;
 }

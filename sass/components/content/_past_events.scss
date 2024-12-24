@@ -1,0 +1,170 @@
+.all-past-events {
+    margin: 1rem auto;
+}
+
+.one-past-event {
+    background-color: $color_grey;
+    margin: 2rem 1rem;
+
+    .past-event-left {
+        display: flex;
+    }
+
+    .past-event-name {
+        background-color: $color_dark_grey;
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+        height: 9rem;
+        text-align: center;
+        
+        h2 {
+            margin: 0 0.2rem;
+        }
+    }
+
+    .fighter-images {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        img {
+            width: 7rem;
+            height: 9rem;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .vs {
+            font-family: $font__main;
+            color: $color_red;
+            margin: 0.2rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    .past-event-fight-details {
+        border-left: 1px solid $color_red;
+        padding-left: 1rem;
+        width: fit-content;
+        margin: 1rem;
+
+        .fight-title {
+            text-transform: uppercase;
+            margin: 0;
+            color: $color_black;
+        }
+
+        .fight-venue, .fight-date {
+            margin: 0;
+            color: $color_black;
+        }
+    }
+
+    .past-event-links {
+        width: fit-content;
+        min-height: fit-content;
+        padding: 1rem;
+        margin: 0 auto;
+
+        a {
+            background-color: $color_red;
+            color: $color_white;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 0.3rem;
+            margin: 0.5rem;
+        }
+    }
+}
+
+@media(min-width: $breakpoint-mobile-lrg) {
+    .all-past-events {
+        margin: 2rem auto;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .one-past-event {
+        .past-event-name {
+            height: 10rem;
+        }
+
+        .fighter-images {
+            img {
+                width: 8rem;
+                height: 10rem;
+            }
+
+            .vs {
+                font-size: 2rem;
+            }
+        }
+
+        .past-event-fight-details {
+            margin: 2rem auto;
+        }
+    }
+}
+
+@media(min-width: $breakpoint-tablet-sm) {
+
+    .site-main {
+        .single-event-heading {
+            margin-top: 3rem !important;
+        }
+    }
+
+    .one-past-event {
+        display: flex;
+        max-width: 62.5rem;
+        margin: 2rem auto;
+
+        .past-event-name {
+            height: 12rem;
+        }
+
+        .fighter-images {
+            img {
+                width: 10rem;
+                height: 12rem;
+            }
+
+            .vs {
+                font-size: 2rem;
+                padding: 1rem;
+            }
+        }
+
+        .past-event-fight-details {
+            margin: unset;
+            max-width: 16rem;
+        }
+
+        .past-event-right {
+            width: fit-content;
+            margin: 0 auto;
+            margin-top: 2rem;
+        }
+    }
+}
+
+@media(min-width: $breakpoint-desktop-sm) {
+
+    .one-past-event {
+        .past-event-fight-details {
+            max-width: unset;
+        }
+
+        .past-event-links {
+            margin: 0 1rem;
+        }
+
+        .past-event-right {
+            margin: 1.8rem;
+            margin-left: 4rem;
+        }
+    }
+
+}

@@ -1,0 +1,289 @@
+header {
+    font-family: "Bebas Neue", sans-serif;
+    background: linear-gradient(to right, $color_red 65.1%, $color_white 60%);
+
+    .full-header {
+        display: flex;
+        justify-content: center;
+        background-color: $color_white;
+        position: relative;
+        max-width: 56.25rem;
+        margin: 0 auto;
+        min-height: 6rem;
+        
+    }
+}
+
+.left-header {
+    background-color: $color_red;
+    width: 9rem;
+    max-width: 13.75rem;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 100%, 0 100%);
+    display: flex;
+    align-items: center;
+
+    .site-branding {
+        width: 5rem;
+        min-width: 5rem;
+        display: flex;
+        align-items: center;
+        margin: 0 0.1rem;
+    }
+}
+
+// ===== Styles for No Countdown ===== //
+.no-countdown {
+    width: unset;
+    max-width: unset;
+    clip-path: unset;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 6rem;
+
+    .site-branding {
+        margin: 0 auto !important;
+        width: 8rem !important;
+    }
+}
+
+.adjusted-navigation {
+    @media(min-width: $breakpoint-tablet-sm) {
+        #primary-menu {
+            justify-content: flex-end !important;
+
+            // .sub-menu {
+            //     padding-top: 1.61rem;
+            //     border: unset;
+            // }
+        }
+    }
+}
+
+// ================================= //
+
+@media(min-width: $breakpoint-tablet-sm) {
+    .left-header {
+        width: 13rem;
+        clip-path: polygon(0 0, 100% 0, calc(100% - 4rem) 100%, 0 100%);
+        
+        .site-branding {
+            width: 8rem;
+            padding-left: 1rem;
+        }
+    }
+}
+
+.right-header {
+    background-color: $color_white;
+    width: 100%;
+    max-width: 40rem;
+    display: flex;
+    justify-content: center;
+
+    .decorative-line {
+        display: none;
+    }
+
+    .countdown-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        .header-cta {
+            display: none;
+        }
+
+        .timer-text {
+            text-transform: uppercase;
+            color: $color_black;
+            display: flex;
+            width: 100%;
+
+            .next-event {
+                font-size: 1.4rem;
+                margin: 0;
+            }
+
+            .starting-in {
+                font-size: 1rem;
+                margin: 0;
+                margin-top: 0.4rem;
+                margin-left: 0.4rem;
+            }
+        }
+
+        .countdown-timer-box {
+            padding-bottom: 0.5rem;
+            
+            #ws-countdown-timer {
+                gap: 0.2rem;
+
+                .time-days, .time-hours, .time-minutes, .time-seconds {
+                    width: 3.1rem;
+                    text-align: center;
+                    background-color: $color_grey;
+                    border-radius: 0.3rem;
+
+                    .time-value {
+                        width: 2rem !important;
+                        padding: 0;
+                        font-size: 1.1rem;
+                    }
+
+                    .time-label {
+                        width: 2.5rem;
+                        padding: 0;
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media(min-width: $breakpoint-mobile-lrg) {
+        .countdown-section {
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-end;
+
+            .header-cta {
+                display: block;
+                background-color: $color_red;
+                color: $color_white;
+                text-decoration: none;
+                padding: 0.5rem;
+                border-radius: 0.3rem;
+                margin: 0.5rem;
+            }
+        }
+    }
+
+    @media (min-width: $breakpoint-tablet-sm) {
+        .countdown-section {
+
+            .clock {
+                display: flex;
+                align-items: flex-end;
+                
+                .timer-text {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0.5rem;
+    
+                    .starting-in {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        .decorative-line {
+            display: block;
+            background-color: $color_black;
+            height: 1px;
+            width: 100%;
+            margin: 0.3rem 1rem;
+        }
+    }
+
+    .main-navigation {
+        position: absolute;
+        bottom: 0rem;
+        left: 0;
+
+        .menu-toggle {
+            display: none;
+        }
+
+        #primary-menu {
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+
+            background-color: $color_grey;
+            width: 100%;
+
+            // Home & About
+            #menu-item-14797, #menu-item-14799 {
+                display: none;
+            }
+
+            // Events
+            #menu-item-14917 {
+                cursor: pointer;
+            }
+
+            .menu-item {
+                padding: 0.5rem;
+
+                a {
+                    color: $color_black;
+                }
+
+                a:hover, a:active, a:focus {
+                    color: $color_red;
+                }
+            }
+
+            .sub-menu {
+                display: block;
+                background-color: $color_grey;
+
+                li:first-child {
+                    border-bottom: 1px solid $color_black;
+                }
+
+                li a {
+                    color: $color_black;
+                }
+            }
+
+            @media(min-width: $breakpoint-mobile-lrg) {
+                .menu-item {
+                    font-size: 1.2rem;
+                }
+            }
+
+            @media(min-width: $breakpoint-tablet-sm) {
+                .sub-menu {
+                    background-color: $color_white;
+                }
+            }
+        }
+    }
+}
+
+@media(min-width: $breakpoint-tablet-sm) {
+    .right-header {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        max-width: 660px;
+        margin: 0 auto;
+
+        .main-navigation {
+            position: unset;
+
+            #primary-menu {
+                position: unset;
+                background-color: unset;
+                justify-content: flex-start;
+
+                // Home & About
+                #menu-item-14797, #menu-item-14799 {
+                    display: unset;
+                }
+
+                li {
+                    padding: 0.5rem 1rem !important;
+                }
+            }
+
+            .countdown-section {
+                justify-content: flex-end;
+            }
+        }
+    }
+}

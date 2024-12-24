@@ -4,11 +4,25 @@ input,
 select,
 optgroup,
 textarea {
-	color: $color__text-main;
-	font-family: $font__main;
-	font-size: 1rem;
-	line-height: $font__line-height-body;
+  color: $color_white;
+  font-family: $font__contents;
+  font-size: 1rem;
+  line-height: $font__line-height-body;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: $font__main;
 }
 
 @import "headings";
 @import "copy";
+
+h1 {
+  font-size: 3rem;
+}
