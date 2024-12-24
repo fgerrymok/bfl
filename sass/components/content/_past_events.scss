@@ -1,4 +1,4 @@
-.site-main {
+.all-past-events {
     margin: 1rem auto;
 }
 
@@ -80,7 +80,7 @@
 }
 
 @media(min-width: $breakpoint-mobile-lrg) {
-    .site-main {
+    .all-past-events {
         margin: 2rem auto;
         margin-left: 2rem;
         margin-right: 2rem;
@@ -151,9 +151,7 @@
 }
 
 @media(min-width: $breakpoint-desktop-sm) {
-    .site-main {
-        margin: 0 auto;
-    }
+
     .one-past-event {
         .past-event-fight-details {
             max-width: unset;
@@ -164,7 +162,7 @@
         }
 
         .past-event-right {
-            margin: 2rem;
+            margin: 1.8rem;
             margin-left: 4rem;
         }
     }

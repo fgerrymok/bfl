@@ -1,5 +1,9 @@
 // main content
 
+.results-hero {
+    margin-top: 2.5rem !important;
+}
+
 .results-main, .weigh-in-main {
     padding: 1rem;
 }
@@ -25,6 +29,11 @@
 }
 
 @media(min-width: $breakpoint-tablet-sm) {
+
+    .results-hero {
+        margin-top: -1rem !important;
+    }
+
     .results-main {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -42,5 +51,11 @@
     .weigh-in-main {
         max-width: 50rem;
         margin: 0 auto;
+    }
+}
+
+@media(min-width: $breakpoint-desktop-sm) {
+    .results-hero {
+        margin-top: unset !important;
     }
 }
