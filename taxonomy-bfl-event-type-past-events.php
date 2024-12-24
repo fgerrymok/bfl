@@ -55,70 +55,73 @@ get_header();
 						}
 						?>
 						</div>
-						<div class="past-event-fight-details">
-						<?php
-						if (!empty($fighter1Name) && !empty($fighter2Name)) {
-							?>
-							<p class="fight-title"><?php echo $fighter1Name . " vs " . $fighter2Name ?></p>
+
+						<div class="past-event-right">
+							<div class="past-event-fight-details">
 							<?php
-						}
-
-						if ($hero) {
-							$venue = $hero['venue'];
-							$fightDate = $hero['fight_date'];
-
-							if (!empty($fightDate)) {
+							if (!empty($fighter1Name) && !empty($fighter2Name)) {
 								?>
-								<p class="fight-date"><?php echo esc_html($fightDate); ?></p>
+								<p class="fight-title"><?php echo $fighter1Name . " vs " . $fighter2Name ?></p>
 								<?php
 							}
-	
-							if (!empty($venue)) {
-								?>
-								<p class="fight-venue"><?php echo esc_html($venue); ?></p>
-								<?php
-							}
-						}
-						?>
-						</div>
-	
-						<div class="past-event-links">
-							<a href="<?php echo get_permalink() ?>"><?php echo esc_html("Fight Card"); ?></a>
 
-							<?php
-							$tags = get_the_terms(get_the_ID(), 'post_tag');
-							foreach ($tags as $tag) {
-								$eventTag = $tag->slug;
-								
-								if ($eventTag) {
-									$args = array(
-										'post_type' => 'bfl-results',
-										'tax_query' => array(
-											array(
-												'taxonomy' => 'bfl-results-type',
-												'field' => 'slug',
-												'terms' => 'fight-results',
-											),
-											array(
-												'taxonomy' => 'post_tag',
-												'field' => 'slug',
-												'terms' => $eventTag,
-											)
-										)
-									);
-	
-									$resultsQuery = new WP_Query($args);
-	
-									if ($resultsQuery->have_posts()) {
-										$resultsQuery->the_post();
-										?>
-										<a href="<?php echo esc_url(the_permalink()); ?>"><?php echo esc_html("Results"); ?></a>
-										<?php
-									}
-									wp_reset_postdata();
+							if ($hero) {
+								$venue = $hero['venue'];
+								$fightDate = $hero['fight_date'];
+
+								if (!empty($fightDate)) {
+									?>
+									<p class="fight-date"><?php echo esc_html($fightDate); ?></p>
+									<?php
+								}
+		
+								if (!empty($venue)) {
+									?>
+									<p class="fight-venue"><?php echo esc_html($venue); ?></p>
+									<?php
 								}
 							}
 							?>
+							</div>
+		
+							<div class="past-event-links">
+								<a href="<?php echo get_permalink() ?>"><?php echo esc_html("Fight Card"); ?></a>
+
+								<?php
+								$tags = get_the_terms(get_the_ID(), 'post_tag');
+								foreach ($tags as $tag) {
+									$eventTag = $tag->slug;
+									
+									if ($eventTag) {
+										$args = array(
+											'post_type' => 'bfl-results',
+											'tax_query' => array(
+												array(
+													'taxonomy' => 'bfl-results-type',
+													'field' => 'slug',
+													'terms' => 'fight-results',
+												),
+												array(
+													'taxonomy' => 'post_tag',
+													'field' => 'slug',
+													'terms' => $eventTag,
+												)
+											)
+										);
+		
+										$resultsQuery = new WP_Query($args);
+		
+										if ($resultsQuery->have_posts()) {
+											$resultsQuery->the_post();
+											?>
+											<a href="<?php echo esc_url(the_permalink()); ?>"><?php echo esc_html("Results"); ?></a>
+											<?php
+										}
+										wp_reset_postdata();
+									}
+								}
+								?>
+							</div>
 						</div>
 					</article>
 					<?php
