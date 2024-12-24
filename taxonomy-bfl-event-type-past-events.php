@@ -5,118 +5,138 @@ get_header();
 	<main id="primary" class="site-main">
 
 		<?php if ( have_posts() ) : ?>
-
+			
+			<h1 class="single-event-heading"><?php echo esc_html('Past Events'); ?></h1>
 			<?php
 			
 			while ( have_posts() ) :
 				the_post();
+				$hero = get_field('upcoming_events_hero');
+				if ($hero) {
+					$eventName = $hero['event_name'];
+				}
 				?>
-				<h1 class="single-event-heading"><?php echo esc_html('Past Events'); ?></h1>
+				<section class="all-past-events">
 				<?php
-
-				$args = array(
-					'post_type' => 'bfl-events',
-					'posts_per_page' => -1,
-				);
-
-				$fightCards = new WP_Query($args);
-				
-				if ($fightCards->have_posts()) {
-					while($fightCards->have_posts()) {
-						$fightCards->the_post();
-						?>
-						<article class="single-event">
+				$fightCardRepeater = get_field('fight_card');
+				if($fightCardRepeater) {
+					?>
+					<article class="one-past-event">
 						<?php
-						$hero = get_field('upcoming_events_hero');
-						
-						if ($hero) {
-							$eventName = $hero['event_name'];
+						$mainCard = $fightCardRepeater[0];
+						$fighter1Name = $mainCard['fighter_1_name'];
+						$fighter1Image = $mainCard['fighter_1_image'];
+						$fighter2Name = $mainCard['fighter_2_name'];
+						$fighter2Image = $mainCard['fighter_2_image'];
+
+						?>
+						<div class="past-event-left">
+						<?php
+						if (!empty($eventName)) {
 							?>
-							<h2><?php echo esc_html($eventName); ?></h2>
+							<div class="past-event-name">
+								<h2><?php echo esc_html($eventName); ?></h2>
+							</div>
 							<?php
 						}
-
-						$fightCardRepeater = get_field('fight_card');
-						if ($fightCardRepeater) {
-							foreach ($fightCardRepeater as $row) {
-								$fighter1Image = $row['fighter_1_image'];
-								$fighter2Image = $row['fighter_2_image'];
-								$fighter1Name = $row['fighter_1_name'];
-								$fighter2Name = $row['fighter_2_name'];
-								echo wp_get_attachment_image($fighter1Image, 'full');
-								?>
-								<p><?php echo esc_html("vs"); ?></p>
+							?>
+							<div class="fighter-images">
 								<?php
-								echo wp_get_attachment_image($fighter2Image, 'full');
-
-								?>
-								<div class="past-events-fight-details">
-									
-									<p><?php echo esc_html($fighter1Name); ?></p>
-									<p><?php echo esc_html('vs'); ?></p>
-									<p><?php echo esc_html($fighter2Name); ?></p>
-									<?php
-							}
-						}
-
-						if ($hero) {
-							$fightDate = $hero['fight_date'];
-							$venue = $hero['venue'];
-							?>
-							<p><?php echo esc_html($fightDate); ?></p>
-							<p><?php echo esc_html($venue); ?></p>
-							<?php
-						}
-						?>
-						<a href="<?php echo get_permalink() ?>"><?php echo esc_html("Fight Card"); ?></a>
-						<?php
-
-						$tags = get_the_terms(get_the_ID(), 'post_tag');
-						foreach ($tags as $tag) {
-							$eventTag = $tag->slug;
-							
-							if ($eventTag) {
-								$args = array(
-									'post_type' => 'bfl-results',
-									'tax_query' => array(
-										array(
-											'taxonomy' => 'bfl-results-type',
-											'field' => 'slug',
-											'terms' => 'fight-results',
-										),
-										array(
-											'taxonomy' => 'post_tag',
-											'field' => 'slug',
-											'terms' => $eventTag,
-										)
-									)
-								);
-
-								$resultsQuery = new WP_Query($args);
-
-								if ($resultsQuery->have_posts()) {
-									$resultsQuery->the_post();
+								if (!empty($fighter1Image)) {
+									echo wp_get_attachment_image($fighter1Image, 'full');
+								} else {
 									?>
-									<a href="<?php echo esc_url(the_permalink()); ?>"><?php echo esc_html("Results"); ?></a>
+									<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
 									<?php
 								}
-								wp_reset_postdata();
-							}
-						}
-						
-						?>
+								?>
+								<p class="vs"><?php echo esc_html("vs"); ?></p>
+								<?php
+								if (!empty($fighter2Image)) {
+									echo wp_get_attachment_image($fighter2Image, 'full');
+								} else {
+									?>
+									<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+									<?php
+								}
+								?>
+							</div>
 						</div>
-						</article>
-						<?php
-					}
-					
+
+						<div class="past-event-right">
+							<div class="past-event-fight-details">
+							<?php
+							if (!empty($fighter1Name) && !empty($fighter2Name)) {
+								?>
+								<p class="fight-title"><?php echo $fighter1Name . " vs " . $fighter2Name ?></p>
+								<?php
+							}
+
+							if ($hero) {
+								$venue = $hero['venue'];
+								$fightDate = $hero['fight_date'];
+
+								if (!empty($fightDate)) {
+									?>
+									<p class="fight-date"><?php echo esc_html($fightDate); ?></p>
+									<?php
+								}
+		
+								if (!empty($venue)) {
+									?>
+									<p class="fight-venue"><?php echo esc_html($venue); ?></p>
+									<?php
+								}
+							}
+							?>
+							</div>
+		
+							<div class="past-event-links">
+								<a href="<?php echo get_permalink() ?>"><?php echo esc_html("Fight Card"); ?></a>
+
+								<?php
+								$tags = get_the_terms(get_the_ID(), 'post_tag');
+								foreach ($tags as $tag) {
+									$eventTag = $tag->slug;
+									
+									if ($eventTag) {
+										$args = array(
+											'post_type' => 'bfl-results',
+											'tax_query' => array(
+												array(
+													'taxonomy' => 'bfl-results-type',
+													'field' => 'slug',
+													'terms' => 'fight-results',
+												),
+												array(
+													'taxonomy' => 'post_tag',
+													'field' => 'slug',
+													'terms' => $eventTag,
+												)
+											)
+										);
+		
+										$resultsQuery = new WP_Query($args);
+		
+										if ($resultsQuery->have_posts()) {
+											$resultsQuery->the_post();
+											?>
+											<a href="<?php echo esc_url(the_permalink()); ?>"><?php echo esc_html("Results"); ?></a>
+											<?php
+										}
+										wp_reset_postdata();
+									}
+								}
+								?>
+							</div>
+						</div>
+					</article>
+					<?php
 				}
-
-				wp_reset_postdata();
-
+					?>
+				</section>
+				<?php
 			endwhile;
-
-			the_posts_navigation();
 
 		else :
 
