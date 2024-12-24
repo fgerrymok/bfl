@@ -73,8 +73,8 @@ if (has_post_thumbnail()) {
     }
 }
 ?>
-<p class="card-date"><?php echo get_the_date('M j'); ?></p>
-<p class="card-title"><?php echo the_title(); ?></p>
+        <p class="card-date video"><?php echo get_the_date( 'M j' ); ?></p>
+        <p class="card-title video"><?php echo get_the_title(); ?></p>
     </div>
     <?php
     wp_reset_postdata();

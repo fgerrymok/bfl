@@ -15,7 +15,7 @@
  ?>
  <main id="primary" class="site-main videos-page">
      <section class="hero-section">
-        <h1>VIDEOS</h1>
+        <h1>Newest Video</h1>
         <?php
         $args = [
             'post_type'      => 'post',
@@ -37,23 +37,30 @@
                 } else {
                     if (have_rows('add_a_video')) {
                         while (have_rows('add_a_video')) {
-                            the_row();
+                            the_row(); ?>
+
+                <div class="video-hero-wrapper">
+                            <?php
                             $embed_video = get_sub_field('video_url');
                             if ($embed_video) echo $embed_video;
                         }
                     }
                 }
                 ?>
-                <p class="card-date hero"><?php echo get_the_date( 'M j' ); ?></p>
-                <p class="card-title hero"><?php echo get_the_title(); ?></p>
-                <div class="hero-text"><?php echo apply_filters('the_content', $content); ?></div>
+                    <div class="hero-info">
+                        <p class="card-date video"><?php echo get_the_date( 'M j' ); ?></p>
+                        <p class="card-title video"><?php echo get_the_title(); ?></p>
+                        <div class="hero-text"><?php echo $content; ?></div>
+                    </div>
                 <?php
             }
         }
         wp_reset_postdata();
         ?>
+        </div>
     </section>
     <section class="videos-section">
+        <h2>All Videos</h2>
     <div id="video-container">
         <?php
     // Custom function to extract the video thumbnail from an oEmbed URL
@@ -105,16 +112,15 @@ if ($query->have_posts()) {
 wp_reset_postdata();
 ?>
 
-
-
-                <!-- modal window HTML -->
-                <div id="video-modal" class="modal">
-                    <div class="modal-inner">
-                        <span id="close-modal" class="close">&times;</span>
-                        <div id="modal-content"></div>
-                    </div>
-                </div>
             </div><!-- Video Container END -->
+
+            <!-- modal window HTML -->
+            <div id="video-modal" class="modal">
+                <div class="modal-inner">
+                    <span id="close-modal" class="close">&times;</span>
+                    <div id="modal-content"></div>
+                </div>
+            </div>
 
         <!-- Load More Button HTML -->
         <div id="load-more-wrapper">
