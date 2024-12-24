@@ -80,11 +80,13 @@ get_header();
                     <ul>
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
                             <li>
-                                <?php
-                                $image_id = get_field('single_fighter_image');
-                                echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'fighter-photo' ]);
-                                ?>
-                                <p><?php the_title(); ?></p>
+                                <a href="<?php echo esc_url(the_permalink()); ?>">
+                                    <?php
+                                    $image_id = get_field('single_fighter_image');
+                                    echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'fighter-photo' ]);
+                                    ?>
+                                    <p><?php the_title(); ?></p>
+                                </a>
                             </li>
                         <?php endwhile; ?>
                     </ul>
