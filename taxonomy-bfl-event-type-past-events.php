@@ -39,21 +39,28 @@ get_header();
 							</div>
 							<?php
 						}
-
-						if (!empty($fighter1Image) && !empty($fighter2Image)) {
 							?>
 							<div class="fighter-images">
 								<?php
-								echo wp_get_attachment_image($fighter1Image, 'full');
+								if (!empty($fighter1Image)) {
+									echo wp_get_attachment_image($fighter1Image, 'full');
+								} else {
+									?>
+									<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+									<?php
+								}
 								?>
 								<p class="vs"><?php echo esc_html("vs"); ?></p>
 								<?php
-								echo wp_get_attachment_image($fighter2Image, 'full');
+								if (!empty($fighter2Image)) {
+									echo wp_get_attachment_image($fighter2Image, 'full');
+								} else {
+									?>
+									<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+									<?php
+								}
 								?>
 							</div>
-							<?php										
-						}
-						?>
 						</div>
 
 						<div class="past-event-right">
