@@ -17,12 +17,12 @@ get_header();
         while ( have_posts() ) :
             the_post();
             ?>
-            <section class="bfl-to-ufc-hero-section hero">
+            <section class="bfl-to-ufc-hero-section">
                 <h1><?php the_title(); ?></h1>
                 <?php 
-                    $heroImage = get_field('bfl_to_ufc_hero_image');
+                    $heroImage = get_field('bfl-to-ufc-hero-image');
                     if($heroImage) {
-                        echo wp_get_attachment_image($heroImage, 'full', "",['class' => 'hero-image' ]);
+                        echo wp_get_attachment_image($heroImage, 'full');
                     } else {
                         echo 'nothing';
                     }
@@ -50,13 +50,11 @@ get_header();
                     <ul>
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
                             <li>
-                                <a href="<?php echo esc_url(the_permalink()); ?>">
-                                    <?php
-                                    $image_id = get_field('single_fighter_image');
-                                    echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'fighter-photo' ]);
-                                    ?>
-                                    <p><?php the_title(); ?></p>
-                                </a>
+                                <?php
+                                $image_id = get_field('single_fighter_image');
+                                echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'fighter-photo' ]);
+                                ?>
+                                <p><?php the_title(); ?></p>
                             </li>
                         <?php endwhile; ?>
                     </ul>
@@ -93,16 +91,16 @@ get_header();
                 wp_reset_postdata();
             endif;
             ?>
-            
+
+            <section class="bfl-to-ufc-description">
+                <p>
+                    At Battlefield Fight League, we pride ourselves on being a premier launching pad for MMA talent in Canada. Many of our athletes have honed their skills in the BFL cage, earning recognition on the global stage and ultimately making their way to the pinnacle of MMA—the UFC. This progression underscores the high caliber of competition in BFL and our commitment to nurturing world-class fighters.
+                </p>
+                <p>
+                    The "BFL to UFC" fighters list is a testament to the opportunities and exposure our league provides, while the "On the UFC Radar" list highlights rising stars who are catching the attention of the MMA world.
+                </p>
+            </section>
             <?php
-            $description = get_field("bfl_to_ufc_description");
-            if ($description) {
-                ?>
-                <section class="bfl-to-ufc-description">
-                    <p><?php echo wpautop(esc_html($description)); ?></p>
-                </section>
-                <?php
-            }   
         endwhile;
     ?>
 
