@@ -132,37 +132,136 @@ get_header();
 				</section>
 				
 				<!-- Videos -->
-				<section class="homepage-section videos">
+				<section class="homepage-section videos videos-page">
 				<a href="<?php echo esc_url( home_url() ); ?>" class="heading-link">			
 					<h2><?php echo esc_html("Videos >") ?></h2>
 				</a>
 
-					<div class="slick-slider">
-						<?php
-						$args = array(
-							'post_type' => 'post',
-							'posts_per_page' => 4,
-							'orderby' => 'date',
-							'order' => 'DESC',
-						);
+				<?php
+				// Custom function to extract the video thumbnail from an oEmbed URL
+				function get_acf_oembed_thumbnail($video_url) {
 
-						$query = new WP_Query($args);
+					if (strpos($video_url, 'youtube.com') !== false || strpos($video_url, 'youtu.be') !== false) {
+				
+						if (strpos($video_url, 'youtube.com/watch?v=') !== false) {
+							parse_str(parse_url($video_url, PHP_URL_QUERY), $query_vars);
+							if (isset($query_vars['v'])) {
+								$video_id = $query_vars['v'];
+							}
+						}
+				
+						elseif (strpos($video_url, 'youtu.be') !== false) {
+							$path = parse_url($video_url, PHP_URL_PATH);
+							$video_id = trim($path, '/');
+						}
 
-						if ($query->have_posts()) :
-							while ($query->have_posts()) : $query->the_post(); ?>
-								<div class="slider-item">
-									<?php if (has_post_thumbnail()) : ?>
-										<a href="<?php the_permalink(); ?>">
-											<?php echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image']); ?>
-										</a>
-									<?php endif; ?>
-									<p class="card-date"><?php echo get_the_date( 'M j' ); ?></p>
-									<p class="card-title"><?php echo the_title(); ?></p>
-								</div>
-							<?php endwhile;
-							wp_reset_postdata();
-						endif; ?>
+						if (!empty($video_id)) {
+							return 'https://img.youtube.com/vi/' . esc_attr($video_id) . '/hqdefault.jpg';
+						}
+					}
+
+					return '';
+				}
+				?>
+
+
+
+				<div class="slick-slider">
+					<?php
+					$args = array(
+						'post_type' => 'post',
+						'posts_per_page' => 4,
+						'orderby' => 'date',
+						'order' => 'DESC',
+					);
+
+					$query = new WP_Query($args);
+
+					if ($query->have_posts()) :
+						while ($query->have_posts()) : $query->the_post(); ?>
+							<div class="slider-item">
+							<div class="video-item">
+								<?php 
+								// video (home.php)
+								if (has_post_thumbnail()) {
+  
+									$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+									if ($thumbnail_url) {
+										$post_permalink = get_permalink();
+										if ($post_permalink) {
+								   
+											echo '<a href="' . esc_url($post_permalink) . '" target="_blank">';
+											echo '<img src="' . esc_url($thumbnail_url) . '" alt="' . esc_attr(get_the_title()) . ' Thumbnail">';
+											echo '</a>';
+										}
+									}
+								} else {
+									$content = get_the_content();
+									$videos  = get_media_embedded_in_content($content, ['video', 'iframe']);
+						
+									if (!empty($videos)) {
+										$thumbnail_url = get_acf_oembed_thumbnail($videos[0]);
+									
+										if ($thumbnail_url) {
+											echo '<div class="video-item">';
+											echo '<a href="#" class="video-thumbnail" data-video-url="' . esc_url($videos[0]) . '">';
+											echo '<img src="' . esc_url($thumbnail_url) . '" alt="Video Thumbnail">';
+											echo '</a>';
+											echo '</div>';
+										}
+									}
+									 else {
+										if (have_rows('add_a_video')) {
+											while (have_rows('add_a_video')) {
+												the_row();
+												$embed_video = get_sub_field('video_url', false, false);
+											
+												// Assuming $embed_video holds the YouTube URL
+												if ($embed_video) {
+													$video_id = '';
+												// Extract the video ID
+												if (strpos($embed_video, 'youtube.com/watch?v=') !== false) {
+													parse_str(parse_url($embed_video, PHP_URL_QUERY), $query_vars);
+													$video_id = $query_vars['v'];
+												} elseif (strpos($embed_video, 'youtu.be') !== false) {
+													$path = parse_url($embed_video, PHP_URL_PATH);
+													$video_id = trim($path, '/');
+												}
+						
+												if (!empty($video_id)) {
+													$embed_url = 'https://www.youtube.com/embed/' . esc_attr($video_id);
+													$thumbnail_url = 'https://img.youtube.com/vi/' . esc_attr($video_id) . '/hqdefault.jpg';
+						
+													echo '<div class="video-item">';
+													echo '<img 
+															src="' . esc_url($thumbnail_url) . '" 
+															data-video-url="' . esc_url($embed_url) . '" 
+															alt="Video Thumbnail" 
+															class="video-thumbnail">';
+													echo '</div>';
+												}
+												}
+												
+											}
+										}
+										
+									}
+								}
+								?>
+								<p class="card-date"><?php echo get_the_date('M j'); ?></p>
+								<p class="card-title"><?php echo the_title(); ?></p>
+							</div>
+							</div>
+						<?php endwhile;
+						wp_reset_postdata();
+					endif; ?>
+				</div>
+				<div id="video-modal" class="modal">
+					<div class="modal-inner">
+						<span id="close-modal" class="close">&times;</span>
+						<div id="modal-content"></div>
 					</div>
+				</div>
 				</section>
 
 				<!-- BFL Professional Champions -->

@@ -197,6 +197,8 @@ require get_template_directory() . '/inc/cpt-taxonomy.php';
 require get_template_directory() . '/inc/rearrange-admin-menu.php';
 require get_template_directory() . '/inc/loadmore-news.php';
 require get_template_directory() . '/inc/loadmore-post.php';
+require get_template_directory() . '/inc/ws-featured.php';
+require get_template_directory() . '/inc/modal-video.php';
 
 
 // remove the title of about page
