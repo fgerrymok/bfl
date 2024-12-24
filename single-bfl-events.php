@@ -45,7 +45,7 @@ get_header();
 					if (!empty($fightDate) && !empty($venue)) {
 						?>
 						<div class="core-details">
-							<hr>
+							<hr class="core-details-line">
 							<p><?php echo esc_html($fightDate); ?></p>
 							<p><?php echo esc_html($venue); ?></p>
 						</div>

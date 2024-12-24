@@ -23,12 +23,12 @@ get_header();
 			
 						?>
 						<section class="results-hero hero">
-						<h1><?php echo esc_html("Fight Results"); ?></h1>
-						<?php
-						if($heroImage) {
-							echo wp_get_attachment_image($heroImage, 'full');
-						}
-						?>
+							<h1><?php echo esc_html("Fight Results"); ?></h1>
+							<?php
+							if($heroImage) {
+								echo wp_get_attachment_image($heroImage, 'full');
+							}
+							?>
 						</section>
 						<div class="event-bar">
 							<?php
