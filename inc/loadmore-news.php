@@ -5,11 +5,11 @@ function bfl_load_more_posts() {
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $posts_per_page = isset($_GET['posts_per_page']) ? intval($_GET['posts_per_page']) : 8;
 
+
     $args = [
         'post_type' => 'bfl-news',
         'posts_per_page' => $posts_per_page,
         'paged' => $page,
-        'post_status' => 'publish',
     ];
 
     $query = new WP_Query($args);
@@ -19,18 +19,17 @@ function bfl_load_more_posts() {
         while ($query->have_posts()) : $query->the_post();
             ob_start();
             ?>
-            <div class="news-item">
-                <?php if (has_post_thumbnail()) : ?>
-                    <div class="news-image">
-                        <?php echo wp_get_attachment_image(get_post_thumbnail_id(), 'thumbnail', false, [
-                            'style' => 'width: 150px; height: 150px; object-fit: cover;'
-                        ]); ?>
-                    </div>
-                <?php endif; ?>
-                <div class="news-title">
-                    <a href="<?php the_permalink(); ?>"> <?php the_title(); ?> </a>
+                <div class="news-item">
+                    <a href="<?php the_permalink(); ?>">
+                    <?php if (has_post_thumbnail()) : ?>
+                        <div class="news-image">
+                            <?php echo wp_get_attachment_image(get_post_thumbnail_id(), 'full', false, ['class' => 'card-thumbnail-img news']); ?>
+                        </div>
+                    <?php endif; ?>
+                        <p class="card-date news"><?php echo get_the_date( 'M j' ); ?></p>
+                        <p class="card-title news"><?php echo the_title(); ?></p>
+                    </a>
                 </div>
-            </div>
             <?php
             $html .= ob_get_clean();
         endwhile;
