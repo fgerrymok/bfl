@@ -1,10 +1,17 @@
-.single-event {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.site-main {
+    margin: 1rem auto;
+}
 
-    .event-name {
+.one-past-event {
+    background-color: $color_grey;
+    margin: 1rem;
+    width: 100%;
+
+    .past-event-left {
+        display: flex;
+    }
+
+    .past-event-name {
         background-color: $color_dark_grey;
         writing-mode: vertical-lr;
         text-orientation: mixed;
@@ -13,17 +20,62 @@
         text-align: center;
         
         h2 {
-            margin: 0.5rem;
+            margin: 0 0.2rem;
         }
     }
 
-    img {
-        width: 7rem;
-        height: 9rem;
-        object-fit: cover;
-    }
-}
+    .fighter-images {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
 
-.past-events-fight-details {
-    padding: 1rem;
+        img {
+            width: 7rem;
+            height: 9rem;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .vs {
+            font-family: $font__main;
+            color: $color_red;
+            margin: 0.5rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    .past-event-fight-details {
+        border-left: 1px solid $color_red;
+        padding-left: 1rem;
+        width: fit-content;
+        margin: 1rem auto;
+
+        .fight-title {
+            text-transform: uppercase;
+            margin: 0;
+            color: $color_black;
+        }
+
+        .fight-venue, .fight-date {
+            margin: 0;
+            color: $color_black;
+        }
+    }
+
+    .past-event-links {
+        width: fit-content;
+        min-height: fit-content;
+        padding: 1rem;
+        margin: 0 auto;
+
+        a {
+            background-color: $color_red;
+            color: $color_white;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 0.3rem;
+            margin: 0.5rem;
+        }
+    }
 }
