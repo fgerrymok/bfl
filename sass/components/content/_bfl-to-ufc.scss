@@ -16,8 +16,8 @@
         justify-content: center;
         gap: 0.5rem;
         width: 100%;
-
-        .tab-button {
+        
+        .tab-button { 
             font-size: 1.2rem;
             cursor: pointer;
             transition: background-color 0.2s ease;
@@ -103,7 +103,11 @@
 
 // BFL TO UFC DESCRIPTION SECTION
 .bfl-to-ufc-description {
+    margin-bottom: 4rem;
+
     p {
         padding: 0 1.5rem;
+        max-width: 50rem;
+        margin: 2rem auto;
     }
 }
