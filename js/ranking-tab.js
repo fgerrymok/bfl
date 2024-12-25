@@ -1,22 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
   const buttons = document.querySelectorAll(".ranking-header button");
+  const dropdown = document.getElementById("tab-dropdown");
   const sections = document.querySelectorAll(".division-group");
 
+  // Function to update displayed section
+  function updateSections(target) {
+    sections.forEach((section) => {
+      section.style.display = section.id === target ? "block" : "none";
+    });
+  }
+
+  // Button click event for desktop view
   buttons.forEach((button) => {
     button.addEventListener("click", function () {
       const target = this.getAttribute("data-target");
-
-      sections.forEach((section) => {
-        if (section.id === target) {
-          section.style.display = "block";
-        } else {
-          section.style.display = "none";
-        }
-      });
+      updateSections(target);
     });
   });
 
-  // initial state: only show first tab
+  // Dropdown change event for mobile view
+  dropdown.addEventListener("change", function () {
+    const target = this.value;
+    updateSections(target);
+  });
+
+  // Initial state: only show the first section
   sections.forEach((section, index) => {
     section.style.display = index === 0 ? "block" : "none";
   });

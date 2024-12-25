@@ -34,6 +34,16 @@ get_header();
 
 			<section class="content-section">
 <div class="ranking-header">
+
+<select id="tab-dropdown" class="mobile-dropdown">
+    <option value="men_professional">Men's Professional</option>
+    <option value="women_professional">Women's Professional</option>
+    <option value="men_amateur">Men's Amateur</option>
+    <option value="womemen_amateur">Women's Amateur</option>
+    <option value="kickboxing">Kickboxig</option>
+  </select>
+
+
 	<ul>
 		<li><button data-target="men_professional">Men's Professional</button></li>
 		<li><button data-target="women_professional">Women's Professional</button></li>
@@ -163,6 +173,8 @@ get_header();
 											<th>#</th>
 											<th>Fighter</th>
 											<th>W-L-D</th>
+											<th>Overall Record</th>
+
 										</tr>
 									</thead>
 									<tbody>

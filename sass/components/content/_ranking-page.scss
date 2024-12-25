@@ -1,29 +1,98 @@
 .rankings-page{
     .content-section{
-        margin: 0 1rem;
+        margin: 2rem 1rem 0;
         max-width: 100%;
-        overflow-x: hidden;
+
         .ranking-header{
-            display: block;
-            width: 100%; 
-            max-width: 100%;
-            ul {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                padding: 0;
-                width: 100%;
-                max-width: 100%;
-                li{
-                    &:nth-child(3){
-                        order: 1;
+            margin: 0 auto 2rem;
+
+            ul{
+                display: none;
+            }
+
+            .mobile-dropdown{
+                display: block;
+                margin: 0 auto;
+                // padding: 0.5rem;
+                border-radius: 0.5rem;
+                border:none;
+                text-align: center;
+                
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat;
+                background-position: right 8px center;
+                background-color: $color-red;
+                padding: 8px 32px 8px 12px;
+                border:none;
+                border-radius: 4px;
+                max-width: 70%;
+                font-size: 16px;
+                  
+                &:focus {
+                    outline: none;
+                    border-color: #666;
+                }
+                  
+                /* Remove default arrow in IE */
+                &::-ms-expand {
+                    display: none;
+                }
+            }
+        }
+
+
+        .division-group{
+            h2{
+                display: none;
+            }
+            .division{
+                .division-title{
+                    text-align: center;
+                }
+                .champion-box{
+                    p{
+                        text-align: center;
                     }
-                    &:nth-child(2){
-                        order: 3;
+                    .champion-box-link{
+                        img{
+                            margin: 0 auto;
+                        }
                     }
                 }
+                .ranking-table{
+                    thead {
+                        position: relative; 
+                        &::after {
+                            position: absolute;
+                            content: '';
+                            background-color: $color-red;
+                            bottom: 0;  
+                            width: 100%;
+                            height: 1px;  
+                        }
+                        tr{
+                            font-weight: 300;
+                            text-align: center;
+                        }
+                    }
 
+                    tbody{
+                        tr{
+                            text-align: center;
+                            .fighter-name{
+                                a{
+                                    text-decoration: none;
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
         }
     }
 }
+
+@import 'ranking-page-desktop';

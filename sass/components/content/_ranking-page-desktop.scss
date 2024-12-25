@@ -1,0 +1,14 @@
+@media(min-width: $breakpoint-tablet-sm){
+    .rankings-page{
+        .content-section{
+            .ranking-header{
+                ul{
+                    display: block;
+                }
+                .mobile-dropdown{
+                    display: none;
+                }
+            }
+        }
+    }
+}
