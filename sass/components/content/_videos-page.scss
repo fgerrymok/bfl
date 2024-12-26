@@ -15,7 +15,8 @@
 
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.5); /* Dark background */
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark background */
 
     z-index: 1000;
   }
@@ -31,13 +32,16 @@
   .modal-inner {
     position: relative;
 
-    background: transparent;
+    background: #0000008a;
 
-    padding: 0; /* Remove padding to ensure full video space */
+    padding: 0;
+    /* Remove padding to ensure full video space */
 
-    width: 100%; /* Full width of the screen */
+    width: 100%;
+    /* Full width of the screen */
 
-    height: 100%; /* Full height of the screen */
+    height: 100%;
+    /* Full height of the screen */
 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
@@ -47,7 +51,8 @@
 
     align-items: center;
 
-    overflow: hidden; /* Prevent overflow of the video */
+    overflow: hidden;
+    /* Prevent overflow of the video */
   }
 
   /* Make iframe/video fill the modal */
@@ -68,13 +73,13 @@
   .modal .close {
     position: absolute;
 
-    top: 40px;
+    top: 115px;
 
     right: 10px;
 
-    font-size: 24px;
+    font-size: 40px;
 
-    font-weight: bold;
+    font-weight: 400;
 
     cursor: pointer;
 
@@ -84,13 +89,53 @@
 
 @media (min-width: $breakpoint-tablet-sm) {
   .videos-page {
+
     .modal-inner iframe,
     .modal-inner video {
-      width: 70vw;
-      height: 70vh;
+      width: 90vw;
+      height: 60vh;
+    }
+
+    .modal .close {
+      top: 70px;
+      right: 36px;
+      font-size: 50px;
     }
   }
 }
+
+@media (min-width: $breakpoint-desktop-sm) {
+  .videos-page {
+
+    .modal-inner iframe,
+    .modal-inner video {
+      width: 75vw;
+      height: 65vh;
+    }
+
+    .modal .close {
+      top: 113px;
+      right: 58px;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-desktop-lrg) {
+  .videos-page {
+
+    .modal-inner iframe,
+    .modal-inner video {
+      width: 70vw;
+      height: 80vh;
+    }
+
+    .modal .close {
+      top: 41px;
+      right: 140px;
+    }
+  }
+}
+
 // =============== Modal Style END =============== //
 
 // General
