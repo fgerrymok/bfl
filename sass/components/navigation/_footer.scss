@@ -1,6 +1,6 @@
 .site-footer{
     background-color: $color-red;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
     text-align: left;
 
     .footer-wrapper{
@@ -80,7 +80,7 @@
                 .accordion-item {
                   height: 0;
                   overflow: hidden;
-                  margin-left: 1rem;
+                  margin-left: 1.5rem;
                   opacity: 0;
                   transition: height 0.3s ease-in-out,
                               opacity 0.2s ease-in-out,
@@ -135,6 +135,7 @@
               .plus-sign,
               .minus-sign {
                 transition: transform 0.3s ease-in-out;
+                width: 16px;
               }
               
               .accordion-open .plus-sign {
