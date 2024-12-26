@@ -1,0 +1,126 @@
+.site-main.single-bfl-news {
+  margin: 0;
+  p {
+    margin: 0;
+  }
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
+
+  .news-date {
+    font-size: 16px;
+    color: $color_label;
+    margin: 0 0 16px 0;
+  }
+}
+
+.site-main.single-bfl-news iframe {
+  margin: 0 0 16px 0;
+  width: 100%;
+  height: 300px;
+}
+
+// Share links
+.social-media-links-wrapper {
+  padding: 24px 0;
+  margin: 32px 0;
+  border-top: 1px solid $color_label;
+  .social-label {
+    color: $color_label;
+  }
+  .social-share-buttons {
+    display: flex;
+    gap: 4px;
+    margin: 16px 0;
+    .social-copy {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+}
+
+// Sidebar
+.news-sidebar {
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .recent-news-thumbnail img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .recent-news-date {
+    margin: 8px 0 0 0;
+    color: $color_label;
+    font-size: 12px;
+  }
+  .recent-news-title {
+    margin: 0;
+    font-size: 16px;
+  }
+}
+
+.single-news-grid {
+  padding: 40px 16px 80px 16px;
+}
+// =============== RESPONSIVE STYLE =============== //
+@media (min-width: $breakpoint-mobile-2-columns) {
+  .single-news-grid {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .news-sidebar ul {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 8px;
+  }
+}
+
+@media (min-width: $breakpoint-tablet-sm) {
+  .single-news-grid {
+    padding-top: 0;
+    width: 640px;
+  }
+  .news-sidebar ul {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .site-main.single-bfl-news iframe {
+    height: 360px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop-sm) {
+  .single-news-grid {
+    width: 960px;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 48px;
+  }
+  .news-sidebar ul {
+    grid-template-columns: 1fr;
+  }
+  .site-main.single-bfl-news iframe {
+    height: 390px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop-lrg) {
+  .single-news-grid {
+    width: calc($max-width - 64px);
+  }
+  .site-main.single-bfl-news iframe {
+    height: 480px;
+  }
+}
