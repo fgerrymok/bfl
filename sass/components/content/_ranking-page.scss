@@ -13,7 +13,6 @@
             .mobile-dropdown{
                 display: block;
                 margin: 0 auto;
-                // padding: 0.5rem;
                 border-radius: 0.5rem;
                 border:none;
                 text-align: center;
@@ -48,22 +47,30 @@
                 display: none;
             }
             .division{
+                margin-bottom: 4rem;
                 .division-title{
                     text-align: center;
+                    font-family: 'inter';
+                    font-weight: 400;
+                    font-size: 1.1rem;
                 }
                 .champion-box{
                     p{
                         text-align: center;
                     }
                     .champion-box-link{
-                        img{
+                        .card-thumbnail-box{
+                            width: 80%;
                             margin: 0 auto;
+                            img{
+                                margin: 0 auto;
+                            }
                         }
                     }
                 }
                 .ranking-table{
                     thead {
-                        position: relative; 
+                        position: relative;
                         &::after {
                             position: absolute;
                             content: '';
@@ -73,21 +80,76 @@
                             height: 1px;  
                         }
                         tr{
-                            font-weight: 300;
-                            text-align: center;
+                           
+                            text-align: left;
+                            th{
+                                font-weight:400 !important;
+                                &:nth-child(1){
+                                    width: 10%;
+                                }
+                            }
                         }
                     }
 
                     tbody{
+                        p{
+                            margin: 0.5rem 0 0;
+                        }
                         tr{
-                            text-align: center;
+                            font-weight: 300;
+                            font-size: 0.9rem;
+                            text-align: left;
                             .fighter-name{
+                                align-content: baseline;
                                 a{
                                     text-decoration: none;
                                 }
                             }
+                            .rank{
+                                align-content: baseline;
+                            }
                         }
 
+                        .record-table{
+                            margin-bottom: 0;
+                            th{
+                                font-weight: 300;
+                            }
+                            tr{
+                                display: flex;
+                                justify-content: flex-start;
+                                gap: 0.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(min-width:30em){
+    .rankings-page{
+        .content-section{
+            .ranking-header{
+                ul{
+                    gap: 0.3rem;
+                    li{
+                        button{
+                            font-size: 1rem;
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+            .division-group{
+                .division-group-wrapper{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+    
+                    h2{
+                        grid-template-columns: 1/-1;
                     }
                 }
             }

@@ -98,6 +98,7 @@ get_header();
 	foreach ($groupedDivisions as $groupKey => $divisions) :
 		if (!empty($divisions)) : ?>
 			<section class="division-group <?php echo esc_attr($groupKey); ?>" id="<?php echo esc_attr($groupKey); ?>">
+				<div class='division-group-wrapper'>
 				<h2><?php echo esc_html($groupLabels[$groupKey]); ?></h2>
 				<?php foreach ($divisions as $division) : 
 					$layout = $division['acf_fc_layout'];
@@ -173,23 +174,45 @@ get_header();
 											<th>#</th>
 											<th>Fighter</th>
 											<th>W-L-D</th>
-											<th>Overall Record</th>
-
 										</tr>
 									</thead>
 									<tbody>
 										<?php foreach ($division['fighter'] as $fighter) : 
 											if ($fighter['rank'] != 'out of rank' && $fighter['rank'] != 'champion') : ?>
 												<!-- single fighter output -->
-												<tr>
+												<tr class='fighter-row'>
 													<td class="rank"><p><?php echo esc_html($fighter['rank']); ?></p></td>
 													<td class="fighter-name"><p>
 														<a href="<?php echo esc_url( home_url( '/fighters/' . sanitize_title($fighter['name']) . '/' ) ); ?>">
 															<?php echo esc_html($fighter['name']); ?>
 														</a>
 													</p></td>
-													<td class="fighter-record"><p><?php echo esc_html($fighter['bfl-win']); ?>W - <?php echo esc_html($fighter['bfl-lose']); ?>L - <?php echo esc_html($fighter['bfl-draw']); ?>D</p></td>
-													<td class="overall-record"><p><?php echo esc_html($fighter['all-win']); ?>W - <?php echo esc_html($fighter['all-lose']); ?>L - <?php echo esc_html($fighter['all-draw']); ?>D</p></td>
+													<td class="fighter-record">
+														<?php
+															if($fighter['all-win'] ||$fighter['all-lose'] || $fighter['all-draw']){
+																?>
+																	<table class="record-table">
+																		<tr>
+																			<th>All</th>
+																			<td><?php echo esc_html($fighter['all-win']); ?>-<?php echo esc_html($fighter['all-lose']); ?>-<?php echo esc_html($fighter['all-draw']); ?></td>
+																		</tr>
+																		<tr>
+																			<th>BFL</th>
+																			<td><?php echo esc_html($fighter['bfl-win']); ?>-<?php echo esc_html($fighter['bfl-lose']); ?>-<?php echo esc_html($fighter['bfl-draw']); ?></td>
+																		</tr>
+   																	</table>
+
+																<?php
+															}
+															else{
+																?>
+																	<p>
+																		<?php echo esc_html($fighter['bfl-win']); ?>-<?php echo esc_html($fighter['bfl-lose']); ?>-<?php echo esc_html($fighter['bfl-draw']); ?>
+																	</p>
+																<?php
+															}
+														?>
+													</td>
 												</tr>
 												<!-- single fighter output end -->
 
@@ -202,6 +225,7 @@ get_header();
 					</div><!-- single division end -->
 
 				<?php endforeach; ?>
+				</div>
 			</section><!-- single division group end -->
 
 		<?php endif;
