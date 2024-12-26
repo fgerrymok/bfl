@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const sections = document.querySelectorAll(".division-group");
 
   buttons.forEach((button) => {
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (e) {
       const target = this.getAttribute("data-target");
 
       sections.forEach((section) => {
