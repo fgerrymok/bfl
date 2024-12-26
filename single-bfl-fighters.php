@@ -85,11 +85,6 @@ get_header();
 				}
 				?>
 
-
-
-
-
-
 				<!-- Fighter Record Output -->
 				<?php if ($fighter_data): ?>
 					<div class="fighter-record">
