@@ -45,7 +45,7 @@ get_header();
 					if (!empty($fightDate) && !empty($venue)) {
 						?>
 						<div class="core-details">
-							<hr>
+							<hr class="core-details-line">
 							<p><?php echo esc_html($fightDate); ?></p>
 							<p><?php echo esc_html($venue); ?></p>
 						</div>
@@ -70,14 +70,22 @@ get_header();
 					$fighter2Image = $row['fighter_2_image'];
 					$fighter2Profile = $row['fighter_2_profile'];
 
-					if (!empty($fighter1Name) && !empty($fighter1Image) && !empty($fighter2Name) && !empty($fighter2Image)) {
+					if (!empty($fighter1Name) && !empty($fighter2Name)) {
 						?>
 						<section class="fight-card">
 							<div class="fighter-container">
 								<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
 									echo get_permalink($fighter1ProfileId);
 									} ?>">
-									<?php echo wp_get_attachment_image($fighter1Image, 'full'); ?>
+									<?php
+										if (!empty($fighter1Image)) {
+											echo wp_get_attachment_image($fighter1Image, 'full');
+										} else {
+											?>
+											<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+											<?php
+										}
+									?>
 								</a>
 							</div>
 
@@ -96,7 +104,15 @@ get_header();
 								<a href="<?php foreach ($fighter2Profile as $fighter2ProfileId) {
 									echo get_permalink($fighter2ProfileId);
 									} ?>">
-									<?php echo wp_get_attachment_image($fighter2Image, 'full'); ?>
+									<?php
+										if (!empty($fighter2Image)) {
+											echo wp_get_attachment_image($fighter2Image, 'full');
+										} else {
+											?>
+											<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+											<?php
+										}
+									?>
 								</a>
 							</div>
 						</section>
