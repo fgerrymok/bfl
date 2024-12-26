@@ -9,52 +9,54 @@
 
 get_header();
 ?>
-
-	<main id="primary" class="site-main">
+<div class="single-news-grid">
+	<main id="primary" class="site-main single-bfl-news">
 
 		<?php
-		while ( have_posts() ) :
-			the_post();
+		while ( have_posts() ) : the_post(); ?>
 
-			the_title();
-
-			the_content();
-		?>
+			<h1><?php echo esc_html(the_title());?></h1>
+			<p class="news-date"><?php echo esc_html(the_date()); ?></p>
+			
+			<?php the_content(); ?>
 
 		<!-- social media link buttons for sharing -->
-		<ul class="social-share-buttons">
-			<?php $image_size = ['24', '24']; ?>
-			<!-- facebook -->
-			<li>
-				<a class="social-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>" target="_blank" rel="noopener noreferrer">
-					<?php echo wp_get_attachment_image(14871, $image_size, false, ['class' => 'social-icon']); ?>
-				</a>
-			</li>
-			<!-- twitter -->
-			<li>
-				<a class="social-twitter" href="https://twitter.com/intent/tweet?text=<?php echo urlencode(get_the_title()); ?>&url=<?php echo urlencode(get_permalink()); ?>" target="_blank" rel="noopener noreferrer">
-					<?php echo wp_get_attachment_image(14874, $image_size, false, ['class' => 'social-icon']); ?>
-				</a>
-			</li>
-			<!-- linkedin -->
-			<li>
-				<a class="social-linkedin" href="https://www.linkedin.com/shareArticle?url=<?php echo urlencode(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener noreferrer">
-					<?php echo wp_get_attachment_image(14873, $image_size, false, ['class' => 'social-icon']); ?>
-				</a>
-			</li>
-			<!-- whatsapp -->
-			<li>
-				<a class="social-whatsapp" href="https://api.whatsapp.com/send?text=<?php echo urlencode(get_the_title() . ' ' . get_permalink()); ?>" target="_blank" rel="noopener noreferrer">
-					<?php echo wp_get_attachment_image(14875, $image_size, false, ['class' => 'social-icon']); ?>
-				</a>
-			</li>
-			<!-- copy link -->
-			<li>
-				<button class="social-copy" id="copy-link">
-					<?php echo wp_get_attachment_image(14870, $image_size, false, ['class' => 'social-icon']); ?>
-				</button>
-			</li>
-		</ul>
+		 <div class="social-media-links-wrapper">
+			<p class="social-label">Share this article</p>
+			<ul class="social-share-buttons">
+				<?php $image_size = ['24', '24']; ?>
+				<!-- facebook -->
+				<li>
+					<a class="social-facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>" target="_blank" rel="noopener noreferrer">
+						<?php echo wp_get_attachment_image(14871, $image_size, false, ['class' => 'social-icon']); ?>
+					</a>
+				</li>
+				<!-- twitter -->
+				<li>
+					<a class="social-twitter" href="https://twitter.com/intent/tweet?text=<?php echo urlencode(get_the_title()); ?>&url=<?php echo urlencode(get_permalink()); ?>" target="_blank" rel="noopener noreferrer">
+						<?php echo wp_get_attachment_image(14874, $image_size, false, ['class' => 'social-icon']); ?>
+					</a>
+				</li>
+				<!-- linkedin -->
+				<li>
+					<a class="social-linkedin" href="https://www.linkedin.com/shareArticle?url=<?php echo urlencode(get_permalink()); ?>&title=<?php echo urlencode(get_the_title()); ?>" target="_blank" rel="noopener noreferrer">
+						<?php echo wp_get_attachment_image(14873, $image_size, false, ['class' => 'social-icon']); ?>
+					</a>
+				</li>
+				<!-- whatsapp -->
+				<li>
+					<a class="social-whatsapp" href="https://api.whatsapp.com/send?text=<?php echo urlencode(get_the_title() . ' ' . get_permalink()); ?>" target="_blank" rel="noopener noreferrer">
+						<?php echo wp_get_attachment_image(14875, $image_size, false, ['class' => 'social-icon']); ?>
+					</a>
+				</li>
+				<!-- copy link -->
+				<li>
+					<button class="social-copy" id="copy-link">
+						<?php echo wp_get_attachment_image(14870, $image_size, false, ['class' => 'social-icon']); ?>
+					</button>
+				</li>
+			</ul>
+		</div>
 		<?php 
 		endwhile; // End of the loop.
 		?>
@@ -82,9 +84,10 @@ get_header();
 						<a href="<?php the_permalink(); ?>">
 							<?php if (has_post_thumbnail()) : ?>
 								<div class="recent-news-thumbnail">
-									<?php the_post_thumbnail('thumbnail'); ?>
+									<?php the_post_thumbnail('medium'); ?>
 								</div>
 							<?php endif; ?>
+							<p class="recent-news-date"><?php esc_html(the_date()); ?></p>
 							<div class="recent-news-title"><?php the_title(); ?></div>
 						</a>
 					</li>
@@ -96,7 +99,7 @@ get_header();
 	// Reset Post Data
 	wp_reset_postdata();
 	?>
-
+</div>
 
 <?php
 get_footer();

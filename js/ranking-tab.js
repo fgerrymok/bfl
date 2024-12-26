@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Button click event for desktop view
   buttons.forEach((button) => {
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (e) {
       const target = this.getAttribute("data-target");
       updateSections(target);
       updateActiveButton(this);
