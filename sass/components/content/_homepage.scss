@@ -259,3 +259,15 @@
     background: $color_red;
   }
 }
+
+.slider-item img,
+.news-image img,
+.video-item img {
+  scale: 1;
+  transition: all 0.2s ease;
+}
+.slider-item img:hover,
+.news-image img:hover,
+.video-item img:hover {
+  scale: 1.05;
+}
