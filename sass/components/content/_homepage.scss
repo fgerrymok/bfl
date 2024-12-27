@@ -1,4 +1,8 @@
 // =============== GENERAL STYLE =============== //
+.site-main.frontpage {
+  margin-top: -13px;
+}
+
 .home hr {
   display: none;
 }
@@ -67,6 +71,10 @@
 @media (min-width: $breakpoint-tablet-sm) {
   .homepage-section {
     width: 640px;
+  }
+
+  .site-main.frontpage {
+    margin-top: -52px;
   }
 }
 

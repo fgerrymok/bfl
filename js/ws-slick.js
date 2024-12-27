@@ -97,7 +97,6 @@ jQuery(document).ready(function ($) {
 
   // Champions Slider
   $(".champions .slick-slider").slick({
-    slidesToShow: 6,
     slidesToScroll: 1,
     swipeToSlide: true,
     autoplay: false,
@@ -107,25 +106,19 @@ jQuery(document).ready(function ($) {
     nextArrow: '<button class="slick-next">⟩</button>',
     responsive: [
       {
-        breakpoint: 1400,
+        breakpoint: 9999,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 6,
         },
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 4,
         },
       },
       {
         breakpoint: 768,
-        settings: {
-          slidesToShow: 6,
-        },
-      },
-      {
-        breakpoint: 600,
         settings: {
           slidesToShow: 2,
         },

@@ -3,7 +3,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main frontpage">
 
 		<?php
 		while ( have_posts() ) :
@@ -52,11 +52,13 @@ get_header();
 						}
 					} 
 					// UFC banner
-					$image_id = 14995; // UFC Image ID
-					echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'ufc-banner home']);
-
-
 					?>
+					<a href="" class="ufc-banner-link"> 
+						<?php
+						$image_id = 14995; // UFC Image ID
+						echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'ufc-banner home']);
+						?>
+					</a>
 				</section>
 				<section class="homepage-body">
 
@@ -133,7 +135,7 @@ get_header();
 				
 				<!-- Videos -->
 				<section class="homepage-section videos videos-page">
-				<a href="<?php echo esc_url( home_url() ); ?>" class="heading-link">			
+				<a href="<?php echo esc_url( get_post_type_archive_link('post') ); ?>" class="heading-link">
 					<h2><?php echo esc_html("Videos >") ?></h2>
 				</a>
 
@@ -256,6 +258,7 @@ get_header();
 						wp_reset_postdata();
 					endif; ?>
 				</div>
+				<!-- modal window HTML -->
 				<div id="video-modal" class="modal">
 					<div class="modal-inner">
 						<span id="close-modal" class="close">&times;</span>
