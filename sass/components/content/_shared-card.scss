@@ -162,6 +162,7 @@
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
+
 .card-date {
   margin: 8px 0 0 0;
   padding: 0 1rem;
@@ -190,6 +191,12 @@
   margin: 1.5rem 0 0 0;
   font-size: 16px;
 }
+// =============== SLIDE: VIDEOS =============== //
+.video-item .video-thumbnail {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 // =============== SLIDE: CHAMPIONS =============== //
 .slider-image.champions {
   aspect-ratio: 4 / 6;
