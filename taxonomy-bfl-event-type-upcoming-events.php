@@ -88,10 +88,24 @@ get_header();
 							?>
 							<section class="fight-card">
 								<div class="fighter-container">
-									<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
-										echo get_permalink($fighter1ProfileId);
-										} ?>">
+									<?php
+									if ($fighter1Profile) {
+										?>
+										<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
+											echo get_permalink($fighter1ProfileId);
+											} ?>">
+											<?php
+											if (!empty($fighter1Image)) {
+												echo wp_get_attachment_image($fighter1Image, 'full');
+											} else {
+												?>
+												<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+												<?php
+											}
+											?>
+										</a>
 										<?php
+									} else {
 										if (!empty($fighter1Image)) {
 											echo wp_get_attachment_image($fighter1Image, 'full');
 										} else {
@@ -99,8 +113,8 @@ get_header();
 											<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
 											<?php
 										}
-										?>
-									</a>
+									}
+									?>
 								</div>
 
 								<?php
