@@ -1,92 +1,92 @@
 .single-event-heading {
-    margin: 6rem 1rem 2.5rem 1rem !important;
+  margin: 6rem 1rem 2.5rem 1rem !important;
 }
 
 .event-separator {
-    display: block;
-    background-color: $color_white;
-    height: 2px;
-    width: 50%;
-    margin: 3rem auto;
+  display: block;
+  background-color: $color_white;
+  height: 2px;
+  width: 50%;
+  margin: 3rem auto;
 }
 
 // hero
 
 .event-name {
-    text-align: center;
-    font-size: 1.6rem;
-    color: $color_grey;
+  text-align: center;
+  font-size: 1.6rem;
+  color: $color_grey;
 }
 
 .external-links {
-    display: flex;
+  display: flex;
+  background-color: $color_red;
+  font-family: $font__main;
+  font-size: 1.4rem;
+  overflow: hidden;
+
+  .betting-odds {
+    background-color: $color_grey;
+    transition: transform 0.3s ease;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 100%, 0 100%);
+  }
+
+  .betting-odds:hover {
+    transform: scale(1.1);
+  }
+
+  .tickets {
     background-color: $color_red;
-    font-family: $font__main;
-    font-size: 1.4rem;
-    overflow: hidden;
+    color: $color_white !important;
+    transition: transform 0.3s ease;
+    clip-path: polygon(2rem 0, 100% 0, 100% 100%, 0 100%);
+  }
 
-    .betting-odds {
-        background-color: $color_grey;
-        transition: transform 0.3s ease;
-        clip-path: polygon(0 0, 100% 0, calc(100% - 2rem) 100%, 0 100%);
-    }
-
-    .betting-odds:hover {
-        transform: scale(1.1);
-    }
-
-    .tickets {
-        background-color: $color_red;
-        color: $color_white !important; 
-        transition: transform 0.3s ease;
-        clip-path: polygon(2rem 0, 100% 0, 100% 100%, 0 100%);
-    }
-
-    .tickets:hover {
-        transform: scale(1.16);
-    }
+  .tickets:hover {
+    transform: scale(1.16);
+  }
 }
 
 // Core details
 
 .core-details {
-    width: fit-content;
-    margin: 2rem auto;
-    position: relative;
+  width: fit-content;
+  margin: 2rem auto;
+  position: relative;
 }
 
 .core-details p {
-    width: fit-content;
-    margin: 0;
-    padding: 0.5rem;
-    text-transform: uppercase;
+  width: fit-content;
+  margin: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
 }
 
 .core-details .core-details-line {
-    transform: rotate(90deg);
-    background-color: $color_red;
-    height: 2px;
-    width: 4rem;
-    position: absolute;
-    left: -2.5rem;
-    top: -0.5rem;
+  transform: rotate(90deg);
+  background-color: $color_red;
+  height: 2px;
+  width: 4rem;
+  position: absolute;
+  left: -2.5rem;
+  top: -0.5rem;
 }
 
 // Fight Card
 .fight-roster {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .fight-card {
-    background-color: $color_dark_grey;
-    width: 100%;
-    max-width: 31.25rem;
-    margin: 1rem;
-    display: flex;
-    justify-content: space-between;
-    overflow: hidden;
+  background-color: $color_dark_grey;
+  width: 100%;
+  max-width: 31.25rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
 
     .fighter-container{
         overflow: hidden;
@@ -105,27 +105,26 @@
         }
     }
 
-    .fight-title {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        font-family: $font__main;
-        height: 100%;
-        border-bottom: 2px solid $color_red;
-        flex: 1;
-    }
+  .fight-title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: $font__main;
+    height: 100%;
+    border-bottom: 2px solid $color_red;
+    flex: 1;
+  }
 
-    .fighter {
-        margin: 0;
-        padding: 0 0.5rem;
-    }
-    
-    .vs {
-        margin: 0.5rem;
-        font-size: 1.3rem;
-    }
+  .fighter {
+    margin: 0;
+    padding: 0 0.5rem;
+  }
 
+  .vs {
+    margin: 0.5rem;
+    font-size: 1.3rem;
+  }
 }
 
 @media(min-width: $breakpoint-mobile-lrg) {
@@ -163,18 +162,18 @@
 // Past Events Link
 
 .link-to-past-events {
-    display: flex;
-    justify-content: center;
-    margin: 2rem;
+  display: flex;
+  justify-content: center;
+  margin: 2rem;
 }
 
 .link-to-past-events a {
-    background-color: $color_red;
-    color: $color_white;
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    margin: 0.5rem;
-    font-family: $font__main;
-    font-size: 1.3rem;
+  font-family: $font__main;
+  font-size: 18px;
+  line-height: 1;
+  text-decoration: none;
+  padding: 12px 36px;
+  border-radius: 2px;
+  color: $color_white;
+  background: $color_red;
 }

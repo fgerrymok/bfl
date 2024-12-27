@@ -1,90 +1,95 @@
-.page-id-8633{
-    // hero section
-    .about-hero-section{
-        max-height: 70vh;
-        overflow: hidden;
-        margin-bottom: 3rem;
-        img{
-            position: relative;
-            height: 100%;
-            width: 100%;
-        }
-        h1{
-            position: absolute;
-            bottom: 1rem;
-            left: 3rem;
-            z-index: 100;
-        }
+.page-id-8633 {
+  // hero section
+  .about-hero-section {
+    max-height: 70vh;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    img {
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+    h1 {
+      position: absolute;
+      bottom: 1rem;
+      left: 3rem;
+      z-index: 100;
+    }
+  }
+
+  .about-page-wrapper {
+    margin: 0 1rem;
+  }
+  line-height: $font__line-height-body;
+  p {
+    font-weight: 300;
+  }
+  .about-information-wrapper {
+    margin: 0 auto;
+    h2 {
+      margin: 0.83rem 0;
     }
 
-
-    .about-page-wrapper{
-        margin: 0 1rem;
-    }
-    line-height: $font__line-height-body;
-    p{
-        font-weight: 300;
-    }
-    .about-information-wrapper{
-        margin: 0 auto;
-        h2{
-          margin: 0.83rem 0;
-        }
-
-        .about-page-section{
-            margin-bottom: 3rem;
-            p{
-                margin-top: 0;
-            }
-        }
-    }
-
-    .contact-us-section{
-        margin-top: 8rem;
-        h2{
-            font-size: 1.8rem;
-        }
-        text-align: center;
-        .advertise-fight-wrapper{
-           p{
-            font-weight: 500;
-           }
-            display: flex;
-            @include flex-center-center;
-            gap: 1rem;
-            .advertise{
-                position: relative;
-               &::after{
-                position: absolute;
-                content: '|';
-                color: $color_red-on-black;
-                font-weight: 500;
-                right: -0.7rem;
-               }
-            }
-            span{
-                color: $color-red-on-black;
-            }
-        }
-        .email-form-title-wrapper{
-            .email-address{
-                margin-bottom: 0.5rem;
-            }
-            .or{
-                margin: 0;
-            }
-            .form-title{
-                margin-top: 0.5rem;
-            }
-        }
-    }
-
-}
-
-@media(min-width: $breakpoint-tablet-sm) {
-    .about-hero-section {
+    .about-page-section {
+      margin-bottom: 3rem;
+      p {
         margin-top: 0;
+      }
     }
+  }
+
+  .contact-us-section {
+    margin-top: 8rem;
+    h2 {
+      font-size: 1.8rem;
+    }
+    text-align: center;
+    .advertise-fight-wrapper {
+      p {
+        font-weight: 500;
+      }
+      display: flex;
+      @include flex-center-center;
+      gap: 1rem;
+      .advertise {
+        position: relative;
+        &::after {
+          position: absolute;
+          content: "|";
+          color: $color_red-on-black;
+          font-weight: 500;
+          right: -0.7rem;
+        }
+      }
+      span {
+        color: $color-red-on-black;
+      }
+    }
+    .email-form-title-wrapper {
+      .email-address {
+        margin-bottom: 0.5rem;
+      }
+      .or {
+        margin: 0;
+      }
+      .form-title {
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  button[type="submit"] {
+    font-size: 18px !important;
+    border-radius: 2px !important;
+    padding: 12px 36px !important;
+  }
 }
 
-@import 'about-page-desktop';
+@media (min-width: $breakpoint-tablet-sm) {
+  .page-id-8633 {
+    .about-information-wrapper {
+      margin: 0 auto;
+      max-width: 75%;
+    }
+  }
+}
