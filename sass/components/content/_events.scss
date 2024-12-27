@@ -88,21 +88,22 @@
   justify-content: space-between;
   overflow: hidden;
 
-  .fighter-container {
-    overflow: hidden;
-  }
+    .fighter-container{
+        overflow: hidden;
 
-  img {
-    width: 7rem;
-    height: 9rem;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  img:hover {
-    transform: scale(1.05);
-    object-fit: cover;
-  }
+        img {
+            width: 4rem;
+            height: 9rem;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+    
+        img:hover {
+            transform: scale(1.05);
+            object-fit: cover;
+            
+        }
+    }
 
   .fight-title {
     display: flex;
@@ -126,27 +127,36 @@
   }
 }
 
-@media (min-width: $breakpoint-mobile-lrg) {
-  .fight-card {
-    .fighter {
-      font-size: 1.3rem;
+@media(min-width: $breakpoint-mobile-lrg) {
+    .fight-card {
+        .fighter {
+            font-size: 1.3rem;
+        }
     }
-  }
+    
+    .fighter-container {
+            
+        img {
+            width: 7rem !important;
+        }
+    }
 }
 
-@media (min-width: $breakpoint-tablet-sm) {
-  .fight-card {
-    max-width: 43.75rem;
+@media(min-width: $breakpoint-tablet-sm) {
+    .fight-card {
+        max-width: 43.75rem;
 
-    img {
-      width: 10rem;
-      height: 12rem;
-    }
+        .fighter {
+            font-size: 1.6rem;
+        }
 
-    .fighter {
-      font-size: 1.6rem;
+        .fighter-container {
+            img {
+                width: 10rem !important;
+                height: 12rem;
+            }
+        }
     }
-  }
 }
 
 // Past Events Link
