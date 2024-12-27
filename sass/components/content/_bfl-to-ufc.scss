@@ -1,126 +1,125 @@
 // HERO SECTION
 .bfl-to-ufc-hero-section {
-    position: relative;
+  position: relative;
 
-    .hero-image {
-        width: 100%;
-        max-height: 25rem;
-        object-fit: cover;
-        object-position: center !important;
+  .hero-image {
+    width: 100%;
+    max-height: 25rem;
+    object-fit: cover;
+    object-position: center !important;
+  }
+
+  .tabs {
+    position: absolute;
+    bottom: 40%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+
+    .tab-button {
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
     }
 
-    .tabs {
-        position: absolute;
-        bottom: 40%;
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        width: 100%;
-        
-        .tab-button { 
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .tab-button:hover {
-            background-color: $color_hover_red;
-        }
+    .tab-button:hover {
+      background-color: $color_hover_red;
     }
+  }
 }
 
 @media (min-width: $breakpoint-tablet-sm) {
-    .bfl-to-ufc-hero-section {
-        .hero-image {
-            object-position: 50% 20%;
-        }
-
-        .tabs {
-            .tab-button {
-                font-size: 1.5rem;
-                padding: 0.5rem 1rem;
-                margin: 0 1rem;
-            }
-        }
+  .bfl-to-ufc-hero-section {
+    .hero-image {
+      object-position: 50% 20%;
     }
+
+    .tabs {
+      .tab-button {
+        font-size: 1.5rem;
+        padding: 0.5rem 1rem;
+        margin: 0 1rem;
+      }
+    }
+  }
 }
 
 @media (min-width: $breakpoint-desktop-sm) {
-    .bfl-to-ufc-hero-section {
-        .hero-image {
-            max-width: $max-width;
-            margin: 0 auto;
-            // max-height: 35rem;
-        }
+  .bfl-to-ufc-hero-section {
+    .hero-image {
+      max-width: $max-width;
+      margin: 0 auto;
+      // max-height: 35rem;
     }
+  }
 }
 
 // FIGHTERS SECTION
 #list-of-bfl-to-ufc,
 #list-of-on-the-ufc-radar {
-    h2 {
-        padding: 1rem 0 0 1.5rem;
-    }
+  h2 {
+    padding: 1rem 0 0 1.5rem;
+  }
 
-    ul {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 1rem;
+    padding: 0 1.5rem;
+
+    li {
+      width: 47%;
+      max-width: 12.5rem;
+
+      a {
+        min-height: 100%;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: start;
-        gap: 1rem;
-        padding: 0 1.5rem;
+        flex-direction: column;
+        text-decoration: none;
+        padding: 0.3rem;
+        text-align: center;
+        transition: background-color 0.3s ease;
 
-        li {
-            width: 47%;
-            max-width: 12.5rem;
-            
-            a{
-                min-height: 100%;
-                display: flex;
-                flex-direction: column;
-                text-decoration: none;
-                padding: 0.3rem;
-                text-align: center;
-                transition: background-color 0.3s ease;
-
-                img {
-                    flex: 1;
-                    width: 100%;
-                    object-fit: cover;
-                }
-            }
-
-            a:hover, a:focus, a:active {
-                background-color: $color_hover_red;
-            }
-
+        img {
+          flex: 1;
+          width: 100%;
+          object-fit: cover;
         }
+      }
+
+      a:hover,
+      a:focus,
+      a:active {
+        background-color: $color_hover_red;
+      }
     }
+  }
 }
 
 @media (min-width: $breakpoint-tablet-sm) {
-
-    #list-of-bfl-to-ufc,
-    #list-of-on-the-ufc-radar {
-
-        h2 {
-            font-size: 1.5rem;
-        }
-
-        ul {
-            img {
-                width: 12.5rem;
-            }
-        }
+  #list-of-bfl-to-ufc,
+  #list-of-on-the-ufc-radar {
+    h2 {
+      font-size: 1.5rem;
     }
+
+    ul {
+      img {
+        width: 12.5rem;
+      }
+    }
+  }
 }
 
 // BFL TO UFC DESCRIPTION SECTION
 .bfl-to-ufc-description {
-    margin-bottom: 4rem;
+  margin-bottom: 4rem;
 
-    p {
-        padding: 0 1.5rem;
-        max-width: 50rem;
-        margin: 2rem auto;
-    }
+  p {
+    padding: 0 1.5rem;
+    max-width: 50rem;
+    margin: 2rem auto;
+  }
 }

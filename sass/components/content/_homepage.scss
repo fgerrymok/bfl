@@ -19,11 +19,6 @@
 .home header {
   margin-bottom: 53px;
 }
-// @media (min-width: 50rem) {
-//   .home header {
-//     margin-bottom: 0;
-//   }
-// }
 
 .heading-link {
   text-decoration: none;
@@ -245,16 +240,29 @@
 
   .sponsor-cta-wrapper {
     align-self: center;
-    margin: 3rem;
+    margin: 4rem 0;
   }
 
   .home-sponsor-cta {
     font-family: $font__main;
-    background-color: $color_red;
-    color: $color_white;
+    font-size: 18px;
+    line-height: 1;
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 12px 36px;
     border-radius: 2px;
-    margin: 1rem;
+    color: $color_white;
+    background: $color_red;
   }
+}
+
+.slider-item img,
+.news-image img,
+.video-item img {
+  scale: 1;
+  transition: all 0.2s ease;
+}
+.slider-item img:hover,
+.news-image img:hover,
+.video-item img:hover {
+  scale: 1.05;
 }
