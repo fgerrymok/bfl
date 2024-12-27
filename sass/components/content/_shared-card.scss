@@ -197,6 +197,10 @@
   object-fit: cover;
 }
 
+.video-item {
+  cursor: pointer;
+}
+
 // =============== SLIDE: CHAMPIONS =============== //
 .slider-image.champions {
   aspect-ratio: 4 / 6;
