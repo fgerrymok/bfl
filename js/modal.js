@@ -8,18 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.classList.contains("video-thumbnail") ||
       e.target.classList.contains("slider-image")
     ) {
-      e.preventDefault();
-
       const thumbnail = e.target;
       const parentElement = thumbnail.closest(".slider-item");
 
       let videoUrl = null;
 
       if (parentElement) {
-        videoUrl = parentElement.getAttribute("data-video-url");
+        videoUrl = thumbnail.getAttribute("data-video-url");
       } else {
         videoUrl = thumbnail.getAttribute("data-video-url");
       }
+
       if (videoUrl) {
         modalContent.innerHTML = `
           <iframe 

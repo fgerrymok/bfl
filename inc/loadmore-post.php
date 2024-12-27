@@ -20,10 +20,10 @@ function loadmore_posts_handler() {
             echo render_video_item($query->post);
         }
     } else {
-        echo '<p>No more posts to load.</p>';
+        echo ''; 
     }
 
-    wp_die(); // Important for AJAX
+    wp_die();
 }
 
 add_action('wp_ajax_loadmore_posts', 'loadmore_posts_handler');

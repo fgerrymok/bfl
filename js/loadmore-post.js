@@ -2,8 +2,14 @@ document.getElementById("load-more").addEventListener("click", function () {
   const button = this;
   const currentPage = parseInt(button.getAttribute("data-page"));
   const nextPage = currentPage + 1;
+  const originalText = button.textContent;
 
-  fetch(ajaxurl, {
+  if (button.classList.contains("loading")) return;
+
+  button.classList.add("loading");
+  button.textContent = "Loading...";
+
+  fetch(ajax_object.ajaxurl, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
@@ -11,7 +17,12 @@ document.getElementById("load-more").addEventListener("click", function () {
       page: currentPage,
     }),
   })
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.text();
+    })
     .then((data) => {
       const container = document.getElementById("video-container");
       const tempDiv = document.createElement("div");
@@ -21,13 +32,20 @@ document.getElementById("load-more").addEventListener("click", function () {
         container.appendChild(tempDiv.firstChild);
       }
 
-      container.appendChild(button);
-
+      // Update page data and reset button
       button.setAttribute("data-page", nextPage);
+      button.textContent = originalText;
+      button.classList.remove("loading");
 
+      // If no more data, hide button
       if (!data.trim()) {
         button.style.display = "none";
       }
     })
-    .catch((error) => console.error("Error loading more posts:", error));
+    .catch((error) => {
+      console.error("Error loading more posts:", error);
+      button.textContent = originalText;
+      button.classList.remove("loading");
+      alert("Failed to load more posts. Please try again.");
+    });
 });
