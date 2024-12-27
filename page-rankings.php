@@ -207,7 +207,14 @@ get_header();
 															else{
 																?>
 																	<p>
-																		<?php echo esc_html($fighter['bfl-win']); ?>-<?php echo esc_html($fighter['bfl-lose']); ?>-<?php echo esc_html($fighter['bfl-draw']); ?>
+																		<?php echo esc_html($fighter['bfl-win']); ?>-<?php echo esc_html($fighter['bfl-lose']); ?>
+																		<?php
+																			if($fighter['bfl-draw']){
+																				?>
+																					-<?php echo esc_html($fighter['bfl-draw']); ?>
+																				<?php
+																			}
+																		?>
 																	</p>
 																<?php
 															}

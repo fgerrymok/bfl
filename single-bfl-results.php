@@ -113,6 +113,47 @@ get_header();
 								}
 								?>
 							</div>
+							<?php
+							// More Event Results
+							$moreResultsFlex = get_field('more_event_results');
+							if ($moreResultsFlex) {
+								foreach ($moreResultsFlex as $result) {
+									$eventType = $result['card_type_3'];
+									$eventTable = $result['card_type_3_table'];
+									?>
+									<div class="results-table">
+									<?php
+										if ($eventType) {
+											?>
+											<h3><?php echo esc_html($eventType); ?></h3>
+											<?php
+										}
+							
+										if ($eventTable) {
+											?>
+											<table>
+											<?php
+											foreach ($eventTable as $oneRow) {
+												?>
+												<tr>
+													<td>
+													<?php
+													echo($oneRow['card_type_3_result']);
+													?>
+													</td>
+												</tr>
+												<?php
+											}
+											?>
+											</table>
+											<?php
+										}
+									?>
+									</div>
+									<?php
+								}
+							}
+							?>
 						</section>
 						<?php
 					} else if ($resultsTag === "weigh-in-results") {
