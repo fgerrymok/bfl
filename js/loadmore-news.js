@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   loadMoreButton.addEventListener("click", () => {
+    loadMoreButton.disabled = true;
+    loadMoreButton.textContent = "Loading...";
+
     const currentPage = parseInt(loadMoreButton.dataset.page, 10);
     const postsPerPage = parseInt(loadMoreButton.dataset.perPage, 10);
     const nextPage = currentPage + 1;
@@ -22,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((data) => {
         if (data.success) {
           newsContainer.insertAdjacentHTML("beforeend", data.data.html);
+
           loadMoreButton.dataset.page = nextPage;
 
           if (!data.data.has_more) {
@@ -31,6 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("Failed to load posts:", data);
         }
       })
-      .catch((error) => console.error("Error fetching posts:", error));
+      .catch((error) => console.error("Error fetching posts:", error))
+      .finally(() => {
+        if (loadMoreButton.style.display !== "none") {
+          loadMoreButton.disabled = false;
+          loadMoreButton.textContent = "Load More";
+        }
+      });
   });
 });

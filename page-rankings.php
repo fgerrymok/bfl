@@ -15,12 +15,12 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<main id="primary" class="site-main rankings-page">
 
 		<?php
 		while ( have_posts() ) : the_post(); ?> 
 			
-			<section class="hero-section"> 
+			<section class="hero-section hero"> 
 				<h1>Rankings</h1>
 
 				<?php
@@ -34,6 +34,16 @@ get_header();
 
 			<section class="content-section">
 <div class="ranking-header">
+
+<select id="tab-dropdown" class="mobile-dropdown">
+    <option value="men_professional">Men's Professional</option>
+    <option value="women_professional">Women's Professional</option>
+    <option value="men_amateur">Men's Amateur</option>
+    <option value="womemen_amateur">Women's Amateur</option>
+    <option value="kickboxing">Kickboxig</option>
+  </select>
+
+
 	<ul>
 		<li><button data-target="men_professional">Men's Professional</button></li>
 		<li><button data-target="women_professional">Women's Professional</button></li>
@@ -88,9 +98,30 @@ get_header();
 	foreach ($groupedDivisions as $groupKey => $divisions) :
 		if (!empty($divisions)) : ?>
 			<section class="division-group <?php echo esc_attr($groupKey); ?>" id="<?php echo esc_attr($groupKey); ?>">
+				<div class='division-group-wrapper'>
 				<h2><?php echo esc_html($groupLabels[$groupKey]); ?></h2>
 				<?php foreach ($divisions as $division) : 
 					$layout = $division['acf_fc_layout'];
+
+				// Check for champion and other ranked fighters separately
+				$hasChampion = false;
+				$hasRankedFighters = false;
+
+				if (!empty($division['fighter'])) {
+					foreach ($division['fighter'] as $fighter) {
+						if ($fighter['rank'] == 'champion') {
+							$hasChampion = true;
+						} else if ($fighter['rank'] != 'out of rank') {
+							$hasRankedFighters = true;
+						}
+					}
+				}
+
+				// Skip only if there's no champion AND no ranked fighters
+				if (!$hasChampion && !$hasRankedFighters) {
+					continue;
+				}
+
 
 					// get label from ACF and convert to output
 					$label = '';
@@ -122,15 +153,53 @@ get_header();
 								foreach ($division['fighter'] as $fighter) : 
 									if ($fighter['rank'] == 'champion') : ?>
 										<div class="champion-box">
-											<img src="" alt="" />
-											<p>champion</p>
-											<p class="fighter-name"><?php echo esc_html($fighter['name']); ?></p></p>
-											<p class="fighter-record"><?php echo esc_html($fighter['bfl-win']); ?>W - <?php echo esc_html($fighter['bfl-lose']); ?>L - <?php echo esc_html($fighter['bfl-draw']); ?>D</p>        
+											<?php
+										$fighter_query = new WP_Query([
+													'post_type' => 'bfl-fighters',
+													'title' => $fighter['name'],
+													'posts_per_page' => 1,
+												]);
+
+												if ($fighter_query->have_posts()) {
+													while ($fighter_query->have_posts()) {
+														$fighter_query->the_post();
+														$image_id = get_field('single_fighter_image');
+														?>
+														
+														<!-- Output -->
+														<a href="<?php the_permalink(); ?>" class="champion-box-link">
+															<div class="card-thumbnail-box">
+																<?php
+																if ($image_id) {
+																	echo wp_get_attachment_image($image_id, "", "",[ 'class' => 'slider-image champions']);
+																}
+																?>
+															</div>
+														</a>
+														
+														<?php
+													}
+												}
+                                            wp_reset_postdata();
+										?>
+											<p class="fighter-record">
+												<?php
+												 if(!empty($fighter['bfl-win']) || !empty($fighter['bfl-lose']) || !empty($fighter['bfl-draw'])){
+													$bfl_win  = !empty($fighter['bfl-win']) ? $fighter['bfl-win'] : 0;
+													$bfl_lose = !empty($fighter['bfl-lose']) ? $fighter['bfl-lose'] : 0;
+													$bfl_draw = !empty($fighter['bfl-draw']) ? $fighter['bfl-draw'] : 0;
+													echo esc_html($bfl_win . 'W-' . $bfl_lose . 'L-' . $bfl_draw . 'D');
+												 }
+
+												?>
+											</p>        
 										</div>
 									<?php
 									endif;
-								endforeach; ?>
-
+								endforeach;
+				
+								if($hasRankedFighters):
+								?>
 								<table class="ranking-table">
 									<thead>
 										<tr>
@@ -143,15 +212,71 @@ get_header();
 										<?php foreach ($division['fighter'] as $fighter) : 
 											if ($fighter['rank'] != 'out of rank' && $fighter['rank'] != 'champion') : ?>
 												<!-- single fighter output -->
-												<tr>
+												<tr class='fighter-row'>
 													<td class="rank"><p><?php echo esc_html($fighter['rank']); ?></p></td>
 													<td class="fighter-name"><p>
 														<a href="<?php echo esc_url( home_url( '/fighters/' . sanitize_title($fighter['name']) . '/' ) ); ?>">
 															<?php echo esc_html($fighter['name']); ?>
 														</a>
 													</p></td>
-													<td class="fighter-record"><p><?php echo esc_html($fighter['bfl-win']); ?>W - <?php echo esc_html($fighter['bfl-lose']); ?>L - <?php echo esc_html($fighter['bfl-draw']); ?>D</p></td>
-													<td class="overall-record"><p><?php echo esc_html($fighter['all-win']); ?>W - <?php echo esc_html($fighter['all-lose']); ?>L - <?php echo esc_html($fighter['all-draw']); ?>D</p></td>
+													
+													<td class="fighter-record">
+														<?php
+															if($fighter['all-win'] ||$fighter['all-lose'] || $fighter['all-draw']){
+																?>
+																	<table class="record-table">
+																		<tr>
+																			<th>All</th>
+																			<td>
+																			<?php
+																			$all_win = !empty($fighter['all-win']) ? $fighter['all-win'] : 0;
+																			$all_lose = !empty($fighter['all-lose']) ? $fighter['all-lose'] : 0;
+																			$all_draw = !empty($fighter['all-draw']) ? $fighter['all-draw'] : 0;
+
+																			echo esc_html("$all_win-$all_lose-$all_draw");
+																			?>
+
+																			</td>
+																		</tr>
+																		<tr>
+																			<?php
+																				if($fighter['bfl-win'] || $fighter['bfl-lose'] || $fighter['bfl-draw']){
+																					?>
+																					<th>BFL</th>
+																					<td>
+																						<?php
+																						$bfl_win = !empty($fighter['bfl-win']) ? $fighter['bfl-win'] : 0;
+																						$bfl_lose = !empty($fighter['bfl-lose']) ? $fighter['bfl-lose'] : 0;
+																						$bfl_draw = !empty($fighter['bfl-draw']) ? $fighter['bfl-draw'] : 0;
+
+																						echo esc_html("$bfl_win-$bfl_lose-$bfl_draw");
+																						?>
+																					</td>
+																					<?php
+																				}
+																			?>
+																		</tr>
+   																	</table>
+
+																<?php
+															}
+															else{
+																?>
+																	<p>
+																		<?php
+																			// Ensure all fields are set to 0 if they are empty
+																			$bfl_win = !empty($fighter['bfl-win']) ? $fighter['bfl-win'] : 0;
+																			$bfl_lose = !empty($fighter['bfl-lose']) ? $fighter['bfl-lose'] : 0;
+																			$bfl_draw = !empty($fighter['bfl-draw']) ? $fighter['bfl-draw'] : 0;
+
+																			// Output the formatted string
+																			echo esc_html("$bfl_win-$bfl_lose-$bfl_draw");
+																		?>
+																	</p>
+																<?php
+															}
+														?>
+													</td>
 												</tr>
 												<!-- single fighter output end -->
 
@@ -160,10 +285,14 @@ get_header();
 										endforeach; ?>
 									</tbody>
 								</table>
-							<?php endif; ?>
+							<?php
+								endif; 
+							endif;
+							?>
 					</div><!-- single division end -->
 
 				<?php endforeach; ?>
+				</div>
 			</section><!-- single division group end -->
 
 		<?php endif;

@@ -70,56 +70,96 @@ get_header();
 					</section>
 					<?php
 				}
-	
-				$fightCardRepeater = get_field('fight_card');
-				if($fightCardRepeater) {
-					?>
-					<section class="fight-roster">
-					<?php
-					foreach ($fightCardRepeater as $row) {
-						$fighter1Name = $row['fighter_1_name'];
-						$fighter1Image = $row['fighter_1_image'];
-						$fighter1Profile = $row['fighter_1_profile'];
-						$fighter2Name = $row['fighter_2_name'];
-						$fighter2Image = $row['fighter_2_image'];
-						$fighter2Profile = $row['fighter_2_profile'];
 
-						if (!empty($fighter1Name) && !empty($fighter1Image) && !empty($fighter2Name) && !empty($fighter2Image)) {
+				$fightCardFlex = get_field('fight_card_flex');
+				if ($fightCardFlex) {
+					foreach ($fightCardFlex as $fightCard) {
+						$fightCardType = $fightCard['fight_card_type'];
+						?>
+						<h3 class="fight-card-type"><?php echo esc_html($fightCardType); ?></h3>
+						<?php
+
+						$fightCardRepeater = $fightCard['fight_card'];
+						if($fightCardRepeater) {
 							?>
-							<section class="fight-card">
-								<div class="fighter-container">
-									<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
-										echo get_permalink($fighter1ProfileId);
-										} ?>">
-										<?php echo wp_get_attachment_image($fighter1Image, 'full'); ?>
-									</a>
-								</div>
-
-								<?php
-								if ($fighter1Name && $fighter2Name) {
+							<section class="fight-roster">
+							<?php
+							foreach ($fightCardRepeater as $row) {
+								$fighter1Name = $row['fighter_1_name'];
+								$fighter1Image = $row['fighter_1_image'];
+								$fighter1Profile = $row['fighter_1_profile'];
+								$fighter2Name = $row['fighter_2_name'];
+								$fighter2Image = $row['fighter_2_image'];
+								$fighter2Profile = $row['fighter_2_profile'];
+		
+								if (!empty($fighter1Name) && !empty($fighter2Name)) {
 									?>
-									<div class="fight-title">
-										<p class="fighter"><?php echo esc_html($fighter1Name); ?></p>
-										<p class="vs"><?php echo esc_html("vs"); ?></p>
-										<p class="fighter"><?php echo esc_html($fighter2Name); ?></p>
-									</div>
+									<section class="fight-card">
+										<div class="fighter-container">
+											<?php
+											if ($fighter1Profile) {
+												?>
+												<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
+													echo get_permalink($fighter1ProfileId);
+													} ?>">
+													<?php
+													if (!empty($fighter1Image)) {
+														echo wp_get_attachment_image($fighter1Image, 'full');
+													} else {
+														?>
+														<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+														<?php
+													}
+													?>
+												</a>
+												<?php
+											} else {
+												if (!empty($fighter1Image)) {
+													echo wp_get_attachment_image($fighter1Image, 'full');
+												} else {
+													?>
+													<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+													<?php
+												}
+											}
+											?>
+										</div>
+		
+										<?php
+										if ($fighter1Name && $fighter2Name) {
+											?>
+											<div class="fight-title">
+												<p class="fighter"><?php echo esc_html($fighter1Name); ?></p>
+												<p class="vs"><?php echo esc_html("vs"); ?></p>
+												<p class="fighter"><?php echo esc_html($fighter2Name); ?></p>
+											</div>
+											<?php
+										}
+										?>
+										<div class="fighter-container">
+											<a href="<?php foreach ($fighter2Profile as $fighter2ProfileId) {
+												echo get_permalink($fighter2ProfileId);
+												} ?>">
+											<?php
+												if (!empty($fighter2Image)) {
+													echo wp_get_attachment_image($fighter2Image, 'full');
+												} else {
+													?>
+													<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+													<?php
+												}
+												?>
+											</a>
+										</div>
+									</section>
 									<?php
 								}
-								?>
-								<div class="fighter-container">
-									<a href="<?php foreach ($fighter2Profile as $fighter2ProfileId) {
-										echo get_permalink($fighter2ProfileId);
-										} ?>">
-										<?php echo wp_get_attachment_image($fighter2Image, 'full'); ?>
-									</a>
-								</div>
+							}
+							?>
 							</section>
 							<?php
 						}
 					}
-					?>
-					</section>
-					<?php
 				}
 				?>
 				</div>

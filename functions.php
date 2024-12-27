@@ -147,7 +147,10 @@ function bfl_scripts() {
 	wp_style_add_data( 'bfl-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'bfl-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'bfl-ranking-tab', get_template_directory_uri() . '/js/ranking-tab.js', array(), _S_VERSION, true );
+	
+	if ( is_page('rankings') ) {
+		wp_enqueue_script( 'bfl-ranking-tab', get_template_directory_uri() . '/js/ranking-tab.js', array(), _S_VERSION, true );
+	}
 	wp_enqueue_script( 'custom-nav', get_template_directory_uri() . '/js/custom-nav.js', array(), _S_VERSION, true );
 	if ( is_page( 'bfl-to-ufc' ) ) {
 		wp_enqueue_script( 'bfl-to-ufc-tab', get_template_directory_uri() . '/js/bfl-to-ufc-tab.js', array(), _S_VERSION, true );
@@ -156,6 +159,43 @@ function bfl_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	// loadmore news
+	if ( is_post_type_archive( 'bfl-news' ) ) {
+		wp_enqueue_script('loadmore-news', get_template_directory_uri() . '/js/loadmore-news.js', ['jquery'], null, true);
+		wp_localize_script('loadmore-news', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
+	}
+
+	// loadmore video(post)
+	if ( is_home() ) {
+		wp_enqueue_script('loadmore-video', get_template_directory_uri() . '/js/loadmore-post.js', ['jquery'], null, true);
+		wp_localize_script('loadmore-video', 'ajax_object', ['ajaxurl' => admin_url('admin-ajax.php'), ]);
+	}
+
+	// Enqueue Accordion Script
+	wp_enqueue_script('bfl-theme-accordion', get_template_directory_uri() . '/js/accordion.js', array(), '1.0.0', true );
+
+	// Enqueue Google Fonts ('Inter and Bebas Neue')
+	wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap', [], null);
+
+	// Enqueue Video Modal Function
+	if ( is_home() || is_front_page() ) {
+		wp_enqueue_script(
+			'modal-script', 
+			get_template_directory_uri() . '/js/modal.js', 
+			['jquery'], // Optional: Dependencies like jQuery
+			null, 
+			true // Load in the footer
+		);
+	}
+
+
+	// Slick CSS
+	wp_enqueue_style('slick-css', get_template_directory_uri() . '/extra_css/slick.css');
+	// Slick JS
+	wp_enqueue_script('slick-js', get_template_directory_uri() . '/js/slick.min.js', array('jquery'), null, true);
+	// Custom Slider Init Script
+	wp_enqueue_script('ws-slick-init', get_template_directory_uri() . '/js/ws-slick.js', array('jquery', 'slick-js'), null, true);
 }
 add_action( 'wp_enqueue_scripts', 'bfl_scripts' );
 
@@ -197,7 +237,6 @@ require get_template_directory() . '/inc/cpt-taxonomy.php';
 require get_template_directory() . '/inc/rearrange-admin-menu.php';
 require get_template_directory() . '/inc/loadmore-news.php';
 require get_template_directory() . '/inc/loadmore-post.php';
-require get_template_directory() . '/inc/ws-featured.php';
 require get_template_directory() . '/inc/modal-video.php';
 
 
@@ -227,32 +266,7 @@ function disable_block_editor_except_pages($can_edit, $post_type) {
 add_filter('use_block_editor_for_post', 'disable_block_editor_except_pages', 10, 2);
 add_filter('gutenberg_can_edit_post_type', 'disable_block_editor_except_pages', 10, 2);
 
-// loadmore news
 
-function bfl_enqueue_scripts() {
-
-	if ( is_post_type_archive( 'bfl-news' ) ) {
-		wp_enqueue_script('loadmore-news', get_template_directory_uri() . '/js/loadmore-news.js', ['jquery'], null, true);
-		
-		wp_localize_script('loadmore-news', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
-	}
-
-	// Enqueue Accordion Script
-		wp_enqueue_script('bfl-theme-accordion', get_template_directory_uri() . '/js/accordion.js', array(), '1.0.0', true );
-
-}
-add_action('wp_enqueue_scripts', 'bfl_enqueue_scripts');
-
-	
-// loadmore video(post)
-function enqueue_loadmore_scripts() {
-
-	if ( is_home() ) {
-		wp_enqueue_script('loadmore-js', get_template_directory_uri() . '/js/loadmore-post.js', ['jquery'], null, true);
-		wp_localize_script('loadmore-js', 'bfl_ajax', ['ajax_url' => admin_url('admin-ajax.php'),]);
-	}
-}
-add_action('wp_enqueue_scripts', 'enqueue_loadmore_scripts');
 
 // Add theme support for custom logo
 function my_theme_setup() {
@@ -265,33 +279,4 @@ function my_theme_setup() {
 }
 add_action( 'after_setup_theme', 'my_theme_setup' );
 
-// Enqueue Google Fonts ('Inter and Bebas Neue')
-function add_google_fonts() {
-	wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap', [], null);
-};
 
-add_action('wp_enqueue_scripts', 'add_google_fonts');
-
-
-// Slick Slider
-function enqueue_slick_slider() {
-    // Slick CSS
-    wp_enqueue_style('slick-css', get_template_directory_uri() . '/extra_css/slick.css');
-    // Slick JS
-    wp_enqueue_script('slick-js', get_template_directory_uri() . '/js/slick.min.js', array('jquery'), null, true);
-    // Custom Slider Init Script
-    wp_enqueue_script('ws-slick-init', get_template_directory_uri() . '/js/ws-slick.js', array('jquery', 'slick-js'), null, true);
-}
-add_action('wp_enqueue_scripts', 'enqueue_slick_slider');
-
-// Enqueue Video Modal Function
-function enqueue_modal_script() {
-    wp_enqueue_script(
-        'modal-script', 
-        get_template_directory_uri() . '/js/modal.js', 
-        ['jquery'], // Optional: Dependencies like jQuery
-        null, 
-        true // Load in the footer
-    );
-}
-add_action('wp_enqueue_scripts', 'enqueue_modal_script');

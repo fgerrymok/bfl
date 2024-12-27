@@ -1,0 +1,41 @@
+@media(min-width: $breakpoint-tablet-sm){
+    .rankings-page{
+        .content-section{
+            .ranking-header{
+                margin: 3rem 0 2rem;
+                ul{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 2rem;
+
+                    li{
+                        button{
+                            font-size: 1.2rem;
+                            background-color: transparent;
+                            border: none;
+                            letter-spacing: 0.3px;
+                        }
+                        button.active{
+                            text-decoration: underline;
+                            text-decoration-color: $color-red;
+                            text-underline-offset: 5px;
+                        }
+                    }
+                }
+                    // Hide Mobile Menu
+                    .mobile-dropdown{
+                        display: none;
+                    }
+                    
+
+                }
+                .division-group{
+                    .division-group-wrapper{
+                        grid-template-columns: repeat(3,1fr);
+                    }
+                }
+            }
+        }
+
+    }

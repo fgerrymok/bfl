@@ -84,7 +84,7 @@
 .slick-prev,
 .slick-next {
   position: absolute;
-  top: calc(50% - 24px);
+  top: calc(50% - 36px);
   transform: translateY(-50%);
   background-color: #333;
   color: #fff;
@@ -97,6 +97,19 @@
   cursor: pointer;
   border-radius: 50%;
   padding: 0;
+}
+
+.homepage-section.past-events {
+  .slick-prev,
+  .slick-next {
+    top: calc(50% - 24px);
+  }
+}
+.homepage-section.champions {
+  .slick-prev,
+  .slick-next {
+    top: calc(50%);
+  }
 }
 
 .slick-prev {
@@ -149,6 +162,7 @@
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
+
 .card-date {
   margin: 8px 0 0 0;
   padding: 0 1rem;
@@ -177,6 +191,16 @@
   margin: 1.5rem 0 0 0;
   font-size: 16px;
 }
+// =============== SLIDE: VIDEOS =============== //
+.video-item .video-thumbnail {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.video-item {
+  cursor: pointer;
+}
+
 // =============== SLIDE: CHAMPIONS =============== //
 .slider-image.champions {
   aspect-ratio: 4 / 6;

@@ -1,23 +1,69 @@
 .sticky {
-	display: block;
+  display: block;
 }
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+  margin: 0 0 1.5em;
 }
 
 .updated:not(.published) {
-	display: none;
+  display: none;
 }
 
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+  margin: 1.5em 0 0;
 }
 
 .page-links {
-	clear: both;
-	margin: 0 0 1.5em;
+  clear: both;
+  margin: 0 0 1.5em;
+}
+
+// GENERAL PAGE
+.page-template {
+  main {
+    margin-top: 40px;
+    margin-bottom: 5rem;
+  }
+
+  .entry-header {
+    background: transparent;
+  }
+  h1 {
+    margin: 16px;
+    padding: 3rem 0 0 0;
+  }
+}
+
+// =============== RESPONSIVE STYLE =============== //
+@media (min-width: $breakpoint-mobile-2-columns) {
+  .page-template main {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: $breakpoint-tablet-sm) {
+  .page-template main {
+    width: 640px;
+  }
+  .page-template h1 {
+    padding: 0;
+  }
+}
+
+@media (min-width: $breakpoint-desktop-sm) {
+  .page-template main {
+    width: 960px;
+  }
+}
+
+@media (min-width: $breakpoint-desktop-lrg) {
+  .page-template main {
+    width: calc($max-width - 64px);
+  }
 }
