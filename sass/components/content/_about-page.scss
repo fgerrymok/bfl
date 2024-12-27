@@ -81,4 +81,10 @@
 
 }
 
+@media(min-width: $breakpoint-tablet-sm) {
+    .about-hero-section {
+        margin-top: 0;
+    }
+}
+
 @import 'about-page-desktop';
