@@ -15,6 +15,13 @@
                             background-color: transparent;
                             border: none;
                             letter-spacing: 0.3px;
+                            transition: all 0.3s ease-in-out;
+                            &:hover{
+                                color: $color-red;
+                                &.active{
+                                    text-decoration-color: $color-white;
+                                }
+                            }
                         }
                         button.active{
                             text-decoration: underline;

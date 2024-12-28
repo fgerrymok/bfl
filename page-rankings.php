@@ -39,7 +39,7 @@ get_header();
     <option value="men_professional">Men's Professional</option>
     <option value="women_professional">Women's Professional</option>
     <option value="men_amateur">Men's Amateur</option>
-    <option value="womemen_amateur">Women's Amateur</option>
+    <option value="women_amateur">Women's Amateur</option>
     <option value="kickboxing">Kickboxig</option>
   </select>
 
