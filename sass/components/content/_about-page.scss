@@ -1,18 +1,10 @@
 .page-id-8633 {
   // hero section
   .about-hero-section {
-    max-height: 70vh;
     overflow: hidden;
     margin-bottom: 3rem;
-    img {
-      position: relative;
-      height: 100%;
-      width: 100%;
-    }
     h1 {
       position: absolute;
-      bottom: 1rem;
-      left: 3rem;
       z-index: 100;
     }
   }
