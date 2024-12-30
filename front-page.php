@@ -288,54 +288,44 @@ get_header();
                                 $weight_class = ucfirst(end($parts));
                                 $label = $gender . ' ' . $weight_class; 
 								?>
-								<div class="slider-item">
+
 									<?php
 									if (!empty($division['fighter'])) {
 									    $has_champion = false; 
 										foreach ($division['fighter'] as $fighter) {
-											if ($fighter['rank'] === 'champion') {
-												$has_champion = true;
-												$fighter_query = new WP_Query([
-													'post_type' => 'bfl-fighters',
-													'title' => $fighter['name'],
-													'posts_per_page' => 1,
-												]);
+											if ($fighter['rank'] === 'champion' && $fighter['name'] != 'vacant' && $fighter['name'] != 'Vacant') { ?>
+												<div class="slider-item">
+													<?php
+													$has_champion = true;
+													$fighter_query = new WP_Query([
+														'post_type' => 'bfl-fighters',
+														'title' => $fighter['name'],
+														'posts_per_page' => 1,
+													]);
 
 												if ($fighter_query->have_posts()) {
 													while ($fighter_query->have_posts()) {
 														$fighter_query->the_post();
-														$image_id = get_field('single_fighter_image');
+
 														?>
 														
 														<!-- Output -->
 														<a href="<?php the_permalink(); ?>" class="champion-box-link">
 															<div class="card-thumbnail-box">
-																<?php
-																if ($image_id) {
-																	echo wp_get_attachment_image($image_id, "", "",[ 'class' => 'slider-image champions']);
-																}
-																?>
+																<?php echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image champions']); ?>
 															</div>
 														</a>
 														
 														<?php
 													}
 												}
-                                            wp_reset_postdata();
+                                            wp_reset_postdata(); ?>
+											</div>
+											<?php 
                                         }
                                     }
-									if (!$has_champion) {
-										?>
-										<!-- Vacant Card Output -->
-										<a href="" class="champion-box-link">
-											<div class="card-thumbnail-box">
-												<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" class="slider-image champions" />
-											</div>
-										</a>
-										<?php
-									}
                                 } ?>
-								</div>
+
 								<?php
                             }
                         }
