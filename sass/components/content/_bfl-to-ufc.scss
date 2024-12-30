@@ -1,61 +1,55 @@
 // HERO SECTION
-.bfl-to-ufc-hero-section {
-  position: relative;
-
-  .hero-image {
-    width: 100%;
-    max-height: 25rem;
-    object-fit: cover;
-    object-position: center !important;
-  }
-
-  .tabs {
-    position: absolute;
-    bottom: 40%;
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-
-    .tab-button {
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    .tab-button:hover {
-      background-color: $color_hover_red;
-    }
+.hero-section.bfl-to-ufc {
+  margin: 40px 16px 16px 16px;
+  padding-top: 24px;
+  h1.title.bfl-to-ufc {
+    position: initial;
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 24px 0 20px 0;
   }
 }
-
+@media (min-width: $breakpoint-mobile-lrg) {
+  .hero-section.bfl-to-ufc {
+    margin-top: 45px;
+  }
+}
 @media (min-width: $breakpoint-tablet-sm) {
-  .bfl-to-ufc-hero-section {
-    .hero-image {
-      object-position: 50% 20%;
-    }
-
-    .tabs {
-      .tab-button {
-        font-size: 1.5rem;
-        padding: 0.5rem 1rem;
-        margin: 0 1rem;
-      }
-    }
+  .hero-section.bfl-to-ufc {
+    margin-top: 0;
   }
 }
 
-@media (min-width: $breakpoint-desktop-sm) {
-  .bfl-to-ufc-hero-section {
-    .hero-image {
-      max-width: $max-width;
-      margin: 0 auto;
-      // max-height: 35rem;
-    }
+// Tab
+.tab-wrapper {
+  background-color: #222;
+  margin: auto;
+  max-width: 500px;
+}
+
+.tabs.bfl-to-ufc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .tab-button {
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 0;
+    background-color: $color_black;
+    transition: background-color 0.2s ease;
+  }
+  .tab-button.active {
+    background-color: #222;
+  }
+  .tab-button:hover {
+    background-color: #333;
   }
 }
 
-// FIGHTERS SECTION
+.tab-content {
+  padding: 24px 8px 8px 8px;
+}
+
 #list-of-bfl-to-ufc,
 #list-of-on-the-ufc-radar {
   h2 {
@@ -63,25 +57,18 @@
   }
 
   ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    gap: 1rem;
-    padding: 0 1.5rem;
-
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin: auto;
     li {
-      width: 47%;
-      max-width: 12.5rem;
-
       a {
-        min-height: 100%;
         display: flex;
         flex-direction: column;
         text-decoration: none;
-        padding: 0.3rem;
         text-align: center;
+        padding: 5px;
         transition: background-color 0.3s ease;
-
         img {
           flex: 1;
           width: 100%;
@@ -107,7 +94,6 @@
 
     ul {
       img {
-        width: 12.5rem;
       }
     }
   }
@@ -121,5 +107,47 @@
     padding: 0 1.5rem;
     max-width: 50rem;
     margin: 2rem auto;
+  }
+}
+
+// TAB RESPONSIVE
+@media (min-width: $breakpoint-mobile-lrg) {
+  .hero-section.bfl-to-ufc {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+  }
+}
+@media (min-width: $breakpoint-tablet-sm) {
+  .hero-section.bfl-to-ufc {
+    max-width: 600px;
+  }
+  .tab-wrapper {
+    max-width: 640px;
+  }
+  #list-of-bfl-to-ufc,
+  #list-of-on-the-ufc-radar {
+    ul {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+@media (min-width: $breakpoint-desktop-sm) {
+  .hero-section.bfl-to-ufc {
+    max-width: 800px;
+  }
+  .tab-wrapper {
+    max-width: 960px;
+  }
+  #list-of-bfl-to-ufc,
+  #list-of-on-the-ufc-radar {
+    ul {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+}
+@media (min-width: $breakpoint-desktop-lrg) {
+  .tab-wrapper {
+    max-width: calc($max-width - 64px);
   }
 }
