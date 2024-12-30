@@ -151,50 +151,68 @@ get_header();
 						<h3 class="division-title"><?php echo esc_html($label); ?></h3>
 							<?php if (!empty($division['fighter'])) : 
 								foreach ($division['fighter'] as $fighter) : 
-									if ($fighter['rank'] == 'champion') : ?>
-										<div class="champion-box">
-											<?php
-										$fighter_query = new WP_Query([
-													'post_type' => 'bfl-fighters',
-													'title' => $fighter['name'],
-													'posts_per_page' => 1,
-												]);
-
-												if ($fighter_query->have_posts()) {
-													while ($fighter_query->have_posts()) {
-														$fighter_query->the_post();
-														$image_id = get_field('single_fighter_image');
-														?>
-														
-														<!-- Output -->
-														<a href="<?php the_permalink(); ?>" class="champion-box-link">
-															<div class="card-thumbnail-box">
-																<?php
-																if ($image_id) {
-																	echo wp_get_attachment_image($image_id, "", "",[ 'class' => 'slider-image champions']);
-																}
-																?>
-															</div>
-														</a>
-														
-														<?php
-													}
-												}
-                                            wp_reset_postdata();
+									if ($fighter['rank'] == 'champion') :
+										if($fighter['name'] == 'vacant' || $fighter['name'] == 'Vacant') : 
+											// IF CHAMPION IS VACANT
 										?>
-											<p class="fighter-record">
+											<div class="champion-box">
+												<!-- Output -->
+												<a href="<?php the_permalink(); ?>" class="champion-box-link">
+													<div class="card-thumbnail-box">
+														<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" class="slider-image champions vacant" />
+													</div>
+												</a>
+												<p class="fighter-name">Vacant</p>
+												<p class="fighter-record"></p>
+											</div>
+										<?php
+										else : ?>
+										
+											<div class="champion-box">
 												<?php
-												 if(!empty($fighter['bfl-win']) || !empty($fighter['bfl-lose']) || !empty($fighter['bfl-draw'])){
-													$bfl_win  = !empty($fighter['bfl-win']) ? $fighter['bfl-win'] : 0;
-													$bfl_lose = !empty($fighter['bfl-lose']) ? $fighter['bfl-lose'] : 0;
-													$bfl_draw = !empty($fighter['bfl-draw']) ? $fighter['bfl-draw'] : 0;
-													echo esc_html($bfl_win . 'W-' . $bfl_lose . 'L-' . $bfl_draw . 'D');
-												 }
+											$fighter_query = new WP_Query([
+														'post_type' => 'bfl-fighters',
+														'title' => $fighter['name'],
+														'posts_per_page' => 1,
+													]);
 
+													if ($fighter_query->have_posts()) {
+														while ($fighter_query->have_posts()) {
+															$fighter_query->the_post();
+															$image_id = get_field('single_fighter_image');
+															?>
+															
+															<!-- Output -->
+															<a href="<?php the_permalink(); ?>" class="champion-box-link">
+																<div class="card-thumbnail-box">
+																	<?php
+																	if ($image_id) {
+																		echo wp_get_attachment_image($image_id, "", "",[ 'class' => 'slider-image champions']);
+																	}
+																	?>
+																</div>
+															</a>
+															
+															<?php
+														}
+													}
+												wp_reset_postdata();
 												?>
-											</p>        
-										</div>
-									<?php
+												<p class="fighter-name"><?php echo $fighter['name']; ?></p>
+												<p class="fighter-record">
+													<?php
+													if(!empty($fighter['bfl-win']) || !empty($fighter['bfl-lose']) || !empty($fighter['bfl-draw'])){
+														$bfl_win  = !empty($fighter['bfl-win']) ? $fighter['bfl-win'] : 0;
+														$bfl_lose = !empty($fighter['bfl-lose']) ? $fighter['bfl-lose'] : 0;
+														$bfl_draw = !empty($fighter['bfl-draw']) ? $fighter['bfl-draw'] : 0;
+														echo esc_html($bfl_win . 'W-' . $bfl_lose . 'L-' . $bfl_draw . 'D');
+													}
+
+													?>
+												</p>        
+											</div>
+										<?php
+										endif;
 									endif;
 								endforeach;
 				
