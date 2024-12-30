@@ -43,14 +43,16 @@ get_header();
     <option value="kickboxing">Kickboxig</option>
   </select>
 
-
-	<ul>
-		<li><button data-target="men_professional">Men's Professional</button></li>
-		<li><button data-target="women_professional">Women's Professional</button></li>
-		<li><button data-target="men_amateur">Men's Amateur</button></li>
-		<li><button data-target="women_amateur">Women's Amateur</button></li>
-		<li><button data-target="kickboxing">Kickboxing</button></li>
-	</ul>
+	<div class='tabs-wrapper'>
+		<ul>
+			<li><button data-target="men_professional">Men's Professional</button></li>
+			<li><button data-target="women_professional">Women's Professional</button></li>
+			<li><button data-target="men_amateur">Men's Amateur</button></li>
+			<li><button data-target="women_amateur">Women's Amateur</button></li>
+			<li><button data-target="kickboxing">Kickboxing</button></li>
+		</ul>
+		<div class='tab-slider'></div>
+	</div>
 </div>
 
 <div class="ranking-content">
