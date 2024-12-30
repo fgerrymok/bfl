@@ -1,7 +1,6 @@
 @media(min-width: 52em){
     .rankings-page{
         .content-section{
-
             .tabs-wrapper {
                 position: relative;
                 margin-bottom: 2rem;
@@ -64,11 +63,6 @@
                                 }
                             }
                         }
-                        // button.active{
-                        //     text-decoration: underline;
-                        //     text-decoration-color: $color-red;
-                        //     text-underline-offset: 5px;
-                        // }
                     }
                 }
                     // Hide Mobile Menu
@@ -78,12 +72,22 @@
                     
 
                 }
-                .division-group{
-                    .division-group-wrapper{
-                        grid-template-columns: repeat(3,1fr);
-                    }
-                }
+                
             }
         }
 
     }
+
+    @media(min-width: 61em){
+        .rankings-page{
+            .content-section{
+                .division-group{
+                    .division-group-wrapper{
+                        grid-template-columns: repeat(3,1fr);
+                        gap: 0;
+                    }
+                }
+            }
+        }
+    }
+

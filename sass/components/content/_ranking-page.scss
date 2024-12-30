@@ -157,7 +157,28 @@
   }
 }
 
-@media (min-width: 35em) {
+
+@media (min-width: 30em) {
+    .rankings-page {
+      .content-section {
+        .division-group {
+          .division-group-wrapper {
+            .division {
+              .champion-box{
+                  .champion-box-link {
+                      .card-thumbnail-box {
+                          width: 60%;
+                      }
+                  }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+@media (min-width: 44em) {
   .rankings-page {
     .content-section {
       .ranking-header {
@@ -184,6 +205,13 @@
             .ranking-table {
               width: 80%;
               margin: 0 auto;
+            }
+            .champion-box{
+                .champion-box-link {
+                    .card-thumbnail-box {
+                        width: 65%;
+                    }
+                }
             }
           }
         }
