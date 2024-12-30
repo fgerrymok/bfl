@@ -137,10 +137,13 @@ get_header();
 										}
 										?>
 										<div class="fighter-container">
+										<?php
+										if ($fighter2Profile) {
+											?>
 											<a href="<?php foreach ($fighter2Profile as $fighter2ProfileId) {
 												echo get_permalink($fighter2ProfileId);
 												} ?>">
-											<?php
+												<?php
 												if (!empty($fighter2Image)) {
 													echo wp_get_attachment_image($fighter2Image, 'full');
 												} else {
@@ -150,6 +153,17 @@ get_header();
 												}
 												?>
 											</a>
+											<?php
+										} else {
+											if (!empty($fighter2Image)) {
+												echo wp_get_attachment_image($fighter2Image, 'full');
+											} else {
+												?>
+												<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+												<?php
+											}
+										}
+										?>
 										</div>
 									</section>
 									<?php
