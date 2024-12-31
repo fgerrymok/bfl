@@ -190,8 +190,10 @@ get_header();
 																	<?php 
 																	if(get_the_post_thumbnail()) :
 																		echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image champions']);
-																	else : ?>
-																		<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" class="slider-image champions placeholder" />
+																	else : 
+																		$image_id = get_field('single_fighter_image');
+																		echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'slider-image champions' ]);
+																	?>
 																		<?php
 																	endif;
 																	?>
