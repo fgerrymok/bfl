@@ -179,26 +179,28 @@ get_header();
 													'posts_per_page' => 1,
 												]);
 
-												if ($fighter_query->have_posts()) {
-													while ($fighter_query->have_posts()) {
-														$fighter_query->the_post();
-														$image_id = get_field('single_fighter_image');
-														?>
-														
-														<!-- Output -->
-														<a href="<?php the_permalink(); ?>" class="champion-box-link">
-															<div class="card-thumbnail-box">
-																<?php
-																if ($image_id) {
-																	echo wp_get_attachment_image($image_id, "", "",[ 'class' => 'slider-image champions']);
-																}
-																?>
-															</div>
-														</a>
-														
-														<?php
+													if ($fighter_query->have_posts()) {
+														while ($fighter_query->have_posts()) {
+															$fighter_query->the_post();
+															?>
+															
+															<!-- Output -->
+															<a href="<?php the_permalink(); ?>" class="champion-box-link">
+																<div class="card-thumbnail-box">
+																	<?php 
+																	if(get_the_post_thumbnail()) :
+																		echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image champions']);
+																	else : ?>
+																		<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" class="slider-image champions placeholder" />
+																		<?php
+																	endif;
+																	?>
+																</div>
+															</a>
+															
+															<?php
+														}
 													}
-												}
 												wp_reset_postdata();
 												?>
 												<p class="fighter-name"><?php echo $fighter['name']; ?></p>

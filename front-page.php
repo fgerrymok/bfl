@@ -312,7 +312,14 @@ get_header();
 														<!-- Output -->
 														<a href="<?php the_permalink(); ?>" class="champion-box-link">
 															<div class="card-thumbnail-box">
-																<?php echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image champions']); ?>
+																<?php 
+																if(get_the_post_thumbnail()) :
+																	echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image champions']);
+																else : ?>
+																	<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" class="slider-image champions placeholder" />
+																	<?php
+																endif;
+																?>
 															</div>
 														</a>
 														
