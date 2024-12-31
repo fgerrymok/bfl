@@ -280,3 +280,52 @@ function my_theme_setup() {
 add_action( 'after_setup_theme', 'my_theme_setup' );
 
 
+/**
+ * All functions to build a custom dashboard in WordPress
+ */
+require get_template_directory() . '/inc/wordpress-dashboard-functions.php';
+
+
+/**
+ * Register and enqueue a custom stylesheet for the dashboard and login screen
+ */
+function wpdocs_enqueue_custom_admin_style() {
+	wp_register_style( 'backend_css', get_template_directory_uri() . '/backend.css', false, '1.0.0' );
+	wp_enqueue_style( 'backend_css' );
+}
+add_action( 'admin_enqueue_scripts', 'wpdocs_enqueue_custom_admin_style' );
+
+
+// Adding custom logo to WordPress login
+function my_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(<?php echo esc_url(get_stylesheet_directory_uri() . '/backend/site-logo.png'); ?>);
+            background-repeat: no-repeat;
+            padding-bottom: 30px;
+            width: 100%; /* Adjust width as needed */
+            height: 80px; /* Adjust height as needed */
+            background-size: contain; /* Ensure logo fits properly */
+        }
+    </style>
+<?php }
+add_action('login_enqueue_scripts', 'my_login_logo');
+
+// Updating the link so that the new WordPress logo leads to the site
+function my_login_logo_url() {
+    return home_url();
+}
+add_filter('login_headerurl', 'my_login_logo_url');
+
+// Updating the title attribute of the login logo
+function my_login_logo_url_title() {
+    return 'BFL';
+}
+add_filter('login_headertitle', 'my_login_logo_url_title');
+
+
+// Custom Styles for Login Page
+function custom_login_styles() {
+    wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/custom-login.css');
+}
+add_action('login_enqueue_scripts', 'custom_login_styles');
