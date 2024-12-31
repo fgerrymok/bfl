@@ -17,21 +17,21 @@ get_header();
         while ( have_posts() ) :
             the_post();
             ?>
-            <section class="bfl-to-ufc-hero-section hero">
-                <h1><?php the_title(); ?></h1>
-                <?php 
-                    $heroImage = get_field('bfl_to_ufc_hero_image');
-                    if($heroImage) {
-                        echo wp_get_attachment_image($heroImage, 'full', "",['class' => 'hero-image' ]);
-                    } else {
-                        echo 'nothing';
-                    }
-                ?>
-                <div class="tabs">
-                    <button class="tab-button active" data-target="list-of-bfl-to-ufc">BFL to UFC</button>
-                    <button class="tab-button" data-target="list-of-on-the-ufc-radar">On the UFC Radar</button>
-                </div>
+            <section class="hero-section bfl-to-ufc">
+                <h1 class="title bfl-to-ufc"><?php the_title(); ?></h1>
+                <?php
+                $description = get_field("bfl_to_ufc_description");
+                if ($description) : ?>
+                    <p><?php echo wpautop(esc_html($description)); ?></p>
+                <?php endif; ?>
             </section>
+
+
+            <div class="tab-wrapper">
+            <div class="tabs bfl-to-ufc">
+                <button class="tab-button active" data-target="list-of-bfl-to-ufc">BFL to UFC</button>
+                <button class="tab-button" data-target="list-of-on-the-ufc-radar">On the UFC Radar</button>
+            </div>
 
       
             <?php
@@ -46,7 +46,6 @@ get_header();
 
             if ($query->have_posts()) : ?>
                 <section class="tab-content list-of-bfl-to-ufc active" id="list-of-bfl-to-ufc">
-                    <h2><?php echo esc_html("BFL to UFC"); ?></h2>
                     <ul>
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
                             <li>
@@ -76,7 +75,6 @@ get_header();
 
             if ($query->have_posts()) : ?>
                 <section class="tab-content list-of-on-the-ufc-radar" id="list-of-on-the-ufc-radar" style="display: none;">
-                    <h2>On the UFC Radar</h2>
                     <ul>
                         <?php while ($query->have_posts()) : $query->the_post(); ?>
                             <li>
@@ -91,25 +89,14 @@ get_header();
                         <?php endwhile; ?>
                     </ul>
                 </section>
+
                 <?php
                 wp_reset_postdata();
-            endif;
-            ?>
-            
-            <?php
-            $description = get_field("bfl_to_ufc_description");
-            if ($description) {
-                ?>
-                <section class="bfl-to-ufc-description">
-                    <p><?php echo wpautop(esc_html($description)); ?></p>
-                </section>
-                <?php
-            }   
+            endif; ?>
+            </div>
+        <?php
         endwhile;
-    ?>
-
-
-    <?php endif; ?>
+    endif; ?>
 
 
 

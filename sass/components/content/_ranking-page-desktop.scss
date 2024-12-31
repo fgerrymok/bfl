@@ -1,6 +1,46 @@
-@media(min-width: $breakpoint-tablet-sm){
+@media(min-width: 52em){
     .rankings-page{
         .content-section{
+            .tabs-wrapper {
+                position: relative;
+                margin-bottom: 2rem;
+            }
+            
+            .tabs-wrapper ul {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                position: relative;
+            }
+            
+            .tabs-wrapper ul li button {
+                font-size: 1.2rem;
+                background-color: transparent;
+                border: none;
+                letter-spacing: 0.3px;
+                transition: color 0.3s ease-in-out;
+                cursor: pointer;
+            }
+            
+            .tabs-wrapper ul li button.active {
+                text-underline-offset: 5px;
+                text-decoration-color: $color-red;
+            }
+            
+            .tabs-wrapper ul li button:hover {
+                color: $color-red
+            }
+            
+            .tab-slider {
+                position: absolute;
+                bottom: -5px; /* Adjust based on design */
+                height: 2px;
+                background-color: $color-red;
+                width: 0;
+                transition: all 0.3s ease-in-out;
+            }
+            
+
             .ranking-header{
                 margin: 3rem 0 2rem;
                 ul{
@@ -15,11 +55,13 @@
                             background-color: transparent;
                             border: none;
                             letter-spacing: 0.3px;
-                        }
-                        button.active{
-                            text-decoration: underline;
-                            text-decoration-color: $color-red;
-                            text-underline-offset: 5px;
+                            transition: all 0.3s ease-in-out;
+                            &:hover{
+                                color: $color-red;
+                                &.active{
+                                    text-decoration-color: $color-white;
+                                }
+                            }
                         }
                     }
                 }
@@ -30,12 +72,22 @@
                     
 
                 }
-                .division-group{
-                    .division-group-wrapper{
-                        grid-template-columns: repeat(3,1fr);
-                    }
-                }
+                
             }
         }
 
     }
+
+    @media(min-width: 61em){
+        .rankings-page{
+            .content-section{
+                .division-group{
+                    .division-group-wrapper{
+                        grid-template-columns: repeat(3,1fr);
+                        gap: 0;
+                    }
+                }
+            }
+        }
+    }
+

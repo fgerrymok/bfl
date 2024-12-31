@@ -39,18 +39,20 @@ get_header();
     <option value="men_professional">Men's Professional</option>
     <option value="women_professional">Women's Professional</option>
     <option value="men_amateur">Men's Amateur</option>
-    <option value="womemen_amateur">Women's Amateur</option>
+    <option value="women_amateur">Women's Amateur</option>
     <option value="kickboxing">Kickboxig</option>
   </select>
 
-
-	<ul>
-		<li><button data-target="men_professional">Men's Professional</button></li>
-		<li><button data-target="women_professional">Women's Professional</button></li>
-		<li><button data-target="men_amateur">Men's Amateur</button></li>
-		<li><button data-target="women_amateur">Women's Amateur</button></li>
-		<li><button data-target="kickboxing">Kickboxing</button></li>
-	</ul>
+	<div class='tabs-wrapper'>
+		<ul>
+			<li><button data-target="men_professional">Men's Professional</button></li>
+			<li><button data-target="women_professional">Women's Professional</button></li>
+			<li><button data-target="men_amateur">Men's Amateur</button></li>
+			<li><button data-target="women_amateur">Women's Amateur</button></li>
+			<li><button data-target="kickboxing">Kickboxing</button></li>
+		</ul>
+		<div class='tab-slider'></div>
+	</div>
 </div>
 
 <div class="ranking-content">
@@ -151,10 +153,27 @@ get_header();
 						<h3 class="division-title"><?php echo esc_html($label); ?></h3>
 							<?php if (!empty($division['fighter'])) : 
 								foreach ($division['fighter'] as $fighter) : 
-									if ($fighter['rank'] == 'champion') : ?>
-										<div class="champion-box">
-											<?php
-										$fighter_query = new WP_Query([
+									if ($fighter['rank'] == 'champion') :
+										if($fighter['name'] == 'vacant' || $fighter['name'] == 'Vacant') : 
+											// IF CHAMPION IS VACANT
+										?>
+											<div class="champion-box">
+												<!-- Output -->
+												<a href="<?php the_permalink(); ?>" class="champion-box-link">
+													<div class="card-thumbnail-box">
+														<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" class="slider-image champions vacant" />
+													</div>
+												</a>
+												<p class="fighter-name">Vacant</p>
+												<p class="fighter-record"></p>
+											</div>
+										<?php
+										else : 
+												// IF CHAMPION EXISTS
+										?>
+											<div class="champion-box">
+												<?php
+												$fighter_query = new WP_Query([
 													'post_type' => 'bfl-fighters',
 													'title' => $fighter['name'],
 													'posts_per_page' => 1,
@@ -180,21 +199,23 @@ get_header();
 														<?php
 													}
 												}
-                                            wp_reset_postdata();
-										?>
-											<p class="fighter-record">
-												<?php
-												 if(!empty($fighter['bfl-win']) || !empty($fighter['bfl-lose']) || !empty($fighter['bfl-draw'])){
-													$bfl_win  = !empty($fighter['bfl-win']) ? $fighter['bfl-win'] : 0;
-													$bfl_lose = !empty($fighter['bfl-lose']) ? $fighter['bfl-lose'] : 0;
-													$bfl_draw = !empty($fighter['bfl-draw']) ? $fighter['bfl-draw'] : 0;
-													echo esc_html($bfl_win . 'W-' . $bfl_lose . 'L-' . $bfl_draw . 'D');
-												 }
-
+												wp_reset_postdata();
 												?>
-											</p>        
-										</div>
-									<?php
+												<p class="fighter-name"><?php echo $fighter['name']; ?></p>
+												<p class="fighter-record">
+													<?php
+													if(!empty($fighter['bfl-win']) || !empty($fighter['bfl-lose']) || !empty($fighter['bfl-draw'])){
+														$bfl_win  = !empty($fighter['bfl-win']) ? $fighter['bfl-win'] : 0;
+														$bfl_lose = !empty($fighter['bfl-lose']) ? $fighter['bfl-lose'] : 0;
+														$bfl_draw = !empty($fighter['bfl-draw']) ? $fighter['bfl-draw'] : 0;
+														echo esc_html($bfl_win . 'W-' . $bfl_lose . 'L-' . $bfl_draw . 'D');
+													}
+
+													?>
+												</p>        
+											</div>
+										<?php
+										endif;
 									endif;
 								endforeach;
 				
@@ -211,13 +232,37 @@ get_header();
 									<tbody>
 										<?php foreach ($division['fighter'] as $fighter) : 
 											if ($fighter['rank'] != 'out of rank' && $fighter['rank'] != 'champion') : ?>
+
+
+
+
 												<!-- single fighter output -->
 												<tr class='fighter-row'>
 													<td class="rank"><p><?php echo esc_html($fighter['rank']); ?></p></td>
 													<td class="fighter-name"><p>
-														<a href="<?php echo esc_url( home_url( '/fighters/' . sanitize_title($fighter['name']) . '/' ) ); ?>">
-															<?php echo esc_html($fighter['name']); ?>
-														</a>
+														<!-- LINK -->
+														<?php
+														$fighter_query = new WP_Query([
+															'post_type' => 'bfl-fighters',
+															'title' => $fighter['name'],
+															'posts_per_page' => 1,
+														]);
+														if ($fighter_query->have_posts()) {
+															// if single fighter page exists
+															while ($fighter_query->have_posts()) { 
+															$fighter_query->the_post(); ?>
+															<a href="<?php echo esc_url( home_url( '/fighters/' . sanitize_title($fighter['name']) . '/' ) ); ?>">
+																<?php echo esc_html($fighter['name']); ?>
+															</a>
+															<?php
+															}
+														} else {
+															// if single fighter page doesn't exist
+															echo esc_html($fighter['name']);
+														} 
+														wp_reset_postdata();
+														?>
+														<!-- LINK -->
 													</p></td>
 													
 													<td class="fighter-record">
