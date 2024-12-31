@@ -1,0 +1,24 @@
+/* Login ============================================================ */
+
+.wp-login-logo {
+    background-color: #c70304;
+    padding: 1rem;
+}
+
+.wp-login-logo a {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#login form {
+    background-color: #c70304;
+}
+
+#login form p, #login form label {
+    color: #fff;
+}
+
+.submit .button {
+    background-color: white;
+    color: black;
+}
