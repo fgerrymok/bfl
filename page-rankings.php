@@ -168,15 +168,16 @@ get_header();
 												<p class="fighter-record"></p>
 											</div>
 										<?php
-										else : ?>
-										
+										else : 
+												// IF CHAMPION EXISTS
+										?>
 											<div class="champion-box">
 												<?php
-											$fighter_query = new WP_Query([
-														'post_type' => 'bfl-fighters',
-														'title' => $fighter['name'],
-														'posts_per_page' => 1,
-													]);
+												$fighter_query = new WP_Query([
+													'post_type' => 'bfl-fighters',
+													'title' => $fighter['name'],
+													'posts_per_page' => 1,
+												]);
 
 													if ($fighter_query->have_posts()) {
 														while ($fighter_query->have_posts()) {
@@ -233,13 +234,37 @@ get_header();
 									<tbody>
 										<?php foreach ($division['fighter'] as $fighter) : 
 											if ($fighter['rank'] != 'out of rank' && $fighter['rank'] != 'champion') : ?>
+
+
+
+
 												<!-- single fighter output -->
 												<tr class='fighter-row'>
 													<td class="rank"><p><?php echo esc_html($fighter['rank']); ?></p></td>
 													<td class="fighter-name"><p>
-														<a href="<?php echo esc_url( home_url( '/fighters/' . sanitize_title($fighter['name']) . '/' ) ); ?>">
-															<?php echo esc_html($fighter['name']); ?>
-														</a>
+														<!-- LINK -->
+														<?php
+														$fighter_query = new WP_Query([
+															'post_type' => 'bfl-fighters',
+															'title' => $fighter['name'],
+															'posts_per_page' => 1,
+														]);
+														if ($fighter_query->have_posts()) {
+															// if single fighter page exists
+															while ($fighter_query->have_posts()) { 
+															$fighter_query->the_post(); ?>
+															<a href="<?php echo esc_url( home_url( '/fighters/' . sanitize_title($fighter['name']) . '/' ) ); ?>">
+																<?php echo esc_html($fighter['name']); ?>
+															</a>
+															<?php
+															}
+														} else {
+															// if single fighter page doesn't exist
+															echo esc_html($fighter['name']);
+														} 
+														wp_reset_postdata();
+														?>
+														<!-- LINK -->
 													</p></td>
 													
 													<td class="fighter-record">

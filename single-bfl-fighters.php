@@ -66,29 +66,9 @@ get_header();
 				?>
 				</div>
 
-
-				<!-- Get division and weight class -->
-				<?php
-				// Get the current fighter post
-				$fighter_id = get_the_ID();
-				$weight_classes = get_the_terms($fighter_id, 'bfl-weight-class');
-				$fighter_categories = get_the_terms($fighter_id, 'bfl-fighter-category');
-
-				// Display Weight Class
-				if ($weight_classes && !is_wp_error($weight_classes)) {
-					foreach ($weight_classes as $weight_class) {
-						$weight_class = $weight_class->name;
-					}
-					foreach ($fighter_categories as $fighter_category) {
-						$fighter_category = $fighter_category->name;
-					}
-				}
-				?>
-
 				<!-- Fighter Record Output -->
 				<?php if ($fighter_data): ?>
 					<div class="fighter-record">
-						<p>Rank: <?php echo esc_html($fighter_category) . " " . esc_html($weight_class) . " #" . esc_html($fighter_data['rank']); ?></p>
 						<p>Wins: <?php echo esc_html($fighter_data['bfl-win']); ?></p>
 						<p>Losses: <?php echo esc_html($fighter_data['bfl-lose']); ?></p>
 						<p>Draws: <?php echo esc_html($fighter_data['bfl-draw']); ?></p>
