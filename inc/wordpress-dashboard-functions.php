@@ -38,23 +38,20 @@ function tutorial_widget() {
             <div class="single-tutorial">
                 <!-- Tutorial 1 -->
                 <h2 class="tutorial-title"><?php esc_html_e ('Adding New Events & Fight Results'); ?></h2>
-                <video src="<?php echo get_template_directory_uri() . '/backend/_tutorial_events_&_results.mov' ?>" type="video/mp4" controls>
-                    <?php esc_html_e('Your browser does not support the video tag.'); ?>
-                </video>
+                <iframe src="https://www.youtube.com/embed/sNDpkzKsp7U" frameborder="0" allowfullscreen></iframe>
+
             </div>
             <div class="single-tutorial">
                 <!-- Tutorial 2 -->
-                <h2 class="tutorial-title"><?php esc_html_e ('Updating Rankings & Adding New Fighter Profiles'); ?></h2>
-                <video src="<?php echo get_template_directory_uri() . '/backend/_tutorial_rankings_&_fighters.mov' ?>" type="video/mp4" controls>
-                    <?php esc_html_e('Your browser does not support the video tag.'); ?>
-                </video>
+                <h2 class="tutorial-title"><?php echo esc_html_e ('Updating Rankings & Adding New Fighter Profiles'); ?></h2>
+                <iframe src="https://www.youtube.com/embed/2iQXa71lHf4" frameborder="0" allowfullscreen></iframe>
+
             </div>
             <div class="single-tutorial">
                 <!-- Tutorial 3 -->
                 <h2 class="tutorial-title"><?php esc_html_e ('Editing the Footer'); ?></h2>
-                <video src="<?php echo get_template_directory_uri() . '/backend/_tutorial_footer.mov' ?>" type="video/mp4" controls>
-                    <?php esc_html_e('Your browser does not support the video tag.'); ?>
-                </video>
+                <iframe src="https://www.youtube.com/embed/JuUN0DERLTQ" frameborder="0" allowfullscreen></iframe>
+
             </div>
         </section>
     <?php
