@@ -74,6 +74,8 @@ get_header();
 							$fighter1Image = $row['fighter_1_image'];
 							$fighter2Name = $row['fighter_2_name'];
 							$fighter2Image = $row['fighter_2_image'];
+							$fightType = $row['type_of_fight'];
+							$contentLink = $row['content_link'];
 
 							if (!empty($fighter1Name) && !empty($fighter2Name)) {
 								?>
@@ -125,6 +127,20 @@ get_header();
 											<p class="fighter"><?php echo esc_html($fighter1Name); ?></p>
 											<p class="vs"><?php echo esc_html("vs"); ?></p>
 											<p class="fighter"><?php echo esc_html($fighter2Name); ?></p>
+
+											<?php
+											if (!empty($fightType)) {
+												?>
+												<p class="fight-type"><?php echo esc_html($fightType); ?></p>
+												<?php
+											}
+				
+											if (!empty($contentLink)) {
+												?>
+												<a href="<?php echo esc_url($contentLink); ?>" target="_blank" class="event-interviews"><?php echo esc_html("Event Interviews"); ?></a>
+												<?php
+											}
+											?>
 										</div>
 										<?php
 									}
