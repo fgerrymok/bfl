@@ -27,6 +27,10 @@ get_header();
 							<?php
 							if($heroImage) {
 								echo wp_get_attachment_image($heroImage, 'full');
+							} else {
+								?>
+								<img src="<?php echo get_template_directory_uri() . '/assets/default_results.png' ?>" alt="Default Champion">
+								<?php
 							}
 							?>
 						</section>
