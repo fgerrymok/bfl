@@ -11,7 +11,7 @@
     width: 100% !important;
 }
 
-.postbox-container {
+#dashboard-widgets .postbox-container {
     all: unset;
 }
 
