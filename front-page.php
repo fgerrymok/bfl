@@ -349,7 +349,7 @@ get_header();
 				<!-- social media section -->
 				<section class='homepage-section instagram'>
 					<h2><?php echo esc_html("Recent posts on social media") ?></h2>
-					<?php echo do_shortcode('[instagram-feed]'); ?>
+					<?php echo do_shortcode('[instagram-feed feed=2]'); ?>
 				</section>
 
 
