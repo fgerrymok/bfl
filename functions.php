@@ -160,6 +160,10 @@ function bfl_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
+	if ( is_singular( 'bfl-news' ) ) {
+		wp_enqueue_script( 'copy-link-button', get_template_directory_uri(). '/js/copylinkbutton.js', array(), _S_VERSION, true );
+	}
+
 	// loadmore news
 	if ( is_post_type_archive( 'bfl-news' ) ) {
 		wp_enqueue_script('loadmore-news', get_template_directory_uri() . '/js/loadmore-news.js', ['jquery'], null, true);

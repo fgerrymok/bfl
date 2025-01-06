@@ -54,6 +54,7 @@ get_header();
 					<button class="social-copy" id="copy-link">
 						<?php echo wp_get_attachment_image(14870, $image_size, false, ['class' => 'social-icon']); ?>
 					</button>
+					<div id="copy-popup">Link copied!</div>
 				</li>
 			</ul>
 		</div>
