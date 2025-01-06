@@ -333,3 +333,11 @@ function custom_login_styles() {
     wp_enqueue_style('custom-login', get_stylesheet_directory_uri() . '/custom-login.css');
 }
 add_action('login_enqueue_scripts', 'custom_login_styles');
+
+// display all posts on taxonomy past event page
+function show_all_past_events($query) {
+    if (!is_admin() && $query->is_main_query() && is_tax('bfl-event-type-past-events')) {
+        $query->set('posts_per_page', -1); 
+    }
+}
+add_action('pre_get_posts', 'show_all_past_events');

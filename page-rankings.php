@@ -40,7 +40,7 @@ get_header();
     <option value="women_professional">Women's Professional</option>
     <option value="men_amateur">Men's Amateur</option>
     <option value="women_amateur">Women's Amateur</option>
-    <option value="kickboxing">Kickboxig</option>
+    <option value="kickboxing">Kickboxing</option>
   </select>
 
 	<div class='tabs-wrapper'>
