@@ -107,6 +107,7 @@
               text-align: left;
               th {
                 font-weight: 400 !important;
+                background: transparent !important;
                 &:first-child {
                   width: 10%;
                 }
@@ -143,6 +144,7 @@
               margin-bottom: 0;
               th {
                 font-weight: 300;
+                background: transparent !important;
               }
               tr {
                 display: flex;
@@ -157,19 +159,17 @@
   }
 }
 
-
 @media (min-width: 30em) {
-    .rankings-page {
-      .content-section {
-        .division-group {
-          .division-group-wrapper {
-            .division {
-              .champion-box{
-                  .champion-box-link {
-                      .card-thumbnail-box {
-                          width: 60%;
-                      }
-                  }
+  .rankings-page {
+    .content-section {
+      .division-group {
+        .division-group-wrapper {
+          .division {
+            .champion-box {
+              .champion-box-link {
+                .card-thumbnail-box {
+                  width: 60%;
+                }
               }
             }
           }
@@ -177,6 +177,7 @@
       }
     }
   }
+}
 
 @media (min-width: 44em) {
   .rankings-page {
@@ -206,12 +207,12 @@
               width: 80%;
               margin: 0 auto;
             }
-            .champion-box{
-                .champion-box-link {
-                    .card-thumbnail-box {
-                        width: 65%;
-                    }
+            .champion-box {
+              .champion-box-link {
+                .card-thumbnail-box {
+                  width: 65%;
                 }
+              }
             }
           }
         }

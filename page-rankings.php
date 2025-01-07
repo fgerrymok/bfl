@@ -40,7 +40,7 @@ get_header();
     <option value="women_professional">Women's Professional</option>
     <option value="men_amateur">Men's Amateur</option>
     <option value="women_amateur">Women's Amateur</option>
-    <option value="kickboxing">Kickboxig</option>
+    <option value="kickboxing">Kickboxing</option>
   </select>
 
 	<div class='tabs-wrapper'>
@@ -179,26 +179,30 @@ get_header();
 													'posts_per_page' => 1,
 												]);
 
-												if ($fighter_query->have_posts()) {
-													while ($fighter_query->have_posts()) {
-														$fighter_query->the_post();
-														$image_id = get_field('single_fighter_image');
-														?>
-														
-														<!-- Output -->
-														<a href="<?php the_permalink(); ?>" class="champion-box-link">
-															<div class="card-thumbnail-box">
-																<?php
-																if ($image_id) {
-																	echo wp_get_attachment_image($image_id, "", "",[ 'class' => 'slider-image champions']);
-																}
-																?>
-															</div>
-														</a>
-														
-														<?php
+													if ($fighter_query->have_posts()) {
+														while ($fighter_query->have_posts()) {
+															$fighter_query->the_post();
+															?>
+															
+															<!-- Output -->
+															<a href="<?php the_permalink(); ?>" class="champion-box-link">
+																<div class="card-thumbnail-box">
+																	<?php 
+																	if(get_the_post_thumbnail()) :
+																		echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image champions']);
+																	else : 
+																		$image_id = get_field('single_fighter_image');
+																		echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'slider-image champions' ]);
+																	?>
+																		<?php
+																	endif;
+																	?>
+																</div>
+															</a>
+															
+															<?php
+														}
 													}
-												}
 												wp_reset_postdata();
 												?>
 												<p class="fighter-name"><?php echo $fighter['name']; ?></p>

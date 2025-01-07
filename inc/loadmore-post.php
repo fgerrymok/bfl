@@ -6,7 +6,7 @@ function loadmore_posts_handler() {
 
     $args = [
         'post_type'      => 'post',
-        'posts_per_page' => 9,
+        'posts_per_page' => 8,
         'paged'          => $paged,
         'orderby'        => 'date',
         'order'          => 'DESC',

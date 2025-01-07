@@ -72,33 +72,42 @@ get_header();
 						foreach ($fightCardRepeater as $row) {
 							$fighter1Name = $row['fighter_1_name'];
 							$fighter1Image = $row['fighter_1_image'];
-							$fighter1Profile = $row['fighter_1_profile'];
 							$fighter2Name = $row['fighter_2_name'];
 							$fighter2Image = $row['fighter_2_image'];
-							$fighter2Profile = $row['fighter_2_profile'];
-	
+							$fightType = $row['type_of_fight'];
+							$contentLink = $row['content_link'];
+
 							if (!empty($fighter1Name) && !empty($fighter2Name)) {
 								?>
 								<section class="fight-card">
 									<div class="fighter-container">
 										<?php
-										if ($fighter1Profile) {
-											?>
-											<a href="<?php foreach ($fighter1Profile as $fighter1ProfileId) {
-												echo get_permalink($fighter1ProfileId);
-												} ?>">
-												<?php
-												if (!empty($fighter1Image)) {
-													echo wp_get_attachment_image($fighter1Image, 'full');
-												} else {
-													?>
-													<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
-													<?php
-												}
+										// link query for fighter 1
+										$fighter_query = new WP_Query([
+											'post_type' => 'bfl-fighters',
+											'title' => $fighter1Name,
+											'posts_per_page' => 1,
+										]);
+										if ($fighter_query->have_posts()) {
+											while ($fighter_query->have_posts()) {
+												$fighter_query->the_post(); 
 												?>
-											</a>
-											<?php
+												<!-- WITH LINK OUTPUT -->
+												<a href="<?php the_permalink(); ?>">
+													<?php
+													if (!empty($fighter1Image)) {
+														echo wp_get_attachment_image($fighter1Image, 'full');
+													} else {
+														?>
+														<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+														<?php
+													}
+													?>
+												</a>
+												<?php
+											}
 										} else {
+											// NO LINK OUTPUT
 											if (!empty($fighter1Image)) {
 												echo wp_get_attachment_image($fighter1Image, 'full');
 											} else {
@@ -107,6 +116,7 @@ get_header();
 												<?php
 											}
 										}
+										wp_reset_postdata();
 										?>
 									</div>
 	
@@ -117,29 +127,52 @@ get_header();
 											<p class="fighter"><?php echo esc_html($fighter1Name); ?></p>
 											<p class="vs"><?php echo esc_html("vs"); ?></p>
 											<p class="fighter"><?php echo esc_html($fighter2Name); ?></p>
+
+											<?php
+											if (!empty($fightType)) {
+												?>
+												<p class="fight-type"><?php echo esc_html($fightType); ?></p>
+												<?php
+											}
+				
+											if (!empty($contentLink)) {
+												?>
+												<a href="<?php echo esc_url($contentLink); ?>" target="_blank" class="event-interviews"><?php echo esc_html("Event Interviews"); ?></a>
+												<?php
+											}
+											?>
 										</div>
 										<?php
 									}
 									?>
 									<div class="fighter-container">
-										<?php
-										if ($fighter2Profile) {
-											?>
-											<a href="<?php foreach ($fighter2Profile as $fighter2ProfileId) {
-												echo get_permalink($fighter2ProfileId);
-												} ?>">
-												<?php
-												if (!empty($fighter2Image)) {
-													echo wp_get_attachment_image($fighter2Image, 'full');
-												} else {
-													?>
-													<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
-													<?php
-												}
+									<?php
+										// link query for fighter 2
+										$fighter_query = new WP_Query([
+											'post_type' => 'bfl-fighters',
+											'title' => $fighter2Name,
+											'posts_per_page' => 1,
+										]);
+										if ($fighter_query->have_posts()) {
+											while ($fighter_query->have_posts()) {
+												$fighter_query->the_post(); 
 												?>
-											</a>
-											<?php
+												<!-- WITH LINK OUTPUT -->
+												<a href="<?php the_permalink(); ?>">
+													<?php
+													if (!empty($fighter2Image)) {
+														echo wp_get_attachment_image($fighter2Image, 'full');
+													} else {
+														?>
+														<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/default-champion.png'); ?>" alt="Default Image" />
+														<?php
+													}
+													?>
+												</a>
+												<?php
+											}
 										} else {
+											// NO LINK OUTPUT
 											if (!empty($fighter2Image)) {
 												echo wp_get_attachment_image($fighter2Image, 'full');
 											} else {
@@ -148,6 +181,7 @@ get_header();
 												<?php
 											}
 										}
+										wp_reset_postdata();
 										?>
 									</div>
 								</section>

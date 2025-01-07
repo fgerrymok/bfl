@@ -16,6 +16,7 @@ get_header();
 					foreach ($heroFlex as $layout) {
 						if ($layout['acf_fc_layout'] === "upcoming_event") {
 							$eventPoster = $layout['homepage_event_image'];
+							$eventPosterMobile = $layout['homepage_event_image_mobile'];
 							
 							$args = array(
 								'post_type' => 'bfl-events',
@@ -36,7 +37,11 @@ get_header();
 									$query->the_post();
 									?>
 										<a href="<?php echo esc_url(the_permalink()); ?>">
-											<?php echo wp_get_attachment_image($eventPoster, 'full'); ?>
+											<?php echo wp_get_attachment_image($eventPoster, 'full', '', ['class' => 'hero-poster']); ?>
+											<?php if($eventPosterMobile) { 
+													echo wp_get_attachment_image($eventPosterMobile, 'full', '', ['class' => 'hero-poster-mobile']);
+											} ?>
+											
 										</a>
 									<?php
 									
@@ -53,7 +58,7 @@ get_header();
 					} 
 					// UFC banner
 					?>
-					<a href="" class="ufc-banner-link"> 
+					<a href="https://ufcfightpass.com/login?from=%2Flive%2F176151%2Fbattlefield-fight-league-66" class="ufc-banner-link"> 
 						<?php
 						$image_id = 14995; // UFC Image ID
 						echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'ufc-banner home']);
@@ -312,7 +317,16 @@ get_header();
 														<!-- Output -->
 														<a href="<?php the_permalink(); ?>" class="champion-box-link">
 															<div class="card-thumbnail-box">
-																<?php echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image champions']); ?>
+																<?php 
+																if(get_the_post_thumbnail()) :
+																	echo get_the_post_thumbnail( "", "", [ 'class' => 'slider-image champions']);
+																else : 
+																	$image_id = get_field('single_fighter_image');
+																	echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'slider-image champions' ]);
+																?>
+																	<?php
+																endif;
+																?>
 															</div>
 														</a>
 														
@@ -340,7 +354,7 @@ get_header();
 				<!-- social media section -->
 				<section class='homepage-section instagram'>
 					<h2><?php echo esc_html("Recent posts on social media") ?></h2>
-					<?php echo do_shortcode('[instagram-feed]'); ?>
+					<?php echo do_shortcode('[instagram-feed feed=2]'); ?>
 				</section>
 
 
