@@ -16,6 +16,7 @@ get_header();
 					foreach ($heroFlex as $layout) {
 						if ($layout['acf_fc_layout'] === "upcoming_event") {
 							$eventPoster = $layout['homepage_event_image'];
+							$eventPosterMobile = $layout['homepage_event_image_mobile'];
 							
 							$args = array(
 								'post_type' => 'bfl-events',
@@ -36,7 +37,11 @@ get_header();
 									$query->the_post();
 									?>
 										<a href="<?php echo esc_url(the_permalink()); ?>">
-											<?php echo wp_get_attachment_image($eventPoster, 'full'); ?>
+											<?php echo wp_get_attachment_image($eventPoster, 'full', '', ['class' => 'hero-poster']); ?>
+											<?php if($eventPosterMobile) { 
+													echo wp_get_attachment_image($eventPosterMobile, 'full', '', ['class' => 'hero-poster-mobile']);
+											} ?>
+											
 										</a>
 									<?php
 									
@@ -53,7 +58,7 @@ get_header();
 					} 
 					// UFC banner
 					?>
-					<a href="" class="ufc-banner-link"> 
+					<a href="https://ufcfightpass.com/login?from=%2Flive%2F176151%2Fbattlefield-fight-league-66" class="ufc-banner-link"> 
 						<?php
 						$image_id = 14995; // UFC Image ID
 						echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'ufc-banner home']);

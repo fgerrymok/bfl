@@ -44,14 +44,17 @@
   margin: 1rem;
 }
 
+.homepage-hero .hero-poster {
+  display: none;
+}
+.homepage-hero .hero-poster-mobile {
+  display: block;
+}
+
 .ufc-banner.home {
   margin: auto;
+  margin-top: 2rem;
   padding: 0;
-}
-@media (min-width: $breakpoint-tablet-sm) {
-  .ufc-banner.home {
-    padding: 2rem;
-  }
 }
 
 // =============== RESPONSIVE STYLE =============== //
@@ -60,6 +63,9 @@
     width: 500px;
     margin-left: auto;
     margin-right: auto;
+  }
+  .ufc-banner.home {
+    max-width: 400px;
   }
 }
 
@@ -70,6 +76,13 @@
 
   .site-main.frontpage {
     margin-top: -52px;
+  }
+
+  .homepage-hero .hero-poster {
+    display: block;
+  }
+  .homepage-hero .hero-poster-mobile {
+    display: none;
   }
 }
 
