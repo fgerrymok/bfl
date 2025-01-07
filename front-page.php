@@ -58,7 +58,7 @@ get_header();
 					} 
 					// UFC banner
 					?>
-					<a href="" class="ufc-banner-link"> 
+					<a href="https://ufcfightpass.com/login?from=%2Flive%2F176151%2Fbattlefield-fight-league-66" class="ufc-banner-link"> 
 						<?php
 						$image_id = 14995; // UFC Image ID
 						echo wp_get_attachment_image( $image_id, 'full', "", [ 'class' => 'ufc-banner home']);
