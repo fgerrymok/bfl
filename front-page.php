@@ -16,6 +16,7 @@ get_header();
 					foreach ($heroFlex as $layout) {
 						if ($layout['acf_fc_layout'] === "upcoming_event") {
 							$eventPoster = $layout['homepage_event_image'];
+							$eventPosterMobile = $layout['homepage_event_image_mobile'];
 							
 							$args = array(
 								'post_type' => 'bfl-events',
@@ -36,7 +37,11 @@ get_header();
 									$query->the_post();
 									?>
 										<a href="<?php echo esc_url(the_permalink()); ?>">
-											<?php echo wp_get_attachment_image($eventPoster, 'full'); ?>
+											<?php echo wp_get_attachment_image($eventPoster, 'full', '', ['class' => 'hero-poster']); ?>
+											<?php if($eventPosterMobile) { 
+													echo wp_get_attachment_image($eventPosterMobile, 'full', '', ['class' => 'hero-poster-mobile']);
+											} ?>
+											
 										</a>
 									<?php
 									
