@@ -200,6 +200,11 @@ function bfl_scripts() {
 	wp_enqueue_script('slick-js', get_template_directory_uri() . '/js/slick.min.js', array('jquery'), null, true);
 	// Custom Slider Init Script
 	wp_enqueue_script('ws-slick-init', get_template_directory_uri() . '/js/ws-slick.js', array('jquery', 'slick-js'), null, true);
+
+	// Modify homepage video in hero section
+	if ( is_front_page() ) {
+		wp_enqueue_script('homepage-video-modifier', get_template_directory_uri() . '/js/homepage-video.js', ['jquery'], null, true);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'bfl_scripts' );
 

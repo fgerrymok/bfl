@@ -41,7 +41,6 @@ get_header();
 											<?php if($eventPosterMobile) { 
 													echo wp_get_attachment_image($eventPosterMobile, 'full', '', ['class' => 'hero-poster-mobile']);
 											} ?>
-											
 										</a>
 									<?php
 									
@@ -52,7 +51,14 @@ get_header();
 						} else if ($layout['acf_fc_layout'] === "video") {
 							$heroVideo = $layout['homepage_hero_video'];
 							if ($heroVideo) {
-								echo $heroVideo;
+								?>
+								<div class="homepage-video-container">
+									<?php
+									echo $heroVideo;
+									?>
+								</div>
+								<div class="invisible-container"></div>
+								<?php
 							}
 						}
 					} 
