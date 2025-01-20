@@ -81,6 +81,15 @@
   height: 100%;
 }
 
+.scrolling-invisible-container {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 // =============== RESPONSIVE STYLE =============== //
 @media (min-width: $breakpoint-mobile-2-columns) {
   .homepage-section {

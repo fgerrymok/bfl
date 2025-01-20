@@ -53,6 +53,7 @@ get_header();
 							if ($heroVideo) {
 								?>
 								<div class="homepage-video-container">
+									<div class="scrolling-invisible-container"></div>
 									<?php
 									echo $heroVideo;
 									?>
