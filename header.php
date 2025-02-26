@@ -108,7 +108,7 @@
 								$tickets = get_field('upcoming_events_hero')["tickets_link"];
 								if ($tickets) {
 									?>
-									<a href="<?php echo esc_url($tickets); ?>" class="header-cta"><?php echo esc_html("Get Your Tickets"); ?></a>
+									<a href="<?php echo esc_url($tickets); ?>" class="header-cta"><?php echo esc_html("Get Tickets"); ?></a>
 									<?php
 								}
 							}

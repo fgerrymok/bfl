@@ -10,6 +10,7 @@ header {
     max-width: 56.25rem;
     margin: 0 auto;
     min-height: 4rem;
+    height: 6rem;
   }
 }
 
@@ -51,11 +52,6 @@ header {
   @media (min-width: $breakpoint-tablet-sm) {
     #primary-menu {
       justify-content: flex-end !important;
-
-      // .sub-menu {
-      //     padding-top: 1.61rem;
-      //     border: unset;
-      // }
     }
   }
 }
@@ -88,12 +84,27 @@ header {
 
   .countdown-section {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
+    // flex-wrap: wrap;
+
+    // .header-cta {
+    //   display: none;
+    // }
 
     .header-cta {
-      display: none;
+      display: block;
+      font-family: $font__main;
+      font-size: 18px;
+      line-height: 1;
+      text-decoration: none;
+      border-radius: 2px;
+      margin: 7px;
+      color: $color_white;
+      background: $color_red;
+      width: fit-content;
+      padding: 2px 6px;
     }
 
     .timer-text {
@@ -162,16 +173,7 @@ header {
       align-items: flex-end;
 
       .header-cta {
-        display: block;
-        font-family: $font__main;
-        font-size: 18px;
-        line-height: 1;
-        text-decoration: none;
-        border-radius: 2px;
         padding: 12px 20px;
-        margin: 7px;
-        color: $color_white;
-        background: $color_red;
       }
     }
   }

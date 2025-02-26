@@ -152,7 +152,7 @@ get_header();
 				
 											if (!empty($contentLink)) {
 												?>
-												<a href="<?php echo esc_url($contentLink); ?>" targe="_blank" class="event-interviews"><?php echo esc_html("Event Interviews"); ?></a>
+												<a href="<?php echo esc_url($contentLink); ?>" targe="_blank" class="event-interviews"><?php echo esc_html("Matchup Breakdown"); ?></a>
 												<?php
 											}
 											?>
