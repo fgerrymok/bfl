@@ -205,6 +205,9 @@ function bfl_scripts() {
 	if ( is_front_page() ) {
 		wp_enqueue_script('homepage-video-modifier', get_template_directory_uri() . '/js/homepage-video.js', ['jquery'], null, true);
 	}
+
+	// Enqueue Sponsorships Scripts
+	wp_enqueue_script('bfl-theme-sponsorships', get_template_directory_uri() . '/js/sponsorships-animations.js', array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'bfl_scripts' );
 
