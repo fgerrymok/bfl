@@ -77,7 +77,7 @@ get_header();
 
                     <div class="content-description animate-on-scroll" data-delay="400">
                         <p>Associate your brand with Battlefield Fight League, the #1 Developmental Mixed Martial Arts Organization in Canada, and maximize your visibility among a committed public. Our events, broadcast on UFC Fight Pass, bring together the best prospects in Canadian MMA and attract millions of viewers live and online.</p>
-                        <button>CONTACT US</button>
+						<a href="https://battlefieldfl.com/about/#contact-section-title" class="sponsorships-cta-button">CONTACT US</a>
                     </div>
                 </div>
             </section>
@@ -238,7 +238,7 @@ get_header();
             <section class="final-cta">
 				<div class="cta-content animate-on-scroll">
 					<p>Do you want to be part of the BFL adventure? Contact us now and join the elite of Canadian MMA!</p>
-					<button class="cta-button-large">CONTACT US</button>
+					<a href="https://battlefieldfl.com/about/#contact-section-title" class="sponsorships-cta-button">CONTACT US</a>
 				</div>
             </section>
             <?php
