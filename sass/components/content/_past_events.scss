@@ -126,13 +126,13 @@
     margin: 2rem auto;
 
     .past-event-name {
-      height: 12rem;
+      height: 15rem;
     }
 
     .fighter-images {
       img {
         width: 10rem;
-        height: 12rem;
+        height: 15rem;
       }
 
       .vs {
@@ -150,6 +150,9 @@
       width: fit-content;
       margin: 0 auto;
       margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
   }
 }
@@ -157,7 +160,7 @@
 @media (min-width: $breakpoint-desktop-sm) {
   .one-past-event {
     .past-event-fight-details {
-      max-width: unset;
+      max-width: 450px;
     }
 
     .past-event-links {

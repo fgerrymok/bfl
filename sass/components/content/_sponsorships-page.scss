@@ -525,7 +525,7 @@
 }
 
 .opportunity-item:hover {
-    background: linear-gradient(90deg, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.05) 100%);
+    // background: linear-gradient(90deg, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.05) 100%);
     transform: translateX(10px);
 }
 
@@ -536,6 +536,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-left: 6.4px;
 }
 
 .opportunity-content h3 {
